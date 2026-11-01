@@ -379,7 +379,7 @@ players or devices.
 
 ## Public extension API
 
-Runyth Scriptoria module version **1.7.3** exposes public API version **1.2.0** at:
+Runyth Scriptoria module version **1.8.0** exposes public API version **1.2.0** at:
 
 ```javascript
 const api = game.modules.get("runyth-scriptoria")?.api;
@@ -482,3 +482,34 @@ The active language is selected through Foundry's normal global language setting
 
 See [`docs/LOCALIZATION.md`](docs/LOCALIZATION.md) for the translation-file contract and contribution procedure.
 
+## Releases
+
+The GitHub repository is [`Runyth/foundry-runyth-scriptoria`](https://github.com/Runyth/foundry-runyth-scriptoria).
+Every release attaches:
+
+```text
+runyth-scriptoria-v<version>-mod.zip
+runyth-scriptoria-v<version>-src.zip
+runyth-scriptoria-v<version>-doc.zip
+module.json
+runyth-scriptoria-v<version>-SHA256SUMS.txt
+```
+
+The `module.json` manifest download URL points at the matching release's installable archive, and the marked Latest release is always the highest published version.
+
+## Licence
+
+Copyright © 2026  [Daniel Braniewski](https://brani.dev/)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.

@@ -1,6 +1,6 @@
 # Runyth Scriptoria Extension API
 
-Runyth Scriptoria module version **1.7.3** provides public extension API version
+Runyth Scriptoria module version **1.8.0** provides public extension API version
 **1.2.0** for Foundry VTT v13. The module version, API version, and a helper
 module's own version are independent values.
 
@@ -324,6 +324,8 @@ api.registerScriptureType({
   },
 });
 ```
+
+Runyth Scriptoria v1.8.0 keeps API version 1.2.0. The rebrand to the Runyth identity does not change public extension API behaviour.
 
 Runyth Scriptoria v1.7.3 keeps API version 1.2.0. The corrective release does not change
 the helper contract: helper economics are normalized into the same complete

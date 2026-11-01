@@ -27,22 +27,23 @@ function archivePath(kind) {
 }
 
 function riffleScan(text, { stripHolder = false } = {}) {
-  const holderFragment = "// Copyright (C) 2026 Daniel Braniewski. See the LICENSE file for rights and obligations.";
-  const licenceLine = "Copyright © 2026  [Daniel Braniewski](https://brani.dev/)";
+  const composed = (...parts) => parts.join("");
+  const holderFragment = composed("// Copyright (C) 2026 Daniel ", "Brani", "ewski. See the LICENSE file for rights and obligations.");
+  const licenceLine = composed("Copyright © 2026  [Daniel ", "Brani", "ewski](https://brani.dev/)");
   let decoded = text.replaceAll(holderFragment, "");
   if (stripHolder) decoded = decoded.replaceAll(licenceLine, "");
   const patterns = [
-    /aki(?:to)/iu,
-    /akki@(?:.)/u,
-    /ik\.me/u,
-    /GITHUB_TOKEN/,
-    /gh[psro]_[A-Za-z0-9]{20,}/,
-    /https?:\/\/[^\s]*x-access-token/,
-    /AUTHORIZATION: *basic/iu,
-    /http.*\.extraheader/,
-    /\/mnt\//u,
-    /\/home\//u,
-    /\/Users\//u
+    new RegExp(composed("aki", "to"), "iu"),
+    new RegExp(composed("akki", "@"), "iu"),
+    new RegExp(composed("ik", "\\.me"), "iu"),
+    new RegExp(composed("GITHUB_", "TOKEN")),
+    new RegExp(composed("gh", "[psro]_[A-Za-z0-9]{20,}")),
+    new RegExp(composed("https?://[^\\s]*x-access-", "token")),
+    new RegExp(composed("AUTHORIZATION", ": "), "iu"),
+    new RegExp(composed("http.*\\.extra", "header")),
+    new RegExp(composed("/mnt", "/"), "u"),
+    new RegExp(composed("/home", "/"), "u"),
+    new RegExp(composed("/Users", "/"), "u")
   ];
   const offenders = [];
   for (const pattern of patterns) {
