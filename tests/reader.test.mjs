@@ -62,7 +62,7 @@ function itemWithType(typeId) {
     id: `item-${typeId}`,
     uuid: `Item.${typeId}`,
     name: "Reader Test",
-    img: "modules/scriptoria/assets/book.svg",
+    img: "modules/runyth-scriptoria/assets/book.svg",
     documentName: "Item",
     isOwner: true,
     getFlag: () => data,
@@ -76,21 +76,21 @@ test("unavailable helper documents remain readable through the shared dark reade
   const item = itemWithType("missing-helper.prophecy");
 
   const content = await buildReaderContent(item);
-  assert.match(content, /scriptoria-reader scriptoria-rendered-surface/);
-  assert.match(content, /scriptoria-rendered-content/);
+  assert.match(content, /runyth-scriptoria-reader runyth-scriptoria-rendered-surface/);
+  assert.match(content, /runyth-scriptoria-rendered-content/);
   assert.match(content, /Unavailable scripture type: missing-helper\.prophecy/);
   assert.match(content, /<pre><code>block\(\)<\/code><\/pre>/);
 });
 
-test("openReader uses the one shared Scriptoria document window", async () => {
+test("openReader uses the one shared Runyth Scriptoria document window", async () => {
   configureFoundry();
   resetScriptureTypeRegistryForTests();
   const dialog = await openReader(itemWithType("book"));
 
   assert.deepEqual(dialog.options.classes, [
-    "scriptoria-document-window",
-    "scriptoria-reader-window"
+    "runyth-scriptoria-document-window",
+    "runyth-scriptoria-reader-window"
   ]);
-  assert.match(dialog.options.content, /scriptoria-rendered-content/);
+  assert.match(dialog.options.content, /runyth-scriptoria-rendered-content/);
   assert.doesNotMatch(dialog.options.content, /parchment|efe5cf/i);
 });

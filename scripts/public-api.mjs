@@ -67,7 +67,7 @@ export function publishPublicApi(api, {
     try {
       globalThis.Hooks?.callAll?.(API_READY_HOOK, api);
     } catch (error) {
-      console.error(`${MODULE_ID} | One or more API-ready listeners failed. Scriptoria will continue loading.`, error);
+      console.error(`${MODULE_ID} | One or more API-ready listeners failed. Runyth Scriptoria will continue loading.`, error);
     }
   }
 

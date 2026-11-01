@@ -126,7 +126,7 @@ test("registers the GM-only world economics storage and dynamic settings menu", 
 });
 
 
-test("all visible Scriptoria settings use localization keys", async () => {
+test("all visible Runyth Scriptoria settings use localization keys", async () => {
   const source = await readFile(new URL("../scripts/settings.mjs", import.meta.url), "utf8");
   for (const literal of [
     'name: "Root Item folder"',
@@ -138,6 +138,6 @@ test("all visible Scriptoria settings use localization keys", async () => {
     'name: "Remember importer window position and size"',
     'name: "Reset importer window position and size"'
   ]) assert.equal(source.includes(literal), false, literal);
-  assert.match(source, /SCRIPTORIA\.Settings\.RootFolder\.Name/);
-  assert.match(source, /SCRIPTORIA\.Settings\.ResetImporterWindow\.DialogTitle/);
+  assert.match(source, /RUNYTH-SCRIPTORIA\.Settings\.RootFolder\.Name/);
+  assert.match(source, /RUNYTH-SCRIPTORIA\.Settings\.ResetImporterWindow\.DialogTitle/);
 });

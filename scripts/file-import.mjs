@@ -12,13 +12,13 @@ export function detectSourceFormat(file) {
   if (mimeType === "text/markdown" || mimeType === "text/x-markdown") return "markdown";
   if (mimeType === "text/html") return "html";
 
-  throw new Error(localize("SCRIPTORIA.FileImport.UnsupportedType", "Choose a Markdown (.md, .markdown) or HTML (.html, .htm) file."));
+  throw new Error(localize("RUNYTH-SCRIPTORIA.FileImport.UnsupportedType", "Choose a Markdown (.md, .markdown) or HTML (.html, .htm) file."));
 }
 
 export async function readDocumentFile(file) {
-  if (!file) throw new Error(localize("SCRIPTORIA.FileImport.NoFile", "No document file was selected."));
+  if (!file) throw new Error(localize("RUNYTH-SCRIPTORIA.FileImport.NoFile", "No document file was selected."));
   if (Number(file.size ?? 0) > MAX_IMPORT_FILE_SIZE) {
-    throw new Error(localize("SCRIPTORIA.FileImport.TooLarge", "The selected document is larger than 5 MiB."));
+    throw new Error(localize("RUNYTH-SCRIPTORIA.FileImport.TooLarge", "The selected document is larger than 5 MiB."));
   }
 
   const sourceFormat = detectSourceFormat(file);
@@ -26,9 +26,9 @@ export async function readDocumentFile(file) {
   const normalized = String(source ?? "").replace(/^\uFEFF/, "");
 
   if (normalized.includes("\u0000")) {
-    throw new Error(localize("SCRIPTORIA.FileImport.NotText", "The selected file does not appear to be a plain-text document."));
+    throw new Error(localize("RUNYTH-SCRIPTORIA.FileImport.NotText", "The selected file does not appear to be a plain-text document."));
   }
-  if (!normalized.trim()) throw new Error(localize("SCRIPTORIA.FileImport.Empty", "The selected document file is empty."));
+  if (!normalized.trim()) throw new Error(localize("RUNYTH-SCRIPTORIA.FileImport.Empty", "The selected document file is empty."));
 
   return {
     sourceFormat,
@@ -40,7 +40,7 @@ export async function readDocumentFile(file) {
 async function readFileText(file) {
   if (typeof file.text === "function") return file.text();
   if (typeof globalThis.FileReader !== "function") {
-    throw new Error(localize("SCRIPTORIA.FileImport.UnsupportedBrowser", "This browser cannot read the selected document file."));
+    throw new Error(localize("RUNYTH-SCRIPTORIA.FileImport.UnsupportedBrowser", "This browser cannot read the selected document file."));
   }
 
   return new Promise((resolve, reject) => {
@@ -48,7 +48,7 @@ async function readFileText(file) {
     reader.addEventListener("load", () => resolve(String(reader.result ?? "")), {
       once: true
     });
-    reader.addEventListener("error", () => reject(reader.error ?? new Error(localize("SCRIPTORIA.FileImport.ReadFailed", "Unable to read the selected file."))), {
+    reader.addEventListener("error", () => reject(reader.error ?? new Error(localize("RUNYTH-SCRIPTORIA.FileImport.ReadFailed", "Unable to read the selected file."))), {
       once: true
     });
     reader.readAsText(file, "UTF-8");

@@ -16,7 +16,7 @@ export function registerSheetHooks() {
   Hooks.on("renderItemSheet", (application, html) => {
     const item = getApplicationItem(application);
     if (!isScriptoriaItem(item)) return;
-    markScriptoriaApplication(application, html, "scriptoria-item-window");
+    markScriptoriaApplication(application, html, "runyth-scriptoria-item-window");
     if (isApplicationV2(application)) return;
     injectSheetActions(application, html);
   });
@@ -24,13 +24,13 @@ export function registerSheetHooks() {
   Hooks.on("renderApplicationV2", (application, element) => {
     const item = getApplicationItem(application);
     if (isScriptoriaItem(item)) {
-      markScriptoriaApplication(application, element, "scriptoria-item-window");
+      markScriptoriaApplication(application, element, "runyth-scriptoria-item-window");
       injectSheetActions(application, element);
       return;
     }
 
     if (isScriptoriaJournalApplication(application)) {
-      markScriptoriaApplication(application, element, "scriptoria-journal-window");
+      markScriptoriaApplication(application, element, "runyth-scriptoria-journal-window");
       markRenderedContent(element);
     }
   });
@@ -39,10 +39,10 @@ export function registerSheetHooks() {
     const item = getApplicationItem(application);
     if (!isScriptoriaItem(item)) return;
 
-    if (!controls.some((control) => control.action === "scriptoria-read")) {
+    if (!controls.some((control) => control.action === "runyth-scriptoria-read")) {
       controls.unshift({
-        action: "scriptoria-read",
-        label: localize("SCRIPTORIA.Actions.Read", "Read"),
+        action: "runyth-scriptoria-read",
+        label: localize("RUNYTH-SCRIPTORIA.Actions.Read", "Read"),
         icon: "fa-solid fa-book-open",
         visible: true,
         onClick: () => openReaderSafely(item)
@@ -51,11 +51,11 @@ export function registerSheetHooks() {
 
     if (
       (game.user?.isGM || item.isOwner)
-      && !controls.some((control) => control.action === "scriptoria-edit")
+      && !controls.some((control) => control.action === "runyth-scriptoria-edit")
     ) {
       controls.unshift({
-        action: "scriptoria-edit",
-        label: localize("SCRIPTORIA.Actions.EditSource", "Edit Source"),
+        action: "runyth-scriptoria-edit",
+        label: localize("RUNYTH-SCRIPTORIA.Actions.EditSource", "Edit Source"),
         icon: "fa-solid fa-pen-to-square",
         visible: true,
         onClick: () => openImporter({ item })
@@ -75,11 +75,11 @@ export function registerSheetHooks() {
 export function registerDirectoryHooks() {
   Hooks.on("getHeaderControlsApplicationV2", (application, controls) => {
     if (!game.user?.isGM || !isItemDirectory(application)) return;
-    if (controls.some((control) => control.action === "scriptoria-create")) return;
+    if (controls.some((control) => control.action === "runyth-scriptoria-create")) return;
 
     controls.unshift({
-      action: "scriptoria-create",
-      label: localize("SCRIPTORIA.Actions.CreateScriptoriaDocument", "Create Scriptoria Document"),
+      action: "runyth-scriptoria-create",
+      label: localize("RUNYTH-SCRIPTORIA.Actions.CreateScriptoriaDocument", "Create Runyth Scriptoria Document"),
       icon: "fa-solid fa-book-medical",
       visible: true,
       onClick: () => openImporter()
@@ -88,11 +88,11 @@ export function registerDirectoryHooks() {
 
   Hooks.on("getItemDirectoryHeaderButtons", (_application, buttons) => {
     if (!game.user?.isGM) return;
-    if (buttons.some((button) => button.class === "scriptoria-create")) return;
+    if (buttons.some((button) => button.class === "runyth-scriptoria-create")) return;
 
     buttons.unshift({
-      label: localize("SCRIPTORIA.Actions.Scriptoria", "Scriptoria"),
-      class: "scriptoria-create",
+      label: localize("RUNYTH-SCRIPTORIA.Actions.Scriptoria", "Runyth Scriptoria"),
+      class: "runyth-scriptoria-create",
       icon: "fa-solid fa-book-medical",
       onclick: () => openImporter()
     });
@@ -110,20 +110,20 @@ export function registerDirectoryHooks() {
 }
 
 function addItemContextOptions(options) {
-  if (options.some((option) => option.classes === "scriptoria-read-context")) return;
+  if (options.some((option) => option.classes === "runyth-scriptoria-read-context")) return;
 
   options.unshift(
     {
-      name: localize("SCRIPTORIA.Actions.ReadScriptoriaDocument", "Read Scriptoria Document"),
+      name: localize("RUNYTH-SCRIPTORIA.Actions.ReadScriptoriaDocument", "Read Runyth Scriptoria Document"),
       icon: '<i class="fa-solid fa-book-open"></i>',
-      classes: "scriptoria-read-context",
+      classes: "runyth-scriptoria-read-context",
       condition: (entry) => isScriptoriaItem(resolveDirectoryItem(entry)),
       callback: (entry) => openReaderSafely(resolveDirectoryItem(entry))
     },
     {
-      name: localize("SCRIPTORIA.Actions.EditScriptoriaSource", "Edit Scriptoria Source"),
+      name: localize("RUNYTH-SCRIPTORIA.Actions.EditScriptoriaSource", "Edit Runyth Scriptoria Source"),
       icon: '<i class="fa-solid fa-pen-to-square"></i>',
-      classes: "scriptoria-edit-context",
+      classes: "runyth-scriptoria-edit-context",
       condition: (entry) => {
         const item = resolveDirectoryItem(entry);
         return isScriptoriaItem(item) && (game.user?.isGM || item.isOwner);
@@ -135,7 +135,7 @@ function addItemContextOptions(options) {
 
 function injectDirectoryButton(html) {
   const root = normalizeRoot(html);
-  if (!root || root.querySelector("[data-action='scriptoria-create']")) return;
+  if (!root || root.querySelector("[data-action='runyth-scriptoria-create']")) return;
 
   const headerActions = root.querySelector(".directory-header .header-actions")
     ?? root.querySelector(".directory-header")
@@ -144,9 +144,9 @@ function injectDirectoryButton(html) {
 
   const button = document.createElement("button");
   button.type = "button";
-  button.dataset.action = "scriptoria-create";
-  button.className = "scriptoria-directory-button";
-  button.innerHTML = `<i class="fa-solid fa-book-medical"></i> ${localize("SCRIPTORIA.Actions.CreateScriptoriaDocument", "Create Scriptoria Document")}`;
+  button.dataset.action = "runyth-scriptoria-create";
+  button.className = "runyth-scriptoria-directory-button";
+  button.innerHTML = `<i class="fa-solid fa-book-medical"></i> ${localize("RUNYTH-SCRIPTORIA.Actions.CreateScriptoriaDocument", "Create Runyth Scriptoria Document")}`;
   button.addEventListener("click", () => openImporter());
   headerActions.append(button);
 }
@@ -157,16 +157,16 @@ function injectSheetActions(application, html) {
 
   const root = normalizeRoot(html);
   if (!root) return;
-  root.classList.add("scriptoria-item-sheet");
+  root.classList.add("runyth-scriptoria-item-sheet");
   markRenderedContent(root);
-  if (root.querySelector(".scriptoria-sheet-actions")) return;
+  if (root.querySelector("[runyth-scriptoria-sheet-actions]")) return;
 
   const actions = document.createElement("div");
-  actions.className = "scriptoria-sheet-actions";
-  actions.append(createButton(localize("SCRIPTORIA.Actions.Read", "Read"), "fa-solid fa-book-open", () => openReaderSafely(item)));
+  actions.className = "runyth-scriptoria-sheet-actions";
+  actions.append(createButton(localize("RUNYTH-SCRIPTORIA.Actions.Read", "Read"), "fa-solid fa-book-open", () => openReaderSafely(item)));
 
   if (game.user?.isGM || item.isOwner) {
-    actions.append(createButton(localize("SCRIPTORIA.Actions.EditSource", "Edit Source"), "fa-solid fa-pen-to-square", () => {
+    actions.append(createButton(localize("RUNYTH-SCRIPTORIA.Actions.EditSource", "Edit Source"), "fa-solid fa-pen-to-square", () => {
       openImporter({ item });
     }));
   }
@@ -179,9 +179,9 @@ function markRenderedContent(rootOrHtml) {
   const root = normalizeRoot(rootOrHtml);
   if (!root) return;
   for (const candidate of root.querySelectorAll(
-    ".scriptoria-journal-snapshot, .scriptoria-rendered-content, [data-tab='description'], .item-description"
+    "[runyth-scriptoria-journal-snapshot], [runyth-scriptoria-rendered-content], [data-tab='description'], .item-description"
   )) {
-    candidate.classList.add("scriptoria-rendered-content");
+    candidate.classList.add("runyth-scriptoria-rendered-content");
   }
 }
 
@@ -193,7 +193,7 @@ export function markScriptoriaApplication(application, html, surfaceClass = "") 
     ?? contentRoot;
 
   if (!windowRoot) return false;
-  windowRoot.classList.add("scriptoria-document-window");
+  windowRoot.classList.add("runyth-scriptoria-document-window");
   if (surfaceClass) windowRoot.classList.add(surfaceClass);
   return true;
 }

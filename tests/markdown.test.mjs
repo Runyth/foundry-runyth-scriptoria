@@ -73,7 +73,7 @@ test("preserves Foundry enrichment syntax", () => {
 });
 
 test("renders single- and multi-backtick inline code without affecting fenced blocks", () => {
-  const html = renderMarkdown(`Normal text with \`inline code\`.\n\nA literal backtick: \`\` \`example\` \`\`.\n\n\`\`\`javascript\nconst value = game.settings.get("scriptoria", "setting");\n\`\`\``);
+  const html = renderMarkdown(`Normal text with \`inline code\`.\n\nA literal backtick: \`\` \`example\` \`\`.\n\n\`\`\`javascript\nconst value = game.settings.get("runyth-scriptoria", "setting");\n\`\`\``);
 
   assert.match(html, /<code>inline code<\/code>/);
   assert.match(html, /<code>`example`<\/code>/);

@@ -13,7 +13,7 @@ import {
   validateDocumentForScriptureType
 } from "../scripts/scripture-types.mjs";
 
-const PROVIDER_ID = "example-scriptoria-helper";
+const PROVIDER_ID = "example-runyth-scriptoria-helper";
 
 function descriptor(overrides = {}) {
   return {
@@ -215,7 +215,7 @@ test("unregistration is ownership-aware and unavailable documents retain a fallb
 
 test("built-in types cannot be unregistered", () => {
   const result = unregisterScriptureType("book", {
-    provider: "scriptoria"
+    provider: "runyth-scriptoria"
   });
   assert.equal(result.ok, false);
   assert.equal(result.error.code, "BUILT_IN_PROTECTED");
@@ -239,7 +239,7 @@ test("provider validators are awaited and isolated behind actionable errors", as
       `${PROVIDER_ID}.prophecy`,
       { title: "Hidden" }
     ),
-    /provider "example-scriptoria-helper" rejected the document: Prophecy titles must begin with Seen/
+    /provider "example-runyth-scriptoria-helper" rejected the document: Prophecy titles must begin with Seen/
   );
 });
 
@@ -258,10 +258,10 @@ test("registration and unregistration hooks receive frozen public data and liste
 
   assert.equal(registered.ok, true);
   assert.equal(removed.ok, true);
-  assert.equal(calls[0][0], "scriptoria.scriptureTypeRegistered");
+  assert.equal(calls[0][0], "runyth-scriptoria.scriptureTypeRegistered");
   assert.equal(calls[0][1].id, `${PROVIDER_ID}.prophecy`);
   assert.equal(Object.isFrozen(calls[0][1]), true);
-  assert.equal(calls[1][0], "scriptoria.scriptureTypeUnregistered");
+  assert.equal(calls[1][0], "runyth-scriptoria.scriptureTypeUnregistered");
 
   globalThis.Hooks = {
     callAll: () => {
@@ -280,7 +280,7 @@ test("registration and unregistration hooks receive frozen public data and liste
 test("built-in scripture types expose stable localization keys", () => {
   resetScriptureTypeRegistryForTests();
   const book = getScriptureType("book");
-  assert.equal(book.labelKey, "SCRIPTORIA.Types.Book.Label");
-  assert.equal(book.pluralKey, "SCRIPTORIA.Types.Book.Plural");
-  assert.equal(book.descriptionKey, "SCRIPTORIA.Types.Book.Description");
+  assert.equal(book.labelKey, "RUNYTH-SCRIPTORIA.Types.Book.Label");
+  assert.equal(book.pluralKey, "RUNYTH-SCRIPTORIA.Types.Book.Plural");
+  assert.equal(book.descriptionKey, "RUNYTH-SCRIPTORIA.Types.Book.Description");
 });

@@ -34,7 +34,7 @@ function configureFoundry() {
     },
     settings: {
       get: (_scope, key) => {
-        if (key === "rootFolder") return "Scriptoria";
+        if (key === "rootFolder") return "Runyth Scriptoria";
         if (key === "createKindFolders") return false;
         return "embedded";
       }
@@ -62,7 +62,7 @@ function configureFoundry() {
   globalThis.Folder = {
     implementation: {
       create: async (data) => ({
-        id: "scriptoria-folder",
+        id: "runyth-scriptoria-folder",
         ...data
       })
     }
@@ -100,7 +100,7 @@ test("creates a document with a helper type and persists only its stable ID", as
           documentName: "Item",
           uuid: "Item.created",
           ...data,
-          getFlag: () => data.flags.scriptoria.document
+          getFlag: () => data.flags["runyth-scriptoria"].document
         };
       }
     }
@@ -113,12 +113,12 @@ test("creates a document with a helper type and persists only its stable ID", as
     itemType: "loot"
   });
 
-  const stored = createdData.flags.scriptoria.document;
+  const stored = createdData.flags["runyth-scriptoria"].document;
   assert.equal(stored.typeId, TYPE_ID);
   assert.equal(stored.kind, TYPE_ID);
   assert.equal(getDocumentTypeId(stored), TYPE_ID);
   assert.equal(createdData.img, `modules/${PROVIDER_ID}/assets/decree.svg`);
-  assert.match(createdData.system.description.value, /scriptoria-rendered-content/);
+  assert.match(createdData.system.description.value, /runyth-scriptoria-rendered-content/);
   assert.equal(getScriptoriaData(item).typeId, TYPE_ID);
 });
 

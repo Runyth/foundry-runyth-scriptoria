@@ -27,23 +27,23 @@ export async function openReader(itemOrContext, {
 
   if (!item && !context.journal && !context.page) {
     ui.notifications.warn(localize(
-      "SCRIPTORIA.Errors.DocumentNotFound",
-      "The Scriptoria document could not be resolved."
+      "RUNYTH-SCRIPTORIA.Errors.DocumentNotFound",
+      "The Runyth Scriptoria document could not be resolved."
     ));
     return null;
   }
 
   if (item && !isScriptoriaItem(item)) {
     ui.notifications.warn(localize(
-      "SCRIPTORIA.Errors.NotScriptoriaDocument",
-      "This Item is not a Scriptoria document."
+      "RUNYTH-SCRIPTORIA.Errors.NotScriptoriaDocument",
+      "This Item is not a Runyth Scriptoria document."
     ));
     return null;
   }
 
   if (!temporaryRead && !canReadContext(context)) {
     ui.notifications.warn(localize(
-      "SCRIPTORIA.Errors.NoReadPermission",
+      "RUNYTH-SCRIPTORIA.Errors.NoReadPermission",
       "You do not have permission to read this document."
     ));
     return null;
@@ -58,7 +58,7 @@ export async function openReader(itemOrContext, {
     || "book";
   const type = getScriptureTypeOrFallback(typeId);
   if (type.capabilities.reader !== true) {
-    ui.notifications.warn(format("SCRIPTORIA.Errors.TypeNotReadable", { typeId }, `Scripture type "${typeId}" is not eligible for the Scriptoria reader.`));
+    ui.notifications.warn(format("RUNYTH-SCRIPTORIA.Errors.TypeNotReadable", { typeId }, `Scripture type "${typeId}" is not eligible for the Runyth Scriptoria reader.`));
     return null;
   }
 
@@ -88,8 +88,8 @@ export async function openReader(itemOrContext, {
       resizable: true
     },
     classes: [
-      "scriptoria-document-window",
-      "scriptoria-reader-window"
+      "runyth-scriptoria-document-window",
+      "runyth-scriptoria-reader-window"
     ],
     position: {
       width: 780,
@@ -99,20 +99,20 @@ export async function openReader(itemOrContext, {
     buttons: [
       {
         action: "close",
-        label: localize("SCRIPTORIA.Actions.Close", "Close"),
+        label: localize("RUNYTH-SCRIPTORIA.Actions.Close", "Close"),
         icon: "fa-solid fa-xmark",
         default: true
       }
     ]
   });
 
-  dialog.scriptoriaContext = Object.freeze({
+  dialog.runythScriptoriaContext = Object.freeze({
     ...context,
     item,
     source,
     temporaryRead
   });
-  dialog.scriptoriaViewMode = viewMode;
+  dialog.runythScriptoriaViewMode = viewMode;
 
   const release = () => {
     if (openReaders.get(readerKey) === dialog) openReaders.delete(readerKey);
@@ -145,10 +145,10 @@ export async function buildReaderContent(
     rollData: item.getRollData?.() ?? item.parent?.getRollData?.() ?? {}
   });
   const byline = data.author
-    ? `<p class="scriptoria-byline">${escapeHtml(data.author)}</p>`
+    ? `<p class="runyth-scriptoria-byline">${escapeHtml(data.author)}</p>`
     : "";
   const unavailable = resolvedType.unavailable
-    ? `<p class="scriptoria-type-unavailable"><i class="fa-solid fa-triangle-exclamation"></i> ${escapeHtml(resolveScriptureTypeLabel(resolvedType))}</p>`
+    ? `<p class="runyth-scriptoria-type-unavailable"><i class="fa-solid fa-triangle-exclamation"></i> ${escapeHtml(resolveScriptureTypeLabel(resolvedType))}</p>`
     : "";
   const description = resolveScriptureTypeDescription(resolvedType);
   const descriptionTitle = description
@@ -157,11 +157,11 @@ export async function buildReaderContent(
   const variant = String(resolvedType.variant ?? "document").replace(/[^a-z0-9-]/g, "");
 
   return `
-    <article class="scriptoria-reader scriptoria-rendered-surface" data-scriptoria-type="${escapeHtml(typeId)}" data-scriptoria-variant="${escapeHtml(variant)}">
-      <header class="scriptoria-reader__header">
+    <article class="runyth-scriptoria-reader runyth-scriptoria-rendered-surface" data-runyth-scriptoria-type="${escapeHtml(typeId)}" data-runyth-scriptoria-variant="${escapeHtml(variant)}">
+      <header class="runyth-scriptoria-reader__header">
         <img src="${escapeHtml(item.img || resolvedType.image)}" alt="">
         <div>
-          <span class="scriptoria-reader__kind"${descriptionTitle}>
+          <span class="runyth-scriptoria-reader__kind"${descriptionTitle}>
             <i class="${escapeHtml(resolvedType.icon)}"></i>
             ${escapeHtml(resolveScriptureTypeLabel(resolvedType))}
           </span>
@@ -170,7 +170,7 @@ export async function buildReaderContent(
           ${unavailable}
         </div>
       </header>
-      <section class="scriptoria-reader__content scriptoria-rendered-content">
+      <section class="runyth-scriptoria-reader__content runyth-scriptoria-rendered-content">
         ${html}
       </section>
     </article>
@@ -198,18 +198,18 @@ export async function buildJournalReaderContent(context, type = null, {
   });
 
   return `
-    <article class="scriptoria-reader scriptoria-rendered-surface" data-scriptoria-type="${escapeHtml(typeId)}">
-      <header class="scriptoria-reader__header">
+    <article class="runyth-scriptoria-reader runyth-scriptoria-rendered-surface" data-runyth-scriptoria-type="${escapeHtml(typeId)}">
+      <header class="runyth-scriptoria-reader__header">
         <img src="${escapeHtml(resolvedType.image)}" alt="">
         <div>
-          <span class="scriptoria-reader__kind">
+          <span class="runyth-scriptoria-reader__kind">
             <i class="${escapeHtml(resolvedType.icon)}"></i>
             ${escapeHtml(resolveScriptureTypeLabel(resolvedType))}
           </span>
-          <h1>${escapeHtml(context.title ?? page?.name ?? context.journal?.name ?? "Scriptoria")}</h1>
+          <h1>${escapeHtml(context.title ?? page?.name ?? context.journal?.name ?? "Runyth Scriptoria")}</h1>
         </div>
       </header>
-      <section class="scriptoria-reader__content scriptoria-rendered-content">
+      <section class="runyth-scriptoria-reader__content runyth-scriptoria-rendered-content">
         ${html}
       </section>
     </article>
@@ -219,8 +219,8 @@ export async function buildJournalReaderContent(context, type = null, {
 export function notifyReaderError(error) {
   console.error(`${MODULE_ID} | Unable to open reader.`, error);
   ui.notifications.error(error.message ?? localize(
-    "SCRIPTORIA.Notifications.FailedDisplay",
-    "Unable to display the Scriptoria document."
+    "RUNYTH-SCRIPTORIA.Notifications.FailedDisplay",
+    "Unable to display the Runyth Scriptoria document."
   ));
 }
 
@@ -229,7 +229,7 @@ export function getOpenReaderCount() {
 }
 
 async function resolveReaderContext(target, { pageId = null } = {}) {
-  if (target?.scriptoriaContext) target = target.scriptoriaContext;
+  if (target?.runythScriptoriaContext) target = target.runythScriptoriaContext;
   const context = {
     item: target?.item ?? null,
     journal: target?.journal ?? null,

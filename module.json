@@ -1,6 +1,6 @@
 {
-  "id": "scriptoria",
-  "title": "Scriptoria — Markdown & HTML Books and Documents",
+  "id": "runyth-scriptoria",
+  "title": "Runyth Scriptoria — Markdown & HTML Books and Documents",
   "description": "Create readable Markdown and HTML documents as Foundry Items, with complete Foundry-native localization, directly editable creation price and weight fields, configurable scene readers, targeted player display controls, content-aware economics, manageable Scene pamphlets, remembered importer layout, and a versioned extension API.",
   "version": "1.7.3",
   "compatibility": {
@@ -17,7 +17,7 @@
     "scripts/main.mjs"
   ],
   "styles": [
-    "styles/scriptoria.css"
+    "styles/runyth-scriptoria.css"
   ],
   "license": "LICENSE",
   "readme": "README.md",

@@ -16,13 +16,13 @@ export function createEconomicsDefaultsApplicationClass() {
       super({
         window: {
           title: localize(
-            "SCRIPTORIA.Economics.SettingsMenu.Name",
+            "RUNYTH-SCRIPTORIA.Economics.SettingsMenu.Name",
             "Item Price and Weight Defaults"
           ),
           icon: "fa-solid fa-coins",
           resizable: true
         },
-        classes: ["scriptoria-economics-settings-window"],
+        classes: ["runyth-scriptoria-economics-settings-window"],
         position: {
           width: 980,
           height: 720
@@ -31,7 +31,7 @@ export function createEconomicsDefaultsApplicationClass() {
         buttons: [
           {
             action: "save",
-            label: localize("SCRIPTORIA.Actions.Save", "Save"),
+            label: localize("RUNYTH-SCRIPTORIA.Actions.Save", "Save"),
             icon: "fa-solid fa-floppy-disk",
             default: true,
             callback: async (_event, button) => {
@@ -40,8 +40,8 @@ export function createEconomicsDefaultsApplicationClass() {
                 await setEconomicsWorldOverrides(overrides);
                 globalThis.ui?.notifications?.info?.(
                   localize(
-                    "SCRIPTORIA.Economics.Notifications.DefaultsSaved",
-                    "Scriptoria item price and weight defaults saved."
+                    "RUNYTH-SCRIPTORIA.Economics.Notifications.DefaultsSaved",
+                    "Runyth Scriptoria item price and weight defaults saved."
                   )
                 );
                 return true;
@@ -49,7 +49,7 @@ export function createEconomicsDefaultsApplicationClass() {
                 console.error(`${MODULE_ID} | Unable to save item economics settings.`, error);
                 globalThis.ui?.notifications?.error?.(
                   format(
-                    "SCRIPTORIA.Economics.Errors.InvalidSettings",
+                    "RUNYTH-SCRIPTORIA.Economics.Errors.InvalidSettings",
                     { message: error?.message ?? String(error) },
                     `Invalid economics settings: ${error?.message ?? String(error)}`
                   )
@@ -60,7 +60,7 @@ export function createEconomicsDefaultsApplicationClass() {
           },
           {
             action: "cancel",
-            label: localize("SCRIPTORIA.Actions.Cancel", "Cancel"),
+            label: localize("RUNYTH-SCRIPTORIA.Actions.Cancel", "Cancel"),
             icon: "fa-solid fa-xmark"
           }
         ]
@@ -79,25 +79,25 @@ export function buildEconomicsSettingsContent(rows = getKnownEconomicsRows()) {
   const denominations = getSupportedDenominations();
   const body = rows.map((row) => buildRow(row, denominations)).join("");
   return `
-    <div class="scriptoria-economics-settings">
+    <div class="runyth-scriptoria-economics-settings">
       <p class="notes">${escapeHtml(localize(
-        "SCRIPTORIA.Economics.SettingsMenu.Description",
-        "Configure world defaults for every currently known Scriptoria type. Existing Items are never rewritten automatically."
+        "RUNYTH-SCRIPTORIA.Economics.SettingsMenu.Description",
+        "Configure world defaults for every currently known Runyth Scriptoria type. Existing Items are never rewritten automatically."
       ))}</p>
-      <div class="scriptoria-economics-settings__table" role="table">
-        <div class="scriptoria-economics-settings__header" role="row">
-          <span>${escapeHtml(localize("SCRIPTORIA.Economics.Type", "Type"))}</span>
-          <span>${escapeHtml(localize("SCRIPTORIA.Economics.ProviderModule", "Provider module"))}</span>
-          <span>${escapeHtml(localize("SCRIPTORIA.Economics.Price", "Price"))}</span>
-          <span>${escapeHtml(localize("SCRIPTORIA.Economics.Denomination", "Denomination"))}</span>
-          <span>${escapeHtml(localize("SCRIPTORIA.Economics.BaseWeight", "Base weight"))}</span>
-          <span>${escapeHtml(localize("SCRIPTORIA.Economics.MinimumWeight", "Minimum weight"))}</span>
-          <span>${escapeHtml(localize("SCRIPTORIA.Economics.MaximumWeight", "Maximum weight"))}</span>
-          <span>${escapeHtml(localize("SCRIPTORIA.Economics.ReferenceWordCount", "Reference word count"))}</span>
-          <span>${escapeHtml(localize("SCRIPTORIA.Economics.ContentLengthAdjustment", "Adjust for content length"))}</span>
+      <div class="runyth-scriptoria-economics-settings__table" role="table">
+        <div class="runyth-scriptoria-economics-settings__header" role="row">
+          <span>${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.Type", "Type"))}</span>
+          <span>${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.ProviderModule", "Provider module"))}</span>
+          <span>${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.Price", "Price"))}</span>
+          <span>${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.Denomination", "Denomination"))}</span>
+          <span>${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.BaseWeight", "Base weight"))}</span>
+          <span>${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.MinimumWeight", "Minimum weight"))}</span>
+          <span>${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.MaximumWeight", "Maximum weight"))}</span>
+          <span>${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.ReferenceWordCount", "Reference word count"))}</span>
+          <span>${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.ContentLengthAdjustment", "Adjust for content length"))}</span>
           <span></span>
         </div>
-        ${body || `<p class="notes">${escapeHtml(localize("SCRIPTORIA.Economics.NoTypes", "No Scriptoria types are currently available."))}</p>`}
+        ${body || `<p class="notes">${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.NoTypes", "No Runyth Scriptoria types are currently available."))}</p>`}
       </div>
     </div>
   `;
@@ -105,7 +105,7 @@ export function buildEconomicsSettingsContent(rows = getKnownEconomicsRows()) {
 
 export function readEconomicsSettingsForm(form) {
   const root = normalizeRoot(form);
-  if (!root) throw new Error(localize("SCRIPTORIA.Economics.Errors.FormUnavailable", "The economics settings form is unavailable."));
+  if (!root) throw new Error(localize("RUNYTH-SCRIPTORIA.Economics.Errors.FormUnavailable", "The economics settings form is unavailable."));
   const overrides = {};
   for (const row of root.querySelectorAll?.("[data-economics-type-id]") ?? []) {
     const typeId = String(row.dataset.economicsTypeId ?? "").trim();
@@ -130,8 +130,8 @@ export function readEconomicsSettingsForm(form) {
 
 export function activateEconomicsSettingsListeners(application) {
   const root = normalizeRoot(application?.element);
-  if (!root || root.dataset.scriptoriaEconomicsListeners === "true") return;
-  root.dataset.scriptoriaEconomicsListeners = "true";
+  if (!root || root.dataset.runythScriptoriaEconomicsListeners === "true") return;
+  root.dataset.runythScriptoriaEconomicsListeners = "true";
 
   root.addEventListener("input", (event) => {
     const row = event.target?.closest?.("[data-economics-type-id]");
@@ -159,7 +159,7 @@ export function activateEconomicsSettingsListeners(application) {
       }
       globalThis.ui?.notifications?.info?.(
         format(
-          "SCRIPTORIA.Economics.Notifications.TypeReset",
+          "RUNYTH-SCRIPTORIA.Economics.Notifications.TypeReset",
           { type: resolveScriptureTypeLabel(fresh?.type ?? typeId) },
           `Reset ${resolveScriptureTypeLabel(fresh?.type ?? typeId)} to provider defaults.`
         )
@@ -175,10 +175,10 @@ function buildRow(row, denominations) {
   const type = row.type;
   const economics = row.effective;
   const provider = type.builtIn
-    ? localize("SCRIPTORIA.Economics.BuiltInProvider", "Scriptoria (built-in)")
+    ? localize("RUNYTH-SCRIPTORIA.Economics.BuiltInProvider", "Runyth Scriptoria (built-in)")
     : `${type.provider}${type.providerVersion ? ` ${type.providerVersion}` : ""}`;
   const unavailable = row.unavailable
-    ? `<span class="scriptoria-economics-settings__unavailable">${escapeHtml(localize("SCRIPTORIA.Economics.UnavailableType", "Unavailable type"))}</span>`
+    ? `<span class="runyth-scriptoria-economics-settings__unavailable">${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.UnavailableType", "Unavailable type"))}</span>`
     : "";
   const options = denominations.map((denomination) => {
     const selected = denomination === economics.price.denomination ? " selected" : "";
@@ -186,8 +186,8 @@ function buildRow(row, denominations) {
   }).join("");
 
   return `
-    <div class="scriptoria-economics-settings__row" role="row" data-economics-type-id="${escapeHtml(type.id)}" data-use-provider-defaults="${row.overridden ? "false" : "true"}">
-      <span class="scriptoria-economics-settings__type"><i class="${escapeHtml(type.icon)}"></i> ${escapeHtml(resolveScriptureTypeLabel(type))}${unavailable}</span>
+    <div class="runyth-scriptoria-economics-settings__row" role="row" data-economics-type-id="${escapeHtml(type.id)}" data-use-provider-defaults="${row.overridden ? "false" : "true"}">
+      <span class="runyth-scriptoria-economics-settings__type"><i class="${escapeHtml(type.icon)}"></i> ${escapeHtml(resolveScriptureTypeLabel(type))}${unavailable}</span>
       <span>${escapeHtml(provider)}</span>
       <input data-field="price-value" type="number" min="0" step="0.01" value="${economics.price.value}">
       <select data-field="price-denomination">${options}</select>
@@ -195,10 +195,10 @@ function buildRow(row, denominations) {
       <input data-field="weight-minimum" type="number" min="0" step="0.01" value="${economics.weight.minimum}">
       <input data-field="weight-maximum" type="number" min="0" step="0.01" value="${economics.weight.maximum}">
       <input data-field="reference-word-count" type="number" min="1" step="1" value="${economics.weight.referenceWordCount}">
-      <label class="checkbox scriptoria-economics-settings__checkbox">
+      <label class="checkbox runyth-scriptoria-economics-settings__checkbox">
         <input data-field="adjust-content-length" type="checkbox"${economics.weight.adjustForContentLength ? " checked" : ""}>
       </label>
-      <button type="button" class="icon" data-action="reset-provider-defaults" title="${escapeHtml(localize("SCRIPTORIA.Economics.ResetProviderDefault", "Reset to provider default"))}">
+      <button type="button" class="icon" data-action="reset-provider-defaults" title="${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.ResetProviderDefault", "Reset to provider default"))}">
         <i class="fa-solid fa-rotate-left"></i>
       </button>
     </div>
@@ -228,7 +228,7 @@ function readValue(row, field) {
 function readNumber(row, field) {
   const value = Number(readValue(row, field));
   if (!Number.isFinite(value) || value < 0) {
-    throw new Error(format("SCRIPTORIA.Economics.Errors.FieldNumber", { field }, `${field} must be a finite non-negative number.`));
+    throw new Error(format("RUNYTH-SCRIPTORIA.Economics.Errors.FieldNumber", { field }, `${field} must be a finite non-negative number.`));
   }
   return value;
 }
@@ -236,7 +236,7 @@ function readNumber(row, field) {
 function readInteger(row, field) {
   const value = readNumber(row, field);
   if (!Number.isInteger(value) || value <= 0) {
-    throw new Error(format("SCRIPTORIA.Economics.Errors.FieldInteger", { field }, `${field} must be a positive integer.`));
+    throw new Error(format("RUNYTH-SCRIPTORIA.Economics.Errors.FieldInteger", { field }, `${field} must be a positive integer.`));
   }
   return value;
 }

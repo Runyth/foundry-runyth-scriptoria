@@ -1,10 +1,10 @@
-# Scriptoria localization
+# Runyth Scriptoria localization
 
-Scriptoria uses Foundry VTT v13's native package-localization mechanism.
+Runyth Scriptoria uses Foundry VTT v13's native package-localization mechanism.
 
 ## Runtime selection
 
-Foundry's global language setting selects the active language. Scriptoria does not maintain a second language preference and does not add a language switch to its dashboard or document windows.
+Foundry's global language setting selects the active language. Runyth Scriptoria does not maintain a second language preference and does not add a language switch to its dashboard or document windows.
 
 ## Manifest declaration
 
@@ -23,17 +23,17 @@ To add a language, add a JSON file under `lang/` and one matching manifest entry
 
 ## Key contract
 
-All Scriptoria-owned strings use the `SCRIPTORIA.*` namespace. A new language file must contain exactly the same key paths as `lang/en.json`. English is the complete source and resilient fallback language.
+All Runyth Scriptoria-owned strings use the `RUNYTH-SCRIPTORIA.*` namespace. A new language file must contain exactly the same key paths as `lang/en.json`. English is the complete source and resilient fallback language.
 
 Built-in scripture types expose stable localization keys:
 
-- `SCRIPTORIA.Types.Book.*`
-- `SCRIPTORIA.Types.Journal.*`
-- `SCRIPTORIA.Types.Scripture.*`
-- `SCRIPTORIA.Types.Documentation.*`
-- `SCRIPTORIA.Types.Pamphlet.*`
+- `RUNYTH-SCRIPTORIA.Types.Book.*`
+- `RUNYTH-SCRIPTORIA.Types.Journal.*`
+- `RUNYTH-SCRIPTORIA.Types.Scripture.*`
+- `RUNYTH-SCRIPTORIA.Types.Documentation.*`
+- `RUNYTH-SCRIPTORIA.Types.Pamphlet.*`
 
-Helper modules continue to own and ship their own localization keys. Scriptoria resolves a helper's `labelKey`, `pluralKey`, and `descriptionKey` at display time and falls back to the helper's literal strings when a key is unavailable.
+Helper modules continue to own and ship their own localization keys. Runyth Scriptoria resolves a helper's `labelKey`, `pluralKey`, and `descriptionKey` at display time and falls back to the helper's literal strings when a key is unavailable.
 
 ## Formatting
 

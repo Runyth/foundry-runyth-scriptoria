@@ -30,7 +30,7 @@ export async function migrateLegacyEconomicsMetadata() {
     })
   }, {
     render: false,
-    scriptoriaMigration: true
+    runythScriptoriaMigration: true
   })));
 
   const failures = results.filter((result) => result.status === "rejected");

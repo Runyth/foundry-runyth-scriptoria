@@ -36,7 +36,7 @@ export async function showToAllPlayers(target, options = {}) {
   const users = getEligiblePlayers();
   if (!users.length) {
     globalThis.ui?.notifications?.warn?.(localize(
-      "SCRIPTORIA.Notifications.NoConnectedPlayers",
+      "RUNYTH-SCRIPTORIA.Notifications.NoConnectedPlayers",
       "No connected players are available."
     ));
     return false;
@@ -56,7 +56,7 @@ export async function showToSelectedPlayers(target, userIds, options = {}) {
 
   if (!selected.length) {
     globalThis.ui?.notifications?.warn?.(localize(
-      "SCRIPTORIA.Notifications.NoPlayersSelected",
+      "RUNYTH-SCRIPTORIA.Notifications.NoPlayersSelected",
       "Select at least one connected player."
     ));
     return false;
@@ -73,7 +73,7 @@ export async function showPlayerSelectionDialog(target, options = {}) {
   const users = getEligiblePlayers();
   if (!users.length) {
     globalThis.ui?.notifications?.warn?.(localize(
-      "SCRIPTORIA.Notifications.NoConnectedPlayers",
+      "RUNYTH-SCRIPTORIA.Notifications.NoConnectedPlayers",
       "No connected players are available."
     ));
     return null;
@@ -84,15 +84,15 @@ export async function showPlayerSelectionDialog(target, options = {}) {
   const dialog = new foundry.applications.api.DialogV2({
     window: {
       title: format(
-        "SCRIPTORIA.PlayerSelection.Title",
+        "RUNYTH-SCRIPTORIA.PlayerSelection.Title",
         { name: context.title },
         `Show “${context.title}” to selected players`
       ),
       icon: "fa-solid fa-user-group"
     },
     classes: [
-      "scriptoria-document-window",
-      "scriptoria-player-selection-window"
+      "runyth-scriptoria-document-window",
+      "runyth-scriptoria-player-selection-window"
     ],
     position: {
       width: 460,
@@ -101,13 +101,13 @@ export async function showPlayerSelectionDialog(target, options = {}) {
     content,
     actions: {
       selectAll: (_event, targetElement) => {
-        targetElement.form?.querySelectorAll?.("input[name='scriptoria-player']")
+        targetElement.form?.querySelectorAll?.("input[name='runyth-scriptoria-player']")
           ?.forEach?.((input) => {
             if (!input.disabled) input.checked = true;
           });
       },
       clearSelection: (_event, targetElement) => {
-        targetElement.form?.querySelectorAll?.("input[name='scriptoria-player']")
+        targetElement.form?.querySelectorAll?.("input[name='runyth-scriptoria-player']")
           ?.forEach?.((input) => {
             input.checked = false;
           });
@@ -116,12 +116,12 @@ export async function showPlayerSelectionDialog(target, options = {}) {
     buttons: [
       {
         action: "show",
-        label: localize("SCRIPTORIA.Actions.Show", "Show"),
+        label: localize("RUNYTH-SCRIPTORIA.Actions.Show", "Show"),
         icon: "fa-solid fa-display",
         default: true,
         callback: async (_event, button) => {
           const selected = Array.from(
-            button.form?.querySelectorAll?.("input[name='scriptoria-player']:checked") ?? []
+            button.form?.querySelectorAll?.("input[name='runyth-scriptoria-player']:checked") ?? []
           ).map((input) => input.value);
           const sent = await showToSelectedPlayers(context, selected, options);
           return sent ? true : false;
@@ -129,41 +129,41 @@ export async function showPlayerSelectionDialog(target, options = {}) {
       },
       {
         action: "cancel",
-        label: localize("SCRIPTORIA.Actions.Cancel", "Cancel"),
+        label: localize("RUNYTH-SCRIPTORIA.Actions.Cancel", "Cancel"),
         icon: "fa-solid fa-xmark"
       }
     ]
   });
-  dialog.scriptoriaContext = context;
+  dialog.runythScriptoriaContext = context;
   return dialog.render({ force: true });
 }
 
 export function buildPlayerSelectionContent(users = getEligiblePlayers()) {
   const rows = users.map((user) => `
-    <label class="scriptoria-player-selection__row">
-      <input type="checkbox" name="scriptoria-player" value="${escapeHtml(user.id)}">
-      <span class="scriptoria-player-selection__status" aria-label="${escapeHtml(localize("SCRIPTORIA.PlayerSelection.Active", "Active"))}"></span>
+    <label class="runyth-scriptoria-player-selection__row">
+      <input type="checkbox" name="runyth-scriptoria-player" value="${escapeHtml(user.id)}">
+      <span class="runyth-scriptoria-player-selection__status" aria-label="${escapeHtml(localize("RUNYTH-SCRIPTORIA.PlayerSelection.Active", "Active"))}"></span>
       <span>${escapeHtml(user.name)}</span>
     </label>
   `).join("");
 
   return `
-    <section class="scriptoria-player-selection">
-      <div class="scriptoria-player-selection__toolbar">
+    <section class="runyth-scriptoria-player-selection">
+      <div class="runyth-scriptoria-player-selection__toolbar">
         <button type="button" data-action="selectAll">
           <i class="fa-solid fa-check-double"></i>
-          ${escapeHtml(localize("SCRIPTORIA.Actions.SelectAll", "Select All"))}
+          ${escapeHtml(localize("RUNYTH-SCRIPTORIA.Actions.SelectAll", "Select All"))}
         </button>
         <button type="button" data-action="clearSelection">
           <i class="fa-solid fa-eraser"></i>
-          ${escapeHtml(localize("SCRIPTORIA.Actions.ClearSelection", "Clear Selection"))}
+          ${escapeHtml(localize("RUNYTH-SCRIPTORIA.Actions.ClearSelection", "Clear Selection"))}
         </button>
       </div>
-      <div class="scriptoria-player-selection__list">
+      <div class="runyth-scriptoria-player-selection__list">
         ${rows}
       </div>
       <p class="notes">${escapeHtml(localize(
-        "SCRIPTORIA.PlayerSelection.Hint",
+        "RUNYTH-SCRIPTORIA.PlayerSelection.Hint",
         "Only connected non-GM players are listed. No document ownership is changed."
       ))}</p>
     </section>
@@ -183,7 +183,7 @@ export async function sendDisplayRequest(target, {
     .filter((id) => eligible.has(id));
   if (!targets.length) {
     globalThis.ui?.notifications?.warn?.(localize(
-      "SCRIPTORIA.Notifications.DisconnectedPlayers",
+      "RUNYTH-SCRIPTORIA.Notifications.DisconnectedPlayers",
       "The selected players are no longer connected."
     ));
     return false;
@@ -246,8 +246,8 @@ export async function handleSocketMessage(payload) {
   } catch (error) {
     console.error(`${MODULE_ID} | Unable to process a player display request.`, error);
     globalThis.ui?.notifications?.error?.(localize(
-      "SCRIPTORIA.Notifications.FailedDisplay",
-      "The Scriptoria document could not be displayed."
+      "RUNYTH-SCRIPTORIA.Notifications.FailedDisplay",
+      "The Runyth Scriptoria document could not be displayed."
     ));
     return false;
   }
@@ -282,7 +282,7 @@ export function resetDisplayServiceForTests() {
 function assertGamemaster() {
   if (!globalThis.game?.user?.isGM) {
     throw new Error(localize(
-      "SCRIPTORIA.Errors.GmOnlyBroadcast",
+      "RUNYTH-SCRIPTORIA.Errors.GmOnlyBroadcast",
       "Only a Game Master can display documents to other players."
     ));
   }

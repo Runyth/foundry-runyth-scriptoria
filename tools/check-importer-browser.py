@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate directly editable Scriptoria economics fields in Chromium."""
+"""Validate directly editable Runyth Scriptoria economics fields in Chromium."""
 
 from __future__ import annotations
 
@@ -66,12 +66,12 @@ def render_fixture() -> str:
 
 def main() -> None:
   importer_html = render_fixture()
-  module_css = (ROOT / "styles" / "scriptoria.css").read_text(encoding="utf-8")
+  module_css = (ROOT / "styles" / "runyth-scriptoria.css").read_text(encoding="utf-8")
   document = f"""<!doctype html>
 <html>
 <head><meta charset="utf-8"><style>{BASE_CSS}\n{module_css}</style></head>
 <body>
-  <section class="app scriptoria-importer-window">
+  <section class="app runyth-scriptoria-importer-window">
     <div class="window-content">
       <form class="standard-form">{importer_html}<footer class="form-footer">Actions</footer></form>
     </div>
@@ -90,11 +90,11 @@ def main() -> None:
 
     selectors = [
       "[data-economics-price-card]",
-      "#scriptoria-economics-price-value",
-      "#scriptoria-economics-price-denomination",
+      "#runyth-scriptoria-economics-price-value",
+      "#runyth-scriptoria-economics-price-denomination",
       "[data-economics-weight-card]",
-      "#scriptoria-economics-weight-value",
-      "#scriptoria-economics-weight-units",
+      "#runyth-scriptoria-economics-weight-value",
+      "#runyth-scriptoria-economics-weight-units",
     ]
     for selector in selectors:
       element = page.locator(selector)
@@ -104,16 +104,16 @@ def main() -> None:
         f"collapsed control: {selector}: {box}"
       )
 
-    price = page.locator("#scriptoria-economics-price-value")
-    denomination = page.locator("#scriptoria-economics-price-denomination")
-    weight = page.locator("#scriptoria-economics-weight-value")
+    price = page.locator("#runyth-scriptoria-economics-price-value")
+    denomination = page.locator("#runyth-scriptoria-economics-price-denomination")
+    weight = page.locator("#runyth-scriptoria-economics-weight-value")
 
     assert price.is_enabled() and weight.is_enabled() and denomination.is_enabled()
     assert price.get_attribute("readonly") is None
     assert weight.get_attribute("readonly") is None
     assert price.input_value() == "5"
     assert weight.input_value() == "0.08"
-    assert page.locator("#scriptoria-economics-weight-units").inner_text().strip() == "lb"
+    assert page.locator("#runyth-scriptoria-economics-weight-units").inner_text().strip() == "lb"
     assert weight.input_value() != "lb"
     assert page.locator("[name='economics.price.useDefault']").count() == 0
     assert page.locator("[name='economics.weight.useDefault']").count() == 0
@@ -122,9 +122,9 @@ def main() -> None:
     denomination.select_option("gp")
     weight.fill("0.4")
     price.focus()
-    assert page.evaluate("document.activeElement.id") == "scriptoria-economics-price-value"
+    assert page.evaluate("document.activeElement.id") == "runyth-scriptoria-economics-price-value"
     weight.focus()
-    assert page.evaluate("document.activeElement.id") == "scriptoria-economics-weight-value"
+    assert page.evaluate("document.activeElement.id") == "runyth-scriptoria-economics-weight-value"
 
     submitted = page.locator("form").evaluate(
       "form => Object.fromEntries(new FormData(form).entries())"
@@ -136,7 +136,7 @@ def main() -> None:
     for width in (920, 600, 480):
       page.set_viewport_size({"width": width, "height": 820})
       page.wait_for_timeout(25)
-      overflow = page.locator(".scriptoria-importer").evaluate(
+      overflow = page.locator("["runyth-scriptoria"]-importer").evaluate(
         "element => element.scrollWidth - element.clientWidth"
       )
       assert overflow <= 1, f"horizontal overflow at {width}px: {overflow}px"
@@ -146,7 +146,7 @@ def main() -> None:
     browser.close()
 
   print(
-    "Validated enabled editable Scriptoria price and weight fields, exact "
+    "Validated enabled editable Runyth Scriptoria price and weight fields, exact "
     "FormData values, and narrow-width layout."
   )
 

@@ -36,9 +36,9 @@ export function addApplicationV2Controls(application, controls) {
   const currentMode = inferApplicationViewMode(application);
   if (globalThis.game?.user?.isGM) {
     addControlOnce(controls, {
-      action: "scriptoria-show-selected",
+      action: "runyth-scriptoria-show-selected",
       label: localize(
-        "SCRIPTORIA.Actions.ShowToSelectedPlayers",
+        "RUNYTH-SCRIPTORIA.Actions.ShowToSelectedPlayers",
         "Show to Selected Players…"
       ),
       icon: "fa-solid fa-user-check",
@@ -55,8 +55,8 @@ export function addApplicationV2Controls(application, controls) {
     for (const descriptor of [...availableModes].reverse()) {
       const active = descriptor.id === currentMode;
       addControlOnce(controls, {
-        action: `scriptoria-open-with-${descriptor.id}`,
-        label: `${localize("SCRIPTORIA.Actions.OpenWith", "Open with")}: ${descriptor.label}${active ? ` (${localize("SCRIPTORIA.Actions.Current", "Current")})` : ""}`,
+        action: `runyth-scriptoria-open-with-${descriptor.id}`,
+        label: `${localize("RUNYTH-SCRIPTORIA.Actions.OpenWith", "Open with")}: ${descriptor.label}${active ? ` (${localize("RUNYTH-SCRIPTORIA.Actions.Current", "Current")})` : ""}`,
         icon: active ? "fa-solid fa-check" : descriptor.icon,
         visible: true,
         disabled: active,
@@ -79,13 +79,13 @@ export function enhanceRenderedApplication(application, html) {
   const root = normalizeRoot(application?.element)
     ?? normalizeRoot(html)
     ?? normalizeRoot(html)?.closest?.(".window-app, .application");
-  if (root) root.classList.add("scriptoria-document-window");
+  if (root) root.classList.add("runyth-scriptoria-document-window");
 
   if (!globalThis.game?.user?.isGM) return true;
   injectShowAllHeaderButton(application, root, target);
 
   // Monk's Enhanced Journal dynamically replaces its controls dropdown after
-  // rendering a subsheet. Re-add Scriptoria's documented actions to that
+  // rendering a subsheet. Re-add Runyth Scriptoria's documented actions to that
   // public ApplicationV2 window surface when the normal hook is bypassed.
   if (isEnhancedJournalApplication(application)) {
     injectEnhancedJournalMenuControls(application, target);
@@ -97,14 +97,14 @@ export function injectShowAllHeaderButton(application, root, target) {
   const header = application?.window?.header
     ?? root?.querySelector?.(".window-header")
     ?? root?.querySelector?.("header.window-header");
-  if (!header || header.querySelector?.("[data-scriptoria-action='show-all']")) return false;
+  if (!header || header.querySelector?.("[data-runyth-scriptoria-action='show-all']")) return false;
 
   const button = document.createElement("button");
   button.type = "button";
-  button.className = "header-control icon scriptoria-show-all-header";
-  button.dataset.scriptoriaAction = "show-all";
+  button.className = "header-control icon runyth-scriptoria-show-all-header";
+  button.dataset.runythScriptoriaAction = "show-all";
   button.dataset.tooltip = localize(
-    "SCRIPTORIA.Actions.ShowToAllPlayers",
+    "RUNYTH-SCRIPTORIA.Actions.ShowToAllPlayers",
     "Show to All Players"
   );
   button.setAttribute("aria-label", button.dataset.tooltip);
@@ -126,7 +126,7 @@ export function injectShowAllHeaderButton(application, root, target) {
 }
 
 export function getSupportedApplicationTarget(application) {
-  if (application?.scriptoriaContext) return application.scriptoriaContext;
+  if (application?.runythScriptoriaContext) return application.runythScriptoriaContext;
 
   const candidates = [
     application?.document,
@@ -158,11 +158,11 @@ function injectEnhancedJournalMenuControls(application, target) {
   if (!dropdown) return;
   const currentMode = inferApplicationViewMode(application);
 
-  if (!dropdown.querySelector("[data-scriptoria-action='show-selected']")) {
+  if (!dropdown.querySelector("[data-runyth-scriptoria-action='show-selected']")) {
     dropdown.append(createDropdownButton({
       action: "show-selected",
       label: localize(
-        "SCRIPTORIA.Actions.ShowToSelectedPlayers",
+        "RUNYTH-SCRIPTORIA.Actions.ShowToSelectedPlayers",
         "Show to Selected Players…"
       ),
       icon: "fa-solid fa-user-check",
@@ -175,10 +175,10 @@ function injectEnhancedJournalMenuControls(application, target) {
 
   for (const descriptor of getReaderModeDescriptors().filter((mode) => mode.available)) {
     const action = `open-${descriptor.id}`;
-    if (dropdown.querySelector(`[data-scriptoria-action='${action}']`)) continue;
+    if (dropdown.querySelector(`[data-runyth-scriptoria-action='${action}']`)) continue;
     dropdown.append(createDropdownButton({
       action,
-      label: `${localize("SCRIPTORIA.Actions.OpenWith", "Open with")}: ${descriptor.label}`,
+      label: `${localize("RUNYTH-SCRIPTORIA.Actions.OpenWith", "Open with")}: ${descriptor.label}`,
       icon: descriptor.id === currentMode ? "fa-solid fa-check" : descriptor.icon,
       disabled: descriptor.id === currentMode,
       callback: () => openDocumentView(target, {
@@ -192,8 +192,8 @@ function injectEnhancedJournalMenuControls(application, target) {
 function createDropdownButton({ action, label, icon, callback, disabled = false }) {
   const button = document.createElement("button");
   button.type = "button";
-  button.className = "control-item scriptoria-window-control";
-  button.dataset.scriptoriaAction = action;
+  button.className = "control-item runyth-scriptoria-window-control";
+  button.dataset.runythScriptoriaAction = action;
   button.disabled = disabled;
   button.innerHTML = `<i class="${icon}" aria-hidden="true"></i><span>${escapeText(label)}</span>`;
   button.addEventListener("click", (event) => {
@@ -222,8 +222,8 @@ function reportControlError(error) {
   globalThis.ui?.notifications?.error?.(
     error?.message
       ?? localize(
-        "SCRIPTORIA.Notifications.FailedDisplay",
-        "The Scriptoria document could not be displayed."
+        "RUNYTH-SCRIPTORIA.Notifications.FailedDisplay",
+        "The Runyth Scriptoria document could not be displayed."
       )
   );
 }

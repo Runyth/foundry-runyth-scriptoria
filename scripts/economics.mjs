@@ -97,9 +97,9 @@ export function validateResolvedItemEconomics(result) {
   if (!getSupportedDenominations().includes(denomination)) {
     throw new EconomicsValueError(
       format(
-        "SCRIPTORIA.Economics.Errors.InvalidResolvedDenomination",
+        "RUNYTH-SCRIPTORIA.Economics.Errors.InvalidResolvedDenomination",
         { received: formatReceived(result?.price?.denomination) },
-        `Scriptoria could not create the document because the resolved price denomination is invalid. Received: ${formatReceived(result?.price?.denomination)}.`
+        `Runyth Scriptoria could not create the document because the resolved price denomination is invalid. Received: ${formatReceived(result?.price?.denomination)}.`
       ),
       {
         code: "INVALID_RESOLVED_DENOMINATION",
@@ -114,9 +114,9 @@ export function validateResolvedItemEconomics(result) {
   if (!weightUnits) {
     throw new EconomicsValueError(
       format(
-        "SCRIPTORIA.Economics.Errors.InvalidResolvedWeightUnit",
+        "RUNYTH-SCRIPTORIA.Economics.Errors.InvalidResolvedWeightUnit",
         { received: formatReceived(result?.weightUnits) },
-        `Scriptoria could not create the document because the resolved weight unit is invalid. Received: ${formatReceived(result?.weightUnits)}.`
+        `Runyth Scriptoria could not create the document because the resolved weight unit is invalid. Received: ${formatReceived(result?.weightUnits)}.`
       ),
       {
         code: "INVALID_RESOLVED_WEIGHT_UNITS",
@@ -146,7 +146,7 @@ export function getEconomicsWorldOverrides() {
 
 export async function setEconomicsWorldOverrides(overrides) {
   if (!globalThis.game?.user?.isGM) {
-    throw new Error(localize("SCRIPTORIA.Economics.Errors.GmOnly", "Only a Game Master can change Scriptoria item economics defaults."));
+    throw new Error(localize("RUNYTH-SCRIPTORIA.Economics.Errors.GmOnly", "Only a Game Master can change Runyth Scriptoria item economics defaults."));
   }
   const normalized = normalizeStoredOverrides(overrides);
   await globalThis.game.settings.set(MODULE_ID, SETTINGS.itemEconomicsOverrides, normalized);
@@ -155,7 +155,7 @@ export async function setEconomicsWorldOverrides(overrides) {
 
 export async function setTypeEconomicsOverride(typeId, economics) {
   const id = String(typeId ?? "").trim();
-  if (!id) throw new Error(localize("SCRIPTORIA.Economics.Errors.TypeIdRequired", "A scripture type ID is required."));
+  if (!id) throw new Error(localize("RUNYTH-SCRIPTORIA.Economics.Errors.TypeIdRequired", "A scripture type ID is required."));
   const type = getScriptureType(id);
   const providerId = type?.provider ?? deriveProviderId(id) ?? MODULE_ID;
   const providerDefaults = type?.economics ?? SAFE_FALLBACK_ECONOMICS;
@@ -271,9 +271,9 @@ export function resolveItemEconomicsValues({
   if (!getSupportedDenominations().includes(denomination)) {
     throw new EconomicsValueError(
       format(
-        "SCRIPTORIA.Economics.Errors.InvalidPriceDenomination",
+        "RUNYTH-SCRIPTORIA.Economics.Errors.InvalidPriceDenomination",
         { received: formatReceived(values?.price?.denomination) },
-        `Scriptoria could not create the document because the price denomination is invalid. Received: ${formatReceived(values?.price?.denomination)}.`
+        `Runyth Scriptoria could not create the document because the price denomination is invalid. Received: ${formatReceived(values?.price?.denomination)}.`
       ),
       {
         code: "INVALID_RESOLVED_DENOMINATION",
@@ -289,9 +289,9 @@ export function resolveItemEconomicsValues({
   if (!weightUnits || weightUnits !== calculated.weightUnits) {
     throw new EconomicsValueError(
       format(
-        "SCRIPTORIA.Economics.Errors.InvalidWeightUnit",
+        "RUNYTH-SCRIPTORIA.Economics.Errors.InvalidWeightUnit",
         { received: formatReceived(values?.weight?.units) },
-        `Scriptoria could not create the document because the weight unit is invalid. Received: ${formatReceived(values?.weight?.units)}.`
+        `Runyth Scriptoria could not create the document because the weight unit is invalid. Received: ${formatReceived(values?.weight?.units)}.`
       ),
       {
         code: "INVALID_RESOLVED_WEIGHT_UNITS",
@@ -391,7 +391,7 @@ function resolveSystemAdapter(itemType) {
     return null;
   }
   if (!supportsDnd5ePhysicalFields(itemType)) {
-    console.warn(`${MODULE_ID} | D&D 5e Item type "${itemType}" does not expose physical price and weight fields; Scriptoria retained economics metadata without writing invalid system data.`);
+    console.warn(`${MODULE_ID} | D&D 5e Item type "${itemType}" does not expose physical price and weight fields; Runyth Scriptoria retained economics metadata without writing invalid system data.`);
     return null;
   }
   return (result) => ({
@@ -438,7 +438,7 @@ function warnUnsupportedSystemOnce() {
   if (unsupportedSystemWarned) return;
   unsupportedSystemWarned = true;
   console.warn(`${MODULE_ID} | No item economics adapter is available for system "${globalThis.game?.system?.id ?? "unknown"}". Document creation continues without writing system price or weight fields.`);
-  globalThis.ui?.notifications?.warn?.(localize("SCRIPTORIA.Economics.Errors.UnsupportedSystem", "Scriptoria could not write item price or weight because the active game system is unsupported."));
+  globalThis.ui?.notifications?.warn?.(localize("RUNYTH-SCRIPTORIA.Economics.Errors.UnsupportedSystem", "Runyth Scriptoria could not write item price or weight because the active game system is unsupported."));
 }
 
 function normalizeCreationOverrides(overrides, effectiveDefaults) {
@@ -498,13 +498,13 @@ function invalidEconomicsNumber(field, received, reason) {
   const localizedField = localizeEconomicsField(field);
   const localizedReason = localizeEconomicsReason(reason);
   const rendered = format(
-    "SCRIPTORIA.Economics.Errors.InvalidNumber",
+    "RUNYTH-SCRIPTORIA.Economics.Errors.InvalidNumber",
     {
       field: localizedField,
       reason: localizedReason,
       received: formatReceived(received)
     },
-    `Scriptoria could not create the document because the ${field} ${reason}. Received: ${formatReceived(received)}.`
+    `Runyth Scriptoria could not create the document because the ${field} ${reason}. Received: ${formatReceived(received)}.`
   );
   return new EconomicsValueError(rendered, {
     code: "INVALID_ECONOMICS_NUMBER",
@@ -524,24 +524,24 @@ function localizeEconomicsField(field) {
     "weight override": "WeightOverrideValue"
   }[field];
   return key
-    ? localize(`SCRIPTORIA.Economics.Fields.${key}`, field)
+    ? localize(`["RUNYTH-SCRIPTORIA"].Economics.Fields.${key}`, field)
     : field;
 }
 
 function localizeEconomicsReason(reason) {
   if (reason === "is missing") {
-    return localize("SCRIPTORIA.Economics.Reasons.Missing", reason);
+    return localize("RUNYTH-SCRIPTORIA.Economics.Reasons.Missing", reason);
   }
   if (reason === "is empty") {
-    return localize("SCRIPTORIA.Economics.Reasons.Empty", reason);
+    return localize("RUNYTH-SCRIPTORIA.Economics.Reasons.Empty", reason);
   }
   if (reason === "is not a finite number") {
-    return localize("SCRIPTORIA.Economics.Reasons.NotFinite", reason);
+    return localize("RUNYTH-SCRIPTORIA.Economics.Reasons.NotFinite", reason);
   }
   const minimum = /^must be at least (.+)$/.exec(reason)?.[1];
   if (minimum !== undefined) {
     return format(
-      "SCRIPTORIA.Economics.Reasons.Minimum",
+      "RUNYTH-SCRIPTORIA.Economics.Reasons.Minimum",
       { minimum },
       reason
     );

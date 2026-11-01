@@ -83,7 +83,7 @@ export async function createFromMarkdown(data = {}) {
 
 export async function createFromSource(data = {}) {
   if (!game.user?.isGM) {
-    throw new Error(localize("SCRIPTORIA.Errors.CreateGmOnly", "Only a Game Master can create Scriptoria documents."));
+    throw new Error(localize("RUNYTH-SCRIPTORIA.Errors.CreateGmOnly", "Only a Game Master can create Runyth Scriptoria documents."));
   }
 
   const prepared = prepareDocumentData(data);
@@ -117,7 +117,7 @@ export async function createFromSource(data = {}) {
     renderSheet: false
   });
 
-  ui.notifications.info(format("SCRIPTORIA.Notifications.DocumentCreated", { type: resolveScriptureTypeLabel(prepared.type), title: prepared.title }, `Created ${resolveScriptureTypeLabel(prepared.type)}: ${prepared.title}`));
+  ui.notifications.info(format("RUNYTH-SCRIPTORIA.Notifications.DocumentCreated", { type: resolveScriptureTypeLabel(prepared.type), title: prepared.title }, `Created ${resolveScriptureTypeLabel(prepared.type)}: ${prepared.title}`));
   return item;
 }
 
@@ -132,10 +132,10 @@ export async function updateFromMarkdown(itemOrUuid, data = {}) {
 export async function updateFromSource(itemOrUuid, data = {}) {
   const item = await resolveItem(itemOrUuid);
   if (!isScriptoriaItem(item)) {
-    throw new Error(localize("SCRIPTORIA.Errors.NotScriptoriaDocument", "The selected Item is not a Scriptoria document."));
+    throw new Error(localize("RUNYTH-SCRIPTORIA.Errors.NotScriptoriaDocument", "The selected Item is not a Runyth Scriptoria document."));
   }
   if (!game.user?.isGM && !item.isOwner) {
-    throw new Error(localize("SCRIPTORIA.Errors.EditDocumentPermission", "You do not have permission to edit this Scriptoria document."));
+    throw new Error(localize("RUNYTH-SCRIPTORIA.Errors.EditDocumentPermission", "You do not have permission to edit this Runyth Scriptoria document."));
   }
 
   const existing = getScriptoriaData(item);
@@ -192,14 +192,14 @@ export async function updateFromSource(itemOrUuid, data = {}) {
   }
 
   await item.update(update);
-  ui.notifications.info(format("SCRIPTORIA.Notifications.DocumentUpdated", { title: prepared.title }, `Updated ${prepared.title}.`));
+  ui.notifications.info(format("RUNYTH-SCRIPTORIA.Notifications.DocumentUpdated", { title: prepared.title }, `Updated ${prepared.title}.`));
   return item;
 }
 
 export function prepareDocumentData(data) {
   const sourceFormat = data.sourceFormat === "html" ? "html" : "markdown";
   const source = String(data.source ?? data.markdown ?? "").trim();
-  if (!source) throw new Error(localize("SCRIPTORIA.Errors.ContentRequired", "Document content is required."));
+  if (!source) throw new Error(localize("RUNYTH-SCRIPTORIA.Errors.ContentRequired", "Document content is required."));
 
   const requestedTypeId = String(
     data.typeId
@@ -210,12 +210,12 @@ export function prepareDocumentData(data) {
   const allowUnavailableType = data.allowUnavailableType === true;
 
   if (!registeredType && !allowUnavailableType) {
-    throw new Error(format("SCRIPTORIA.Errors.UnknownType", { typeId: requestedTypeId }, `Unknown or unavailable scripture type: ${requestedTypeId}`));
+    throw new Error(format("RUNYTH-SCRIPTORIA.Errors.UnknownType", { typeId: requestedTypeId }, `Unknown or unavailable scripture type: ${requestedTypeId}`));
   }
 
   const type = registeredType ?? getScriptureTypeOrFallback(requestedTypeId);
   if (!type.unavailable && type.capabilities.creation !== true) {
-    throw new Error(format("SCRIPTORIA.Errors.TypeNotCreatable", { typeId: requestedTypeId }, `Scripture type "${requestedTypeId}" is not eligible for document creation.`));
+    throw new Error(format("RUNYTH-SCRIPTORIA.Errors.TypeNotCreatable", { typeId: requestedTypeId }, `Scripture type "${requestedTypeId}" is not eligible for document creation.`));
   }
 
   const extractedTitle = sourceFormat === "html"
@@ -223,7 +223,7 @@ export function prepareDocumentData(data) {
     : extractMarkdownTitle(source);
   const title = String(data.title ?? "").trim()
     || extractedTitle
-    || format("SCRIPTORIA.Documents.Untitled", { type: resolveScriptureTypeLabel(type) }, `Untitled ${resolveScriptureTypeLabel(type)}`);
+    || format("RUNYTH-SCRIPTORIA.Documents.Untitled", { type: resolveScriptureTypeLabel(type) }, `Untitled ${resolveScriptureTypeLabel(type)}`);
   const removeTitleHeading = data.removeTitleHeading !== false;
   const html = sourceFormat === "html"
     ? prepareHtml(source, removeTitleHeading)
@@ -257,13 +257,13 @@ export function prepareDocumentData(data) {
   return {
     title,
     typeId: requestedTypeId,
-    // Retained as a runtime alias for callers written against Scriptoria 1.x.
+    // Retained as a runtime alias for callers written against Runyth Scriptoria 1.x.
     kind: requestedTypeId,
     type,
     itemType,
     access,
     html,
-    img: String(data.image ?? type.image ?? "modules/scriptoria/assets/scripture.svg"),
+    img: String(data.image ?? type.image ?? "modules/runyth-scriptoria/assets/scripture.svg"),
     economicsResult,
     flagData: {
       schemaVersion: SCHEMA_VERSION,
@@ -273,7 +273,7 @@ export function prepareDocumentData(data) {
       sourceFormat,
       source,
       sourceFileName: String(data.sourceFileName ?? "").trim(),
-      // Retained for compatibility with Scriptoria 1.0.x and external consumers.
+      // Retained for compatibility with Runyth Scriptoria 1.0.x and external consumers.
       markdown: sourceFormat === "markdown" ? source : "",
       html,
       author: String(data.author ?? "").trim(),
@@ -288,7 +288,7 @@ export function prepareDocumentData(data) {
 }
 
 export function wrapRenderedContent(html, {
-  className = "scriptoria-rendered-content"
+  className = "runyth-scriptoria-rendered-content"
 } = {}) {
   const content = String(html ?? "");
   const escapedClassName = String(className).replace(/[^a-zA-Z0-9_-]/g, "");
@@ -325,7 +325,7 @@ export function canReadItem(item) {
 }
 
 async function ensureItemFolder(typeId) {
-  const rootName = String(game.settings.get(MODULE_ID, SETTINGS.rootFolder) || "Scriptoria").trim();
+  const rootName = String(game.settings.get(MODULE_ID, SETTINGS.rootFolder) || "Runyth Scriptoria").trim();
   const root = await findOrCreateFolder("Item", rootName, null);
   if (!game.settings.get(MODULE_ID, SETTINGS.createKindFolders)) return root;
 
@@ -334,7 +334,7 @@ async function ensureItemFolder(typeId) {
 }
 
 export async function ensureJournalFolder() {
-  return findOrCreateFolder("JournalEntry", localize("SCRIPTORIA.Documents.SceneFolder", "Scriptoria Scene Documents"), null);
+  return findOrCreateFolder("JournalEntry", localize("RUNYTH-SCRIPTORIA.Documents.SceneFolder", "Runyth Scriptoria Scene Documents"), null);
 }
 
 async function findOrCreateFolder(type, name, parent) {

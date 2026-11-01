@@ -16,8 +16,8 @@ test("legacy migration adds provenance only and never changes existing system va
   const count = await migrateLegacyEconomicsMetadata();
   assert.equal(count, 1);
   assert.equal(Object.keys(update.data).some((key) => key.startsWith("system.")), false);
-  assert.equal(update.data["flags.scriptoria.document.economics"].status, "legacy");
-  assert.equal(update.options.scriptoriaMigration, true);
+  assert.equal(update.data["flags.runyth-scriptoria.document.economics"].status, "legacy");
+  assert.equal(update.options.runythScriptoriaMigration, true);
 });
 
 test("non-GM clients never migrate Item data", async () => {

@@ -49,10 +49,10 @@ function configure({ currentUser = "gm" } = {}) {
     id: "item-1",
     uuid: "Item.item-1",
     name: "Book",
-    img: "modules/scriptoria/assets/book.svg",
+    img: "modules/runyth-scriptoria/assets/book.svg",
     documentName: "Item",
     isOwner: false,
-    getFlag: (scope, key) => scope === "scriptoria" && key === "document"
+    getFlag: (scope, key) => scope === "runyth-scriptoria" && key === "document"
       ? itemData
       : undefined,
     testUserPermission: () => false,
@@ -133,7 +133,7 @@ test("show to all sends one namespaced request to every connected player", async
   const { emitted, item } = configure();
   const payload = await showToAllPlayers(item, { mode: "simple-reader" });
   assert.equal(emitted.length, 1);
-  assert.equal(emitted[0][0], "module.scriptoria");
+  assert.equal(emitted[0][0], "module.runyth-scriptoria");
   assert.deepEqual(payload.targetUserIds, ["player-a", "player-b"]);
   assert.equal(payload.documentUuid, item.uuid);
 });

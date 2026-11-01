@@ -39,7 +39,7 @@ export function getReaderModeDescriptors() {
     Object.freeze({
       id: READER_MODES.foundry,
       label: localize(
-        "SCRIPTORIA.ReaderModes.Foundry",
+        "RUNYTH-SCRIPTORIA.ReaderModes.Foundry",
         "Standard Foundry document view"
       ),
       icon: "fa-solid fa-book",
@@ -49,11 +49,11 @@ export function getReaderModeDescriptors() {
       id: READER_MODES.enhancedJournal,
       label: enhanced.available
         ? localize(
-          "SCRIPTORIA.ReaderModes.EnhancedJournal",
+          "RUNYTH-SCRIPTORIA.ReaderModes.EnhancedJournal",
           "Enhanced journal-module view"
         )
         : localize(
-          "SCRIPTORIA.ReaderModes.EnhancedJournalUnavailable",
+          "RUNYTH-SCRIPTORIA.ReaderModes.EnhancedJournalUnavailable",
           "Enhanced journal-module view (Unavailable)"
         ),
       icon: "fa-solid fa-book-open-reader",
@@ -63,8 +63,8 @@ export function getReaderModeDescriptors() {
     Object.freeze({
       id: READER_MODES.simpleReader,
       label: localize(
-        "SCRIPTORIA.ReaderModes.SimpleReader",
-        "Scriptoria simple reader"
+        "RUNYTH-SCRIPTORIA.ReaderModes.SimpleReader",
+        "Runyth Scriptoria simple reader"
       ),
       icon: "fa-solid fa-scroll",
       available: true
@@ -114,7 +114,7 @@ export function getEnhancedJournalIntegration() {
 }
 
 export async function resolveDocumentViewContext(target, options = {}) {
-  if (target?.scriptoriaContext) target = target.scriptoriaContext;
+  if (target?.runythScriptoriaContext) target = target.runythScriptoriaContext;
 
   const context = {
     item: options.item ?? target?.item ?? null,
@@ -168,7 +168,7 @@ export async function resolveDocumentViewContext(target, options = {}) {
   context.title = context.item?.name
     ?? context.page?.name
     ?? context.journal?.name
-    ?? localize("SCRIPTORIA.Reader.Document", "Scriptoria document");
+    ?? localize("RUNYTH-SCRIPTORIA.Reader.Document", "Runyth Scriptoria document");
 
   return Object.freeze(context);
 }
@@ -183,8 +183,8 @@ export async function openDocumentView(target, {
   const context = await resolveDocumentViewContext(target, { pageId });
   if (!context.document && !context.item) {
     throw new Error(localize(
-      "SCRIPTORIA.Errors.DocumentNotFound",
-      "The Scriptoria document could not be resolved."
+      "RUNYTH-SCRIPTORIA.Errors.DocumentNotFound",
+      "The Runyth Scriptoria document could not be resolved."
     ));
   }
 
@@ -232,7 +232,7 @@ export async function openFoundryDocumentView(contextOrTarget, {
   let document = context.journal ?? context.page ?? context.item;
 
   // Showing an Item sheet to a player without ownership can expose unrelated
-  // system fields. Use Scriptoria's player-safe reader unless a generated
+  // system fields. Use Runyth Scriptoria's player-safe reader unless a generated
   // Journal surface is available or the player already has normal access.
   if (
     temporaryRead
@@ -255,7 +255,7 @@ export async function openFoundryDocumentView(contextOrTarget, {
       });
     }
     throw new Error(localize(
-      "SCRIPTORIA.Errors.NoDocumentSheet",
+      "RUNYTH-SCRIPTORIA.Errors.NoDocumentSheet",
       "No Foundry document sheet is available for this document."
     ));
   }
@@ -274,7 +274,7 @@ export async function openFoundryDocumentView(contextOrTarget, {
   } catch (error) {
     grant?.release();
     if (fallbackToSimple) {
-      console.warn(`${MODULE_ID} | Foundry document view failed; opening the Scriptoria reader.`, error);
+      console.warn(`${MODULE_ID} | Foundry document view failed; opening the Runyth Scriptoria reader.`, error);
       return openReader(context, {
         temporaryRead,
         viewMode: READER_MODES.simpleReader,
@@ -320,8 +320,8 @@ export async function openEnhancedJournalView(contextOrTarget, {
 export function tagApplication(application, context, viewMode) {
   if (!application || typeof application !== "object") return application;
   try {
-    application.scriptoriaContext = context;
-    application.scriptoriaViewMode = normalizeReaderMode(viewMode);
+    application.runythScriptoriaContext = context;
+    application.runythScriptoriaViewMode = normalizeReaderMode(viewMode);
   } catch {
     // Third-party applications may be sealed. Rendering hooks can still infer
     // the document context from their public document property.
@@ -330,16 +330,16 @@ export function tagApplication(application, context, viewMode) {
 }
 
 export function inferApplicationViewMode(application) {
-  if (isReaderMode(application?.scriptoriaViewMode)) {
-    return application.scriptoriaViewMode;
+  if (isReaderMode(application?.runythScriptoriaViewMode)) {
+    return application.runythScriptoriaViewMode;
   }
   const classes = new Set([
     ...(application?.options?.classes ?? []),
     ...(application?.classList ?? [])
   ]);
   if (
-    classes.has("scriptoria-reader-window")
-    || application?.element?.classList?.contains?.("scriptoria-reader-window")
+    classes.has("runyth-scriptoria-reader-window")
+    || application?.element?.classList?.contains?.("runyth-scriptoria-reader-window")
   ) return READER_MODES.simpleReader;
   if (
     application?.constructor?.name === "EnhancedJournal"
@@ -358,8 +358,8 @@ function warnEnhancedFallback(integration, notify) {
 
   enhancedWarningKeys.add(key);
   globalThis.ui?.notifications?.warn?.(localize(
-    "SCRIPTORIA.Notifications.EnhancedJournalUnavailable",
-    "The enhanced journal integration is unavailable. Scriptoria opened the standard Foundry view instead."
+    "RUNYTH-SCRIPTORIA.Notifications.EnhancedJournalUnavailable",
+    "The enhanced journal integration is unavailable. Runyth Scriptoria opened the standard Foundry view instead."
   ));
 }
 

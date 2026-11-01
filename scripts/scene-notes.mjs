@@ -7,10 +7,10 @@ const interactionBindings = new Map();
 let hooksRegistered = false;
 
 /**
- * Register Scriptoria's scene-note integration once.
+ * Register Runyth Scriptoria's scene-note integration once.
  *
  * The integration deliberately leaves Foundry's native Note interaction
- * manager intact. It only activates the Notes layer and controls a Scriptoria
+ * manager intact. It only activates the Notes layer and controls a Runyth Scriptoria
  * Note after a permitted single click, allowing core drag, keyboard movement,
  * configuration, double-click reading, and deletion workflows to proceed.
  */
@@ -36,7 +36,7 @@ export function registerSceneNoteHooks() {
       void openDocumentView(note, {
         source: "scene"
       }).catch(notifyReaderError);
-      // Scriptoria centrally resolves the configured scene reader mode.
+      // Runyth Scriptoria centrally resolves the configured scene reader mode.
       return false;
     }
   });
@@ -45,7 +45,7 @@ export function registerSceneNoteHooks() {
 }
 
 /**
- * Determine whether a Note document or placeable was created by Scriptoria.
+ * Determine whether a Note document or placeable was created by Runyth Scriptoria.
  */
 export function isScriptoriaSceneNote(noteOrDocument) {
   const document = noteOrDocument?.document ?? noteOrDocument;
@@ -149,11 +149,11 @@ export function getSceneNoteInteractionBindingCount() {
 
 function addSceneControlTool(controls) {
   const tools = controls?.tokens?.tools;
-  if (!tools || tools.scriptoriaNotes) return;
+  if (!tools || tools.runythScriptoriaNotes) return;
 
-  tools.scriptoriaNotes = {
-    name: "scriptoriaNotes",
-    title: localize("SCRIPTORIA.Scene.ManageDocuments", "Manage Scriptoria scene documents"),
+  tools.runythScriptoriaNotes = {
+    name: "runythScriptoriaNotes",
+    title: localize("RUNYTH-SCRIPTORIA.Scene.ManageDocuments", "Manage Runyth Scriptoria scene documents"),
     icon: "fa-solid fa-book-open-reader",
     order: Object.keys(tools).length,
     button: true,
@@ -161,7 +161,7 @@ function addSceneControlTool(controls) {
     onChange: () => {
       void activateScriptoriaNotesLayer().catch((error) => {
         console.error(`${MODULE_ID} | Unable to activate the Notes layer.`, error);
-        ui.notifications?.error?.(localize("SCRIPTORIA.Errors.ActivateSceneControls", "Unable to activate Scriptoria Scene document controls."));
+        ui.notifications?.error?.(localize("RUNYTH-SCRIPTORIA.Errors.ActivateSceneControls", "Unable to activate Runyth Scriptoria Scene document controls."));
       });
     }
   };

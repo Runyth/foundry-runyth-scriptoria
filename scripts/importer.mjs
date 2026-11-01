@@ -38,7 +38,7 @@ import {
 
 export function openImporter({ item = null } = {}) {
   if (!game.user?.isGM && !item?.isOwner) {
-    ui.notifications.warn(localize("SCRIPTORIA.Errors.EditPermission", "Only a Game Master or Item owner can edit Scriptoria documents."));
+    ui.notifications.warn(localize("RUNYTH-SCRIPTORIA.Errors.EditPermission", "Only a Game Master or Item owner can edit Runyth Scriptoria documents."));
     return null;
   }
 
@@ -60,20 +60,20 @@ export function openImporter({ item = null } = {}) {
   const dialog = new foundry.applications.api.DialogV2({
     window: {
       title: editing
-        ? format("SCRIPTORIA.Importer.EditTitle", { name: item.name }, `Edit ${item.name}`)
-        : localize("SCRIPTORIA.Importer.CreateTitle", "Create Scriptoria Document"),
+        ? format("RUNYTH-SCRIPTORIA.Importer.EditTitle", { name: item.name }, `Edit ${item.name}`)
+        : localize("RUNYTH-SCRIPTORIA.Importer.CreateTitle", "Create Runyth Scriptoria Document"),
       icon: editing ? "fa-solid fa-pen-to-square" : "fa-solid fa-book-medical",
       resizable: true
     },
-    classes: ["scriptoria-importer-window"],
+    classes: ["runyth-scriptoria-importer-window"],
     position: getImporterInitialPosition(),
     content: buildImporterContent(values, editing),
     buttons: [
       {
         action: "save",
         label: editing
-          ? localize("SCRIPTORIA.Actions.SaveChanges", "Save Changes")
-          : localize("SCRIPTORIA.Actions.CreateDocument", "Create Document"),
+          ? localize("RUNYTH-SCRIPTORIA.Actions.SaveChanges", "Save Changes")
+          : localize("RUNYTH-SCRIPTORIA.Actions.CreateDocument", "Create Document"),
         icon: editing ? "fa-solid fa-floppy-disk" : "fa-solid fa-book-medical",
         default: true,
         callback: async (_event, button) => {
@@ -91,14 +91,14 @@ export function openImporter({ item = null } = {}) {
             return result;
           } catch (error) {
             console.error(`${MODULE_ID} | Document import failed.`, error);
-            ui.notifications.error(error.message ?? localize("SCRIPTORIA.Errors.SaveDocument", "Unable to save the Scriptoria document."));
+            ui.notifications.error(error.message ?? localize("RUNYTH-SCRIPTORIA.Errors.SaveDocument", "Unable to save the Runyth Scriptoria document."));
             return false;
           }
         }
       },
       {
         action: "cancel",
-        label: localize("SCRIPTORIA.Actions.Cancel", "Cancel"),
+        label: localize("RUNYTH-SCRIPTORIA.Actions.Cancel", "Cancel"),
         icon: "fa-solid fa-xmark"
       }
     ]
@@ -137,8 +137,8 @@ export function buildImporterContent(values, editing) {
     .map((type) => option(type, localizeItemType(type), values.itemType))
     .join("");
   const accessOptions = [
-    ["embedded", localize("SCRIPTORIA.Access.WhenHeldOrPlaced", "When held or placed")],
-    ["observer", localize("SCRIPTORIA.Access.AllPlayersImmediately", "All players immediately")]
+    ["embedded", localize("RUNYTH-SCRIPTORIA.Access.WhenHeldOrPlaced", "When held or placed")],
+    ["observer", localize("RUNYTH-SCRIPTORIA.Access.AllPlayersImmediately", "All players immediately")]
   ].map(([value, label]) => option(value, label, values.access)).join("");
   const sourceFormatOptions = [
     ["markdown", "Markdown"],
@@ -147,14 +147,14 @@ export function buildImporterContent(values, editing) {
   const itemTypeDisabled = editing ? " disabled" : "";
   const checked = values.removeTitleHeading ? " checked" : "";
   const formatLabel = values.sourceFormat === "html"
-    ? localize("SCRIPTORIA.Importer.HtmlSource", "HTML source")
-    : localize("SCRIPTORIA.Importer.MarkdownSource", "Markdown source");
+    ? localize("RUNYTH-SCRIPTORIA.Importer.HtmlSource", "HTML source")
+    : localize("RUNYTH-SCRIPTORIA.Importer.MarkdownSource", "Markdown source");
   const placeholder = values.sourceFormat === "html"
-    ? localize("SCRIPTORIA.Importer.HtmlPlaceholder", "Paste or upload HTML here.")
-    : localize("SCRIPTORIA.Importer.MarkdownPlaceholder", "Paste, write, or upload Markdown here.");
+    ? localize("RUNYTH-SCRIPTORIA.Importer.HtmlPlaceholder", "Paste or upload HTML here.")
+    : localize("RUNYTH-SCRIPTORIA.Importer.MarkdownPlaceholder", "Paste, write, or upload Markdown here.");
   const uploadedFile = values.sourceFileName
-    ? escapeHtml(format("SCRIPTORIA.Importer.LoadedSourceFile", { fileName: values.sourceFileName }, `Loaded source file: ${values.sourceFileName}`))
-    : escapeHtml(localize("SCRIPTORIA.Importer.NoFileSelected", "No file selected. Pasting or typing remains available."));
+    ? escapeHtml(format("RUNYTH-SCRIPTORIA.Importer.LoadedSourceFile", { fileName: values.sourceFileName }, `Loaded source file: ${values.sourceFileName}`))
+    : escapeHtml(localize("RUNYTH-SCRIPTORIA.Importer.NoFileSelected", "No file selected. Pasting or typing remains available."));
   const economicsContent = editing ? "" : buildImporterEconomicsContent(values);
   debugLog("Importer preparation context", {
     editing,
@@ -166,73 +166,73 @@ export function buildImporterContent(values, editing) {
   });
 
   return `
-    <div class="scriptoria-importer">
+    <div class="runyth-scriptoria-importer">
       <p class="notes">
-        ${escapeHtml(localize("SCRIPTORIA.Importer.Introduction", "Paste content directly or import a local Markdown or HTML file. The first heading becomes the Item name unless a title override is provided. HTML imports are sanitised before display."))}
+        ${escapeHtml(localize("RUNYTH-SCRIPTORIA.Importer.Introduction", "Paste content directly or import a local Markdown or HTML file. The first heading becomes the Item name unless a title override is provided. HTML imports are sanitised before display."))}
       </p>
 
-      <div class="scriptoria-importer__upload">
-        <label for="scriptoria-file">${escapeHtml(localize("SCRIPTORIA.Importer.ImportFile", "Import document file"))}</label>
-        <div class="scriptoria-importer__file-row">
-          <input id="scriptoria-file" type="file" accept="${ACCEPTED_FILE_TYPES}">
-          <span class="scriptoria-importer__file-status" data-file-status>${uploadedFile}</span>
+      <div class="runyth-scriptoria-importer__upload">
+        <label for="runyth-scriptoria-file">${escapeHtml(localize("RUNYTH-SCRIPTORIA.Importer.ImportFile", "Import document file"))}</label>
+        <div class="runyth-scriptoria-importer__file-row">
+          <input id="runyth-scriptoria-file" type="file" accept="${ACCEPTED_FILE_TYPES}">
+          <span class="runyth-scriptoria-importer__file-status" data-file-status>${uploadedFile}</span>
         </div>
-        <p class="hint">${localize("SCRIPTORIA.Importer.AcceptedFiles", "Accepted: <code>.md</code>, <code>.markdown</code>, <code>.html</code>, and <code>.htm</code>, up to 5 MiB. Selecting a file replaces the source field below.")}</p>
+        <p class="hint">${localize("RUNYTH-SCRIPTORIA.Importer.AcceptedFiles", "Accepted: <code>.md</code>, <code>.markdown</code>, <code>.html</code>, and <code>.htm</code>, up to 5 MiB. Selecting a file replaces the source field below.")}</p>
       </div>
 
-      <div class="scriptoria-importer__grid">
+      <div class="runyth-scriptoria-importer__grid">
         <div class="form-group">
-          <label for="scriptoria-kind">${escapeHtml(localize("SCRIPTORIA.Importer.ScriptureType", "Scripture type"))}</label>
+          <label for="runyth-scriptoria-kind">${escapeHtml(localize("RUNYTH-SCRIPTORIA.Importer.ScriptureType", "Scripture type"))}</label>
           <div class="form-fields">
-            <select id="scriptoria-kind" name="kind">${kindOptions}</select>
+            <select id="runyth-scriptoria-kind" name="kind">${kindOptions}</select>
           </div>
-          <p class="hint">${escapeHtml(localize("SCRIPTORIA.Importer.ScriptureTypeHint", "Built-in and helper-provided types are resolved through Scriptoria's public registry. Reopen this importer after a late registration."))}</p>
+          <p class="hint">${escapeHtml(localize("RUNYTH-SCRIPTORIA.Importer.ScriptureTypeHint", "Built-in and helper-provided types are resolved through Runyth Scriptoria's public registry. Reopen this importer after a late registration."))}</p>
         </div>
 
         <div class="form-group">
-          <label for="scriptoria-source-format">${escapeHtml(localize("SCRIPTORIA.Importer.SourceFormat", "Source format"))}</label>
+          <label for="runyth-scriptoria-source-format">${escapeHtml(localize("RUNYTH-SCRIPTORIA.Importer.SourceFormat", "Source format"))}</label>
           <div class="form-fields">
-            <select id="scriptoria-source-format" name="sourceFormat">${sourceFormatOptions}</select>
+            <select id="runyth-scriptoria-source-format" name="sourceFormat">${sourceFormatOptions}</select>
           </div>
-          <p class="hint">${escapeHtml(localize("SCRIPTORIA.Importer.SourceFormatHint", "Automatically updated when a supported file is selected."))}</p>
+          <p class="hint">${escapeHtml(localize("RUNYTH-SCRIPTORIA.Importer.SourceFormatHint", "Automatically updated when a supported file is selected."))}</p>
         </div>
 
         <div class="form-group">
-          <label for="scriptoria-item-type">${escapeHtml(localize("SCRIPTORIA.Importer.ItemType", "Foundry Item type"))}</label>
+          <label for="runyth-scriptoria-item-type">${escapeHtml(localize("RUNYTH-SCRIPTORIA.Importer.ItemType", "Foundry Item type"))}</label>
           <div class="form-fields">
-            <select id="scriptoria-item-type" name="itemType"${itemTypeDisabled}>${itemTypeOptions}</select>
+            <select id="runyth-scriptoria-item-type" name="itemType"${itemTypeDisabled}>${itemTypeOptions}</select>
           </div>
-          <p class="hint">${escapeHtml(localize("SCRIPTORIA.Importer.ItemTypeHint", "D&D 5e normally uses a standard loot Item."))}</p>
+          <p class="hint">${escapeHtml(localize("RUNYTH-SCRIPTORIA.Importer.ItemTypeHint", "D&D 5e normally uses a standard loot Item."))}</p>
         </div>
 
         <div class="form-group">
-          <label for="scriptoria-title">${escapeHtml(localize("SCRIPTORIA.Importer.Title", "Title"))}</label>
+          <label for="runyth-scriptoria-title">${escapeHtml(localize("RUNYTH-SCRIPTORIA.Importer.Title", "Title"))}</label>
           <div class="form-fields">
-            <input id="scriptoria-title" name="title" type="text" value="${escapeHtml(values.title)}" placeholder="${escapeHtml(localize("SCRIPTORIA.Importer.TitlePlaceholder", "Leave empty to use the document heading"))}">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="scriptoria-author">${escapeHtml(localize("SCRIPTORIA.Importer.Author", "Author or attribution"))}</label>
-          <div class="form-fields">
-            <input id="scriptoria-author" name="author" type="text" value="${escapeHtml(values.author)}" placeholder="${escapeHtml(localize("SCRIPTORIA.Importer.Optional", "Optional"))}">
+            <input id="runyth-scriptoria-title" name="title" type="text" value="${escapeHtml(values.title)}" placeholder="${escapeHtml(localize("RUNYTH-SCRIPTORIA.Importer.TitlePlaceholder", "Leave empty to use the document heading"))}">
           </div>
         </div>
 
         <div class="form-group">
-          <label for="scriptoria-access">${escapeHtml(localize("SCRIPTORIA.Importer.WorldAccess", "World Item access"))}</label>
+          <label for="runyth-scriptoria-author">${escapeHtml(localize("RUNYTH-SCRIPTORIA.Importer.Author", "Author or attribution"))}</label>
           <div class="form-fields">
-            <select id="scriptoria-access" name="access">${accessOptions}</select>
+            <input id="runyth-scriptoria-author" name="author" type="text" value="${escapeHtml(values.author)}" placeholder="${escapeHtml(localize("RUNYTH-SCRIPTORIA.Importer.Optional", "Optional"))}">
           </div>
-          <p class="hint">${escapeHtml(localize("SCRIPTORIA.Importer.WorldAccessHint", "Actor ownership and generated Scene Journals still control embedded or placed copies."))}</p>
         </div>
 
-        <div class="form-group scriptoria-importer__checkbox">
-          <label for="scriptoria-remove-title">${escapeHtml(localize("SCRIPTORIA.Importer.ReadingLayout", "Reading layout"))}</label>
+        <div class="form-group">
+          <label for="runyth-scriptoria-access">${escapeHtml(localize("RUNYTH-SCRIPTORIA.Importer.WorldAccess", "World Item access"))}</label>
+          <div class="form-fields">
+            <select id="runyth-scriptoria-access" name="access">${accessOptions}</select>
+          </div>
+          <p class="hint">${escapeHtml(localize("RUNYTH-SCRIPTORIA.Importer.WorldAccessHint", "Actor ownership and generated Scene Journals still control embedded or placed copies."))}</p>
+        </div>
+
+        <div class="form-group runyth-scriptoria-importer__checkbox">
+          <label for="runyth-scriptoria-remove-title">${escapeHtml(localize("RUNYTH-SCRIPTORIA.Importer.ReadingLayout", "Reading layout"))}</label>
           <div class="form-fields">
             <label class="checkbox">
-              <input id="scriptoria-remove-title" name="removeTitleHeading" type="checkbox"${checked}>
-              ${escapeHtml(localize("SCRIPTORIA.Importer.RemoveFirstHeading", "Remove the first H1 from the body"))}
+              <input id="runyth-scriptoria-remove-title" name="removeTitleHeading" type="checkbox"${checked}>
+              ${escapeHtml(localize("RUNYTH-SCRIPTORIA.Importer.RemoveFirstHeading", "Remove the first H1 from the body"))}
             </label>
           </div>
         </div>
@@ -242,9 +242,9 @@ export function buildImporterContent(values, editing) {
 
       <input name="sourceFileName" type="hidden" value="${escapeHtml(values.sourceFileName)}">
 
-      <div class="scriptoria-importer__source">
-        <label for="scriptoria-source" data-source-label>${formatLabel}</label>
-        <textarea id="scriptoria-source" name="source" required spellcheck="${values.sourceFormat === "markdown"}" placeholder="${placeholder}">${escapeHtml(values.source)}</textarea>
+      <div class="runyth-scriptoria-importer__source">
+        <label for="runyth-scriptoria-source" data-source-label>${formatLabel}</label>
+        <textarea id="runyth-scriptoria-source" name="source" required spellcheck="${values.sourceFormat === "markdown"}" placeholder="${placeholder}">${escapeHtml(values.source)}</textarea>
         <p class="hint" data-source-hint>${escapeHtml(sourceHint(values.sourceFormat))}</p>
       </div>
     </div>
@@ -273,9 +273,9 @@ export function activateImporterListeners(application) {
   const root = normalizeRoot(application?.element);
   if (!root) return;
 
-  const fileInput = root.querySelector("#scriptoria-file");
-  const formatSelect = root.querySelector("#scriptoria-source-format");
-  const source = root.querySelector("#scriptoria-source");
+  const fileInput = root.querySelector("#runyth-scriptoria-file");
+  const formatSelect = root.querySelector("#runyth-scriptoria-source-format");
+  const source = root.querySelector("#runyth-scriptoria-source");
   const sourceFileName = root.querySelector("input[name='sourceFileName']");
   const status = root.querySelector("[data-file-status]");
 
@@ -293,43 +293,43 @@ export function activateImporterListeners(application) {
       if (formatSelect) formatSelect.value = imported.sourceFormat;
       if (source) source.value = imported.source;
       if (sourceFileName) sourceFileName.value = imported.fileName;
-      if (status) status.textContent = format("SCRIPTORIA.Importer.LoadedFile", { fileName: imported.fileName }, `Loaded ${imported.fileName}`);
+      if (status) status.textContent = format("RUNYTH-SCRIPTORIA.Importer.LoadedFile", { fileName: imported.fileName }, `Loaded ${imported.fileName}`);
       updateSourceUi(root);
       scheduleEconomicsRefresh(root, { immediate: true, updatePrice: false, updateWeight: true });
       source?.focus();
-      ui.notifications.info(format("SCRIPTORIA.Notifications.FileLoaded", { fileName: imported.fileName }, `Loaded ${imported.fileName}.`));
+      ui.notifications.info(format("RUNYTH-SCRIPTORIA.Notifications.FileLoaded", { fileName: imported.fileName }, `Loaded ${imported.fileName}.`));
     } catch (error) {
       input.value = "";
       console.error(`${MODULE_ID} | File import failed.`, error);
-      ui.notifications.error(error.message ?? localize("SCRIPTORIA.Errors.ImportFile", "Unable to import the selected document file."));
+      ui.notifications.error(error.message ?? localize("RUNYTH-SCRIPTORIA.Errors.ImportFile", "Unable to import the selected document file."));
     }
   });
 }
 
 function updateSourceUi(root) {
-  const format = root.querySelector("#scriptoria-source-format")?.value === "html"
+  const format = root.querySelector("#runyth-scriptoria-source-format")?.value === "html"
     ? "html"
     : "markdown";
-  const source = root.querySelector("#scriptoria-source");
+  const source = root.querySelector("#runyth-scriptoria-source");
   const label = root.querySelector("[data-source-label]");
   const hint = root.querySelector("[data-source-hint]");
 
   if (label) label.textContent = format === "html"
-    ? localize("SCRIPTORIA.Importer.HtmlSource", "HTML source")
-    : localize("SCRIPTORIA.Importer.MarkdownSource", "Markdown source");
+    ? localize("RUNYTH-SCRIPTORIA.Importer.HtmlSource", "HTML source")
+    : localize("RUNYTH-SCRIPTORIA.Importer.MarkdownSource", "Markdown source");
   if (hint) hint.textContent = sourceHint(format);
   if (source) {
     source.placeholder = format === "html"
-      ? localize("SCRIPTORIA.Importer.HtmlPlaceholder", "Paste or upload HTML here.")
-      : localize("SCRIPTORIA.Importer.MarkdownPlaceholder", "Paste, write, or upload Markdown here.");
+      ? localize("RUNYTH-SCRIPTORIA.Importer.HtmlPlaceholder", "Paste or upload HTML here.")
+      : localize("RUNYTH-SCRIPTORIA.Importer.MarkdownPlaceholder", "Paste, write, or upload Markdown here.");
     source.spellcheck = format === "markdown";
   }
 }
 
 function sourceHint(format) {
   return format === "html"
-    ? localize("SCRIPTORIA.Importer.HtmlHint", "The first <h1> is used as the title, with <title> as a fallback. Scripts, event handlers, embedded frames, forms, and unsafe URLs are removed.")
-    : localize("SCRIPTORIA.Importer.MarkdownHint", "The first # H1 or Setext H1 is used as the title. Raw HTML inside Markdown remains escaped.");
+    ? localize("RUNYTH-SCRIPTORIA.Importer.HtmlHint", "The first <h1> is used as the title, with <title> as a fallback. Scripts, event handlers, embedded frames, forms, and unsafe URLs are removed.")
+    : localize("RUNYTH-SCRIPTORIA.Importer.MarkdownHint", "The first # H1 or Setext H1 is used as the title. Raw HTML inside Markdown remains escaped.");
 }
 
 export function buildImporterEconomicsContent(values) {
@@ -346,7 +346,7 @@ export function buildImporterEconomicsContent(values) {
 
   return `
     <fieldset
-      class="scriptoria-importer__economics"
+      class="runyth-scriptoria-importer__economics"
       data-economics-section
       data-calculated-price-value="${result.calculatedPrice.value}"
       data-calculated-price-denomination="${escapeHtml(result.calculatedPrice.denomination)}"
@@ -356,25 +356,25 @@ export function buildImporterEconomicsContent(values) {
       data-price-denomination-dirty="false"
       data-weight-dirty="false"
     >
-      <legend><i class="fa-solid fa-coins"></i> ${escapeHtml(localize("SCRIPTORIA.Economics.PriceAndWeight", "Price and Weight"))}</legend>
-      <div class="scriptoria-importer__economics-summary">
-        <p><strong>${escapeHtml(localize("SCRIPTORIA.Economics.EffectiveType", "Effective type"))}:</strong> <span data-economics-type>${escapeHtml(resolveScriptureTypeLabel(values.kind))}</span></p>
-        <p><strong>${escapeHtml(localize("SCRIPTORIA.Economics.NormalizedWordCount", "Normalized word count"))}:</strong> <span data-economics-word-count>${result.wordCount}</span></p>
-        <p class="hint">${escapeHtml(localize("SCRIPTORIA.Economics.WeightExplanation", "The calculated weight varies modestly with normalized readable text length and remains within the configured type bounds."))}</p>
+      <legend><i class="fa-solid fa-coins"></i> ${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.PriceAndWeight", "Price and Weight"))}</legend>
+      <div class="runyth-scriptoria-importer__economics-summary">
+        <p><strong>${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.EffectiveType", "Effective type"))}:</strong> <span data-economics-type>${escapeHtml(resolveScriptureTypeLabel(values.kind))}</span></p>
+        <p><strong>${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.NormalizedWordCount", "Normalized word count"))}:</strong> <span data-economics-word-count>${result.wordCount}</span></p>
+        <p class="hint">${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.WeightExplanation", "The calculated weight varies modestly with normalized readable text length and remains within the configured type bounds."))}</p>
       </div>
 
-      <div class="scriptoria-importer__economics-grid">
-        <section class="scriptoria-importer__economics-card" data-economics-price-card>
-          <h3>${escapeHtml(localize("SCRIPTORIA.Economics.Price", "Price"))}</h3>
-          <p class="scriptoria-importer__calculated-value">
-            ${escapeHtml(localize("SCRIPTORIA.Economics.CalculatedDefault", "Calculated default"))}:
+      <div class="runyth-scriptoria-importer__economics-grid">
+        <section class="runyth-scriptoria-importer__economics-card" data-economics-price-card>
+          <h3>${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.Price", "Price"))}</h3>
+          <p class="runyth-scriptoria-importer__calculated-value">
+            ${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.CalculatedDefault", "Calculated default"))}:
             <strong data-calculated-price>${result.calculatedPrice.value} ${escapeHtml(result.calculatedPrice.denomination)}</strong>
           </p>
-          <div class="scriptoria-importer__economics-fields scriptoria-importer__economics-fields--price">
-            <div class="scriptoria-importer__economics-field">
-              <label for="scriptoria-economics-price-value">${escapeHtml(localize("SCRIPTORIA.Economics.Price", "Price"))}</label>
+          <div class="runyth-scriptoria-importer__economics-fields runyth-scriptoria-importer__economics-fields--price">
+            <div class="runyth-scriptoria-importer__economics-field">
+              <label for="runyth-scriptoria-economics-price-value">${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.Price", "Price"))}</label>
               <input
-                id="scriptoria-economics-price-value"
+                id="runyth-scriptoria-economics-price-value"
                 name="economics.price.value"
                 type="number"
                 min="0"
@@ -384,30 +384,30 @@ export function buildImporterEconomicsContent(values) {
                 required
               >
             </div>
-            <div class="scriptoria-importer__economics-field">
-              <label for="scriptoria-economics-price-denomination">${escapeHtml(localize("SCRIPTORIA.Economics.Denomination", "Denomination"))}</label>
+            <div class="runyth-scriptoria-importer__economics-field">
+              <label for="runyth-scriptoria-economics-price-denomination">${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.Denomination", "Denomination"))}</label>
               <select
-                id="scriptoria-economics-price-denomination"
+                id="runyth-scriptoria-economics-price-denomination"
                 name="economics.price.denomination"
                 required
               >${denominationOptions}</select>
             </div>
           </div>
-          <button type="button" data-action="reset-price-default"><i class="fa-solid fa-rotate-left"></i> ${escapeHtml(localize("SCRIPTORIA.Economics.ResetPriceDefault", "Reset Price to Default"))}</button>
+          <button type="button" data-action="reset-price-default"><i class="fa-solid fa-rotate-left"></i> ${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.ResetPriceDefault", "Reset Price to Default"))}</button>
         </section>
 
-        <section class="scriptoria-importer__economics-card" data-economics-weight-card>
-          <h3>${escapeHtml(localize("SCRIPTORIA.Economics.Weight", "Weight"))}</h3>
-          <p class="scriptoria-importer__calculated-value">
-            ${escapeHtml(localize("SCRIPTORIA.Economics.CalculatedDefault", "Calculated default"))}:
+        <section class="runyth-scriptoria-importer__economics-card" data-economics-weight-card>
+          <h3>${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.Weight", "Weight"))}</h3>
+          <p class="runyth-scriptoria-importer__calculated-value">
+            ${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.CalculatedDefault", "Calculated default"))}:
             <strong data-calculated-weight>${result.calculatedWeight} ${escapeHtml(result.weightUnits)}</strong>
           </p>
-          <p class="hint" data-weight-multiplier>${result.multiplier.toFixed(2)}× ${escapeHtml(localize("SCRIPTORIA.Economics.BaseWeight", "base weight"))}</p>
-          <div class="scriptoria-importer__economics-fields scriptoria-importer__economics-fields--weight">
-            <div class="scriptoria-importer__economics-field">
-              <label for="scriptoria-economics-weight-value">${escapeHtml(localize("SCRIPTORIA.Economics.Weight", "Weight"))}</label>
+          <p class="hint" data-weight-multiplier>${result.multiplier.toFixed(2)}× ${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.BaseWeight", "base weight"))}</p>
+          <div class="runyth-scriptoria-importer__economics-fields runyth-scriptoria-importer__economics-fields--weight">
+            <div class="runyth-scriptoria-importer__economics-field">
+              <label for="runyth-scriptoria-economics-weight-value">${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.Weight", "Weight"))}</label>
               <input
-                id="scriptoria-economics-weight-value"
+                id="runyth-scriptoria-economics-weight-value"
                 name="economics.weight.value"
                 type="number"
                 min="0"
@@ -417,18 +417,18 @@ export function buildImporterEconomicsContent(values) {
                 required
               >
             </div>
-            <div class="scriptoria-importer__economics-field scriptoria-importer__economics-unit-field">
-              <span class="scriptoria-importer__economics-field-label">${escapeHtml(localize("SCRIPTORIA.Economics.WeightUnit", "Unit"))}</span>
-              <output id="scriptoria-economics-weight-units" data-weight-units>${escapeHtml(result.weightUnits)}</output>
+            <div class="runyth-scriptoria-importer__economics-field runyth-scriptoria-importer__economics-unit-field">
+              <span class="runyth-scriptoria-importer__economics-field-label">${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.WeightUnit", "Unit"))}</span>
+              <output id="runyth-scriptoria-economics-weight-units" data-weight-units>${escapeHtml(result.weightUnits)}</output>
             </div>
           </div>
-          <button type="button" data-action="recalculate-weight"><i class="fa-solid fa-calculator"></i> ${escapeHtml(localize("SCRIPTORIA.Economics.RecalculateWeight", "Recalculate Weight"))}</button>
+          <button type="button" data-action="recalculate-weight"><i class="fa-solid fa-calculator"></i> ${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.RecalculateWeight", "Recalculate Weight"))}</button>
         </section>
       </div>
 
-      <div class="scriptoria-importer__economics-final" aria-live="polite">
-        <strong>${escapeHtml(localize("SCRIPTORIA.Economics.FinalPrice", "Final price"))}:</strong> <span data-final-price>${result.price.value} ${escapeHtml(result.price.denomination)}</span>
-        <strong>${escapeHtml(localize("SCRIPTORIA.Economics.FinalWeight", "Final weight"))}:</strong> <span data-final-weight>${result.weight} ${escapeHtml(result.weightUnits)}</span>
+      <div class="runyth-scriptoria-importer__economics-final" aria-live="polite">
+        <strong>${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.FinalPrice", "Final price"))}:</strong> <span data-final-price>${result.price.value} ${escapeHtml(result.price.denomination)}</span>
+        <strong>${escapeHtml(localize("RUNYTH-SCRIPTORIA.Economics.FinalWeight", "Final weight"))}:</strong> <span data-final-weight>${result.weight} ${escapeHtml(result.weightUnits)}</span>
       </div>
     </fieldset>
   `;
@@ -472,7 +472,7 @@ export function readEconomicsValues(form) {
   const denomination = String(state.price.denomination ?? "").trim();
   if (!getSupportedDenominations().includes(denomination)) {
     throw new Error(localize(
-      "SCRIPTORIA.Economics.Errors.PriceDenomination",
+      "RUNYTH-SCRIPTORIA.Economics.Errors.PriceDenomination",
       `Price denomination "${denomination || "missing"}" is not supported.`
     ));
   }
@@ -481,7 +481,7 @@ export function readEconomicsValues(form) {
   });
   const units = String(state.weight.units ?? "").trim();
   if (!units) {
-    throw new Error(localize("SCRIPTORIA.Economics.Errors.WeightUnitMissing", "Scriptoria could not create the document because the weight unit is missing."));
+    throw new Error(localize("RUNYTH-SCRIPTORIA.Economics.Errors.WeightUnitMissing", "Runyth Scriptoria could not create the document because the weight unit is missing."));
   }
 
   const values = {
@@ -494,13 +494,13 @@ export function readEconomicsValues(form) {
 
 export function activateEconomicsListeners(root) {
   const section = root.querySelector?.("[data-economics-section]");
-  if (!section || section.dataset.scriptoriaListeners === "true") return;
-  section.dataset.scriptoriaListeners = "true";
+  if (!section || section.dataset.runythScriptoriaListeners === "true") return;
+  section.dataset.runythScriptoriaListeners = "true";
   initialiseEconomicsDirtyState(section);
 
-  const source = root.querySelector("#scriptoria-source");
-  const type = root.querySelector("#scriptoria-kind");
-  const format = root.querySelector("#scriptoria-source-format");
+  const source = root.querySelector("#runyth-scriptoria-source");
+  const type = root.querySelector("#runyth-scriptoria-kind");
+  const format = root.querySelector("#runyth-scriptoria-source-format");
   const priceValue = root.querySelector("[name='economics.price.value']");
   const priceDenomination = root.querySelector("[name='economics.price.denomination']");
   const weightValue = root.querySelector("[name='economics.weight.value']");
@@ -596,9 +596,9 @@ export function refreshEconomics(root, {
   if (!section) return undefined;
   initialiseEconomicsDirtyState(section);
 
-  const typeId = String(root.querySelector("#scriptoria-kind")?.value ?? "book");
-  const source = String(root.querySelector("#scriptoria-source")?.value ?? "");
-  const sourceFormat = root.querySelector("#scriptoria-source-format")?.value === "html" ? "html" : "markdown";
+  const typeId = String(root.querySelector("#runyth-scriptoria-kind")?.value ?? "book");
+  const source = String(root.querySelector("#runyth-scriptoria-source")?.value ?? "");
+  const sourceFormat = root.querySelector("#runyth-scriptoria-source-format")?.value === "html" ? "html" : "markdown";
   const result = calculateItemEconomics({ typeId, content: source, sourceFormat });
   section.dataset.calculatedPriceValue = String(result.calculatedPrice.value);
   section.dataset.calculatedPriceDenomination = result.calculatedPrice.denomination;
@@ -609,7 +609,7 @@ export function refreshEconomics(root, {
   setText(root, "[data-economics-word-count]", result.wordCount);
   setText(root, "[data-calculated-price]", `${result.calculatedPrice.value} ${result.calculatedPrice.denomination}`);
   setText(root, "[data-calculated-weight]", `${result.calculatedWeight} ${result.weightUnits}`);
-  setText(root, "[data-weight-multiplier]", `${result.multiplier.toFixed(2)}× ${localize("SCRIPTORIA.Economics.BaseWeight", "base weight")}`);
+  setText(root, "[data-weight-multiplier]", `${result.multiplier.toFixed(2)}× ${localize("RUNYTH-SCRIPTORIA.Economics.BaseWeight", "base weight")}`);
   setText(root, "[data-weight-units]", result.weightUnits);
 
   const dirty = readEconomicsDirtyState(root);

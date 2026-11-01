@@ -64,7 +64,7 @@ test("maps the legacy createFromMarkdown API payload into the new source model",
   configureFoundry();
   globalThis.game.user = { isGM: true };
   globalThis.game.settings = {
-    get: (scope, key) => key === "createKindFolders" ? false : "Scriptoria"
+    get: (scope, key) => key === "createKindFolders" ? false : "Runyth Scriptoria"
   };
   globalThis.game.folders = [];
   globalThis.game.system = { id: "dnd5e" };
@@ -101,7 +101,7 @@ test("maps the legacy createFromMarkdown API payload into the new source model",
     itemType: "loot"
   });
 
-  const flag = createdData.flags.scriptoria.document;
+  const flag = createdData.flags["runyth-scriptoria"].document;
   assert.equal(flag.sourceFormat, "markdown");
   assert.equal(flag.source, "# Legacy API Book\n\nBody");
 });

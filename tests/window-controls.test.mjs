@@ -16,7 +16,7 @@ function configure() {
   const item = {
     documentName: "Item",
     uuid: "Item.item-1",
-    getFlag: (scope, key) => scope === "scriptoria" && key === "document"
+    getFlag: (scope, key) => scope === "runyth-scriptoria" && key === "document"
       ? data
       : undefined
   };
@@ -34,7 +34,7 @@ test("adds GM menu actions once and identifies the current reader", () => {
   const item = configure();
   const application = {
     document: item,
-    scriptoriaViewMode: "simple-reader"
+    runythScriptoriaViewMode: "simple-reader"
   };
   const controls = [];
 
@@ -42,25 +42,25 @@ test("adds GM menu actions once and identifies the current reader", () => {
   addApplicationV2Controls(application, controls);
 
   assert.equal(
-    controls.filter((control) => control.action === "scriptoria-show-selected").length,
+    controls.filter((control) => control.action === "runyth-scriptoria-show-selected").length,
     1
   );
   assert.equal(
-    controls.filter((control) => control.action.startsWith("scriptoria-open-with-")).length,
+    controls.filter((control) => control.action.startsWith("runyth-scriptoria-open-with-")).length,
     2
   );
   const current = controls.find(
-    (control) => control.action === "scriptoria-open-with-simple-reader"
+    (control) => control.action === "runyth-scriptoria-open-with-simple-reader"
   );
   assert.equal(Boolean(current), true);
   assert.equal(current.disabled, true);
 });
 
-test("recognizes Scriptoria Item and generated Journal applications only", () => {
+test("recognizes Runyth Scriptoria Item and generated Journal applications only", () => {
   const item = configure();
   const journal = {
     documentName: "JournalEntry",
-    getFlag: (scope, key) => scope === "scriptoria" && key === "sourceItemUuid"
+    getFlag: (scope, key) => scope === "runyth-scriptoria" && key === "sourceItemUuid"
       ? item.uuid
       : undefined
   };

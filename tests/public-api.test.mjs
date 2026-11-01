@@ -31,15 +31,15 @@ test.beforeEach(() => {
   resetApiPublicationForTests();
 });
 
-test("publishes the versioned API on the Scriptoria module and announces the same object", () => {
+test("publishes the versioned API on the Runyth Scriptoria module and announces the same object", () => {
   const moduleRecord = {
-    id: "scriptoria",
+    id: "runyth-scriptoria",
     active: true,
     version: "1.7.3"
   };
   const calls = [];
   globalThis.game = {
-    modules: new Map([["scriptoria", moduleRecord]])
+    modules: new Map([["runyth-scriptoria", moduleRecord]])
   };
   globalThis.Hooks = {
     callAll: (...args) => calls.push(args)
@@ -59,7 +59,7 @@ test("publishes the versioned API on the Scriptoria module and announces the sam
 
   assert.equal(publishPublicApi(api, { announce: true }), true);
   assert.equal(moduleRecord.api, api);
-  assert.deepEqual(calls, [["scriptoria.apiReady", api]]);
+  assert.deepEqual(calls, [["runyth-scriptoria.apiReady", api]]);
 
   publishPublicApi(api, { announce: true });
   assert.equal(calls.length, 1);
@@ -73,7 +73,7 @@ test("public registry methods expose immutable safe data rather than the interna
   };
   globalThis.game = {
     modules: new Map([
-      ["scriptoria", { id: "scriptoria", active: true, version: "1.7.3" }],
+      ["runyth-scriptoria", { id: "runyth-scriptoria", active: true, version: "1.7.3" }],
       [provider.id, provider]
     ]),
     i18n: {

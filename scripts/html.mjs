@@ -120,7 +120,7 @@ export function sanitizeImportedHtml(html) {
     try {
       sanitized = cleanHtml(sanitized);
     } catch (error) {
-      console.warn("scriptoria | Foundry HTML cleaning failed; using the local sanitizer output.", error);
+      console.warn("runyth-scriptoria | Foundry HTML cleaning failed; using the local sanitizer output.", error);
     }
   }
 

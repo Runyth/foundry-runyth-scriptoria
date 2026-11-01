@@ -10,7 +10,7 @@ const baseInput = {
   item: {
     name: "Street Pamphlet",
     uuid: "Item.source",
-    img: "modules/scriptoria/assets/pamphlet.svg"
+    img: "modules/runyth-scriptoria/assets/pamphlet.svg"
   },
   journal: {
     id: "journal-1",
@@ -20,7 +20,7 @@ const baseInput = {
     id: "page-1"
   },
   kind: {
-    icon: "modules/scriptoria/assets/pamphlet.svg"
+    icon: "modules/runyth-scriptoria/assets/pamphlet.svg"
   },
   dropData: {
     x: 123.5,
@@ -41,9 +41,9 @@ test("builds a native, globally readable Note with persistent coordinates", () =
   assert.equal(data.x, 123.5);
   assert.equal(data.y, 456.25);
   assert.equal(data.global, true);
-  assert.equal(data.flags.scriptoria.sourceItemUuid, "Item.source");
-  assert.equal(data.flags.scriptoria.journalUuid, "JournalEntry.journal-1");
-  assert.equal(data.flags.scriptoria.placementVersion, 2);
+  assert.equal(data.flags["runyth-scriptoria"].sourceItemUuid, "Item.source");
+  assert.equal(data.flags["runyth-scriptoria"].journalUuid, "JournalEntry.journal-1");
+  assert.equal(data.flags["runyth-scriptoria"].placementVersion, 2);
   assert.equal("locked" in data, false);
 });
 

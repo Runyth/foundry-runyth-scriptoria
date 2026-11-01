@@ -23,7 +23,7 @@ test("English and German localization files contain the same keys", () => {
 });
 
 test("economics UI and validation keys are localized", () => {
-  const economics = en.SCRIPTORIA.Economics;
+  const economics = en["RUNYTH-SCRIPTORIA"].Economics;
   assert.equal(economics.SettingsMenu.Name, "Item Price and Weight Defaults");
   assert.ok(economics.PriceAndWeight);
   assert.ok(economics.NormalizedWordCount);
@@ -42,16 +42,16 @@ test("manifest declares Foundry-native English and German language files", async
 });
 
 test("English is complete for core module surfaces", () => {
-  assert.equal(en.SCRIPTORIA.Types.Book.Label, "Book");
-  assert.equal(en.SCRIPTORIA.Importer.CreateTitle, "Create Scriptoria Document");
-  assert.equal(en.SCRIPTORIA.Settings.RootFolder.Name, "Root Item folder");
-  assert.equal(en.SCRIPTORIA.Actions.Read, "Read");
-  assert.equal(en.SCRIPTORIA.FileImport.NoFile, "No document file was selected.");
+  assert.equal(en["RUNYTH-SCRIPTORIA"].Types.Book.Label, "Book");
+  assert.equal(en["RUNYTH-SCRIPTORIA"].Importer.CreateTitle, "Create Runyth Scriptoria Document");
+  assert.equal(en["RUNYTH-SCRIPTORIA"].Settings.RootFolder.Name, "Root Item folder");
+  assert.equal(en["RUNYTH-SCRIPTORIA"].Actions.Read, "Read");
+  assert.equal(en["RUNYTH-SCRIPTORIA"].FileImport.NoFile, "No document file was selected.");
 });
 
 test("German translates built-in types and importer surfaces", () => {
-  assert.equal(de.SCRIPTORIA.Types.Book.Label, "Buch");
-  assert.equal(de.SCRIPTORIA.Importer.CreateTitle, "Scriptoria-Dokument erstellen");
-  assert.equal(de.SCRIPTORIA.Settings.RootFolder.Name, "Stammordner für Items");
-  assert.equal(de.SCRIPTORIA.Actions.Read, "Lesen");
+  assert.equal(de["RUNYTH-SCRIPTORIA"].Types.Book.Label, "Buch");
+  assert.equal(de["RUNYTH-SCRIPTORIA"].Importer.CreateTitle, "Runyth Scriptoria-Dokument erstellen");
+  assert.equal(de["RUNYTH-SCRIPTORIA"].Settings.RootFolder.Name, "Stammordner für Items");
+  assert.equal(de["RUNYTH-SCRIPTORIA"].Actions.Read, "Lesen");
 });

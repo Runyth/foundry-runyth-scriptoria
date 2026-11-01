@@ -82,9 +82,9 @@ function createRoot() {
   });
   const elements = new Map([
     ["[data-economics-section]", section],
-    ["#scriptoria-kind", new FakeElement({ value: "pamphlet" })],
-    ["#scriptoria-source", new FakeElement({ value: "short text" })],
-    ["#scriptoria-source-format", new FakeElement({ value: "markdown" })],
+    ["#runyth-scriptoria-kind", new FakeElement({ value: "pamphlet" })],
+    ["#runyth-scriptoria-source", new FakeElement({ value: "short text" })],
+    ["#runyth-scriptoria-source-format", new FakeElement({ value: "markdown" })],
     ["[name='economics.price.value']", new FakeElement({ value: "5" })],
     ["[name='economics.price.denomination']", new FakeElement({ value: "cp" })],
     ["[name='economics.weight.value']", new FakeElement({ value: "0.08" })],
@@ -117,14 +117,14 @@ test("renders enabled ordinary price and weight fields with separate units", () 
     sourceFormat: "markdown"
   });
 
-  assert.match(content, /id="scriptoria-economics-price-value"[\s\S]*?name="economics\.price\.value"[\s\S]*?type="number"[\s\S]*?value="5"/);
-  assert.match(content, /id="scriptoria-economics-price-denomination"[\s\S]*?name="economics\.price\.denomination"/);
-  assert.match(content, /id="scriptoria-economics-weight-value"[\s\S]*?name="economics\.weight\.value"[\s\S]*?type="number"[\s\S]*?value="0\.08"/);
-  assert.match(content, /id="scriptoria-economics-weight-units"[^>]*data-weight-units[^>]*>lb<\/output>/);
-  assert.doesNotMatch(content, /scriptoria-economics-(?:price|weight)-value[^>]+(?:readonly|disabled)/);
+  assert.match(content, /id="runyth-scriptoria-economics-price-value"[\s\S]*?name="economics\.price\.value"[\s\S]*?type="number"[\s\S]*?value="5"/);
+  assert.match(content, /id="runyth-scriptoria-economics-price-denomination"[\s\S]*?name="economics\.price\.denomination"/);
+  assert.match(content, /id="runyth-scriptoria-economics-weight-value"[\s\S]*?name="economics\.weight\.value"[\s\S]*?type="number"[\s\S]*?value="0\.08"/);
+  assert.match(content, /id="runyth-scriptoria-economics-weight-units"[^>]*data-weight-units[^>]*>lb<\/output>/);
+  assert.doesNotMatch(content, /runyth-scriptoria-economics-(?:price|weight)-value[^>]+(?:readonly|disabled)/);
   assert.doesNotMatch(content, /economics\.(?:price|weight)\.useDefault/);
   assert.doesNotMatch(content, /overrideValue|overrideDenomination/);
-  assert.doesNotMatch(content, /id="scriptoria-economics-weight-value"[^>]+value="lb"/);
+  assert.doesNotMatch(content, /id="runyth-scriptoria-economics-weight-value"[^>]+value="lb"/);
 });
 
 test("helper defaults populate the same directly editable fields", () => {
@@ -188,7 +188,7 @@ test("content recalculates only an untouched weight and never modifies price", (
   const originalPrice = root.elements.get("[name='economics.price.value']").value;
   const originalWeight = Number(root.elements.get("[name='economics.weight.value']").value);
 
-  root.elements.get("#scriptoria-source").value = Array(7000).fill("word").join(" ");
+  root.elements.get("#runyth-scriptoria-source").value = Array(7000).fill("word").join(" ");
   const result = refreshEconomics(root, { updatePrice: false, updateWeight: true });
 
   assert.equal(root.elements.get("[name='economics.price.value']").value, originalPrice);
@@ -199,7 +199,7 @@ test("content recalculates only an untouched weight and never modifies price", (
 test("type changes update untouched fields but preserve dirty fields", () => {
   const root = createRoot();
   activateEconomicsListeners(root);
-  root.elements.get("#scriptoria-kind").value = "book";
+  root.elements.get("#runyth-scriptoria-kind").value = "book";
   refreshEconomics(root, { updatePrice: true, updateWeight: true });
   assert.equal(root.elements.get("[name='economics.price.value']").value, "25");
   assert.equal(root.elements.get("[name='economics.price.denomination']").value, "gp");
@@ -211,7 +211,7 @@ test("type changes update untouched fields but preserve dirty fields", () => {
   price.dispatch("input");
   weight.value = "7.5";
   weight.dispatch("input");
-  root.elements.get("#scriptoria-kind").value = "pamphlet";
+  root.elements.get("#runyth-scriptoria-kind").value = "pamphlet";
   refreshEconomics(root, { updatePrice: true, updateWeight: true });
 
   assert.equal(price.value, "40");
@@ -236,7 +236,7 @@ test("reset price and recalculate weight clear dirty state and restore suggestio
   assert.equal(readEconomicsDirtyState(root).price, false);
   assert.equal(weight.value, "0.22");
 
-  root.elements.get("#scriptoria-source").value = Array(7000).fill("word").join(" ");
+  root.elements.get("#runyth-scriptoria-source").value = Array(7000).fill("word").join(" ");
   section.dispatch("click", {
     target: { closest: () => ({ dataset: { action: "recalculate-weight" } }) }
   });
@@ -318,7 +318,7 @@ test("denomination dirty tracking is independent from the numeric price", () => 
   const denomination = root.elements.get("[name='economics.price.denomination']");
   denomination.value = "sp";
   denomination.dispatch("change");
-  root.elements.get("#scriptoria-kind").value = "book";
+  root.elements.get("#runyth-scriptoria-kind").value = "book";
   refreshEconomics(root, { updatePrice: true, updateWeight: true });
 
   assert.equal(root.elements.get("[name='economics.price.value']").value, "25");

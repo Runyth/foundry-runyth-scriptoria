@@ -11,7 +11,7 @@ const required = [
   "README.md",
   "LICENSE",
   "docs/EXTENSION_API.md",
-  "types/scriptoria.d.ts",
+  "types/runyth-scriptoria.d.ts",
   ...manifest.esmodules,
   ...manifest.styles
 ];

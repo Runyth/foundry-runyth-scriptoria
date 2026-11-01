@@ -2,11 +2,11 @@
 
 ## 1.7.3 — 2026-08-03
 
-- Complete Scriptoria's Foundry-native localization adoption. The module already shipped language files, but many settings, importer labels, directory actions, scene controls, notifications, file-import errors, built-in scripture-type names, and fallback text were still literal English and could not be translated.
-- Route all normal user-facing module settings and creation-window text through the `SCRIPTORIA.*` localization namespace.
+- Complete Runyth Scriptoria's Foundry-native localization adoption. The module already shipped language files, but many settings, importer labels, directory actions, scene controls, notifications, file-import errors, built-in scripture-type names, and fallback text were still literal English and could not be translated.
+- Route all normal user-facing module settings and creation-window text through the `RUNYTH-SCRIPTORIA.*` localization namespace.
 - Give every built-in scripture type stable label, plural, and description localization keys while retaining English literal fallbacks for resilience.
 - Localize unavailable-type fallbacks, generated folder names, default untitled names, reader capability warnings, scene-placement messages, and document lifecycle notifications.
-- Preserve Foundry's global language selector as the only language control; no Scriptoria dashboard or module-specific language selector is added.
+- Preserve Foundry's global language selector as the only language control; no Runyth Scriptoria dashboard or module-specific language selector is added.
 - Add `docs/LOCALIZATION.md` with the manifest, file, key-parity, fallback, and contribution contract for adding further languages.
 - Expand localization tests to verify manifest language declarations, English/German key parity, built-in type localization, settings localization, and absence of known hard-coded UI registrations.
 
@@ -46,7 +46,7 @@
 - Add the Game-Master-only **Item Price and Weight Defaults** world settings menu for built-in and helper-provided types.
 - Persist only actual world overrides keyed by stable type ID and preserve inactive-helper overrides.
 - Add creation-time calculated values, optional price/denomination/weight overrides, debounced live recalculation, reset controls, and final previews.
-- Store economics provenance in Scriptoria flags while keeping native Item fields authoritative.
+- Store economics provenance in Runyth Scriptoria flags while keeping native Item fields authoritative.
 - Add a safe legacy migration that records unknown economics provenance without rewriting existing Item values.
 - Extend scripture-type descriptors with validated, immutable `economics` metadata.
 - Increase the public API to **1.2.0** and add the `item-economics` capability plus economics lookup, validation, and calculation methods.
@@ -56,14 +56,14 @@
 ## 1.6.0 — 2026-07-23
 
 - Add the world-scoped, Game-Master-restricted **Default view for scene documents** setting.
-- Preserve the existing Scene default by selecting the Scriptoria simple reader for new and existing worlds.
-- Add stable reader mode IDs for the standard Foundry view, enhanced journal view, and Scriptoria simple reader.
+- Preserve the existing Scene default by selecting the Runyth Scriptoria simple reader for new and existing worlds.
+- Add stable reader mode IDs for the standard Foundry view, enhanced journal view, and Runyth Scriptoria simple reader.
 - Centralize Scene reader resolution and keep direct sidebar opening behavior unchanged.
 - Add a compatible Monk's Enhanced Journal adapter with console warning, optional one-time GM notification, and safe Foundry-view fallback when unavailable.
 - Add **Open with** actions to supported document-window menus without changing the stored default.
 - Add an always-visible, high-contrast **Show to All Players** title-bar control for Game Masters.
 - Add **Show to Selected Players…** with connected-player selection, Select All, Clear Selection, Show, and Cancel controls.
-- Add one namespaced `module.scriptoria` socket service using validated document references, target IDs, reader modes, page context, and deduplicated request IDs.
+- Add one namespaced `module.runyth-scriptoria` socket service using validated document references, target IDs, reader modes, page context, and deduplicated request IDs.
 - Reject non-GM senders, malformed messages, unsupported documents, invalid reader modes, non-target clients, and duplicate requests.
 - Never serialize private document bodies through the socket or permanently change ownership.
 - Preserve native Foundry permissions, player-safe generated Journals, existing reader contrast, remembered importer layout, and movable Scene Notes.
@@ -73,8 +73,8 @@
 
 ## 1.5.0 — 2026-07-23
 
-- Add public extension API version **1.0.0** at `game.modules.get("scriptoria")?.api`.
-- Announce API readiness once through `scriptoria.apiReady` after the registry can accept registrations.
+- Add public extension API version **1.0.0** at `game.modules.get("runyth-scriptoria")?.api`.
+- Announce API readiness once through `runyth-scriptoria.apiReady` after the registry can accept registrations.
 - Add a shared scripture-type registry used by built-in and helper-provided types.
 - Add validated, idempotent registration and ownership-aware unregistration operations.
 - Add immutable type lookup and discovery operations with the `scripture-types` capability marker.
@@ -82,41 +82,41 @@
 - Persist only stable scripture-type IDs in documents while retaining the legacy `kind` field as a compatible alias.
 - Keep documents readable when a helper provider is unavailable by displaying an explicit unavailable-type fallback.
 - Add provider, namespace, active-module, localization, icon, image-scope, capability, metadata, callback, and prototype-pollution validation.
-- Add awaited provider document validators behind a Scriptoria error boundary.
-- Add `scriptoria.scriptureTypeRegistered` and `scriptoria.scriptureTypeUnregistered` hooks.
-- Add `docs/EXTENSION_API.md` and `types/scriptoria.d.ts`.
-- Add a separate installable `scriptoria-example-extension` reference helper with Prophecy and Imperial Decree types.
+- Add awaited provider document validators behind a Runyth Scriptoria error boundary.
+- Add `runyth-scriptoria.scriptureTypeRegistered` and `runyth-scriptoria.scriptureTypeUnregistered` hooks.
+- Add `docs/EXTENSION_API.md` and `types/runyth-scriptoria.d.ts`.
+- Add a separate installable `runyth-scriptoria-example-extension` reference helper with Prophecy and Imperial Decree types.
 - Add automated coverage for publication, registration, invalid descriptors, failure isolation, idempotency, immutability, unregistration, unavailable providers, UI discovery, and document creation.
 
 ## 1.4.0 — 2026-07-23
 
-- Replace the obsolete parchment/light reader with one shared dark Scriptoria reader.
+- Replace the obsolete parchment/light reader with one shared dark Runyth Scriptoria reader.
 - Route Item-sheet Read actions, directory actions, post-import reading, public API reading, and Scene pamphlet activation through the same reader.
 - Reuse an already-open reader for the same document.
-- Add module-owned application-frame classes for Scriptoria Item, Journal, and reader windows.
+- Add module-owned application-frame classes for Runyth Scriptoria Item, Journal, and reader windows.
 - Restore dark Foundry-style title bars with high-contrast controls, menus, hover states, and focus states.
-- Keep all header styling scoped to Scriptoria windows.
+- Keep all header styling scoped to Runyth Scriptoria windows.
 
 ## 1.3.1 — 2026-07-23
 
 - Fix unreadable inline code by assigning an explicit high-contrast foreground, opaque background, border, padding, and selection palette.
-- Scope inline-code styling to Scriptoria-rendered content.
+- Scope inline-code styling to Runyth Scriptoria-rendered content.
 - Keep fenced `<pre><code>` blocks outside the inline-code selector so syntax highlighting remains intact.
 - Root cause: the previous rule supplied only a translucent background and inherited an arbitrary foreground colour from Foundry, the active theme, or another module.
 
 ## 1.3.0 — 2026-07-23
 
-- Keep placed Scriptoria documents as native Foundry v13 `Note` placeables on the Notes layer.
+- Keep placed Runyth Scriptoria documents as native Foundry v13 `Note` placeables on the Notes layer.
 - Add permission-aware single-click selection without replacing the Note or overlaying it with an HTML interaction surface.
-- Activate Foundry's Notes/Select scene control before controlling a permitted Scriptoria Note.
+- Activate Foundry's Notes/Select scene control before controlling a permitted Runyth Scriptoria Note.
 - Preserve native dragging, grid snapping, gridless movement, keyboard nudging, right-click configuration, double-click Journal reading, and Delete/Backspace handling.
 - Select newly placed documents automatically for the placing Game Master.
 - Keep double-clicked documents selected after their Journal reader is closed.
-- Add a **Manage Scriptoria scene documents** convenience button to the Token scene controls for Game Masters.
+- Add a **Manage Runyth Scriptoria scene documents** convenience button to the Token scene controls for Game Masters.
 - Use Foundry's own placeable permission checks for non-GM users and do not grant players additional Scene-editing permissions.
 - Mark placed Notes as globally visible while retaining Journal ownership as the authority for reading access.
-- Explicitly create Notes unlocked when the configured Note schema exposes a lock field; Scriptoria adds no proprietary lock state.
-- Ensure deleting a placed Note removes only the Scene instance and leaves the linked Journal and original Scriptoria Item intact.
+- Explicitly create Notes unlocked when the configured Note schema exposes a lock field; Runyth Scriptoria adds no proprietary lock state.
+- Ensure deleting a placed Note removes only the Scene instance and leaves the linked Journal and original Runyth Scriptoria Item intact.
 - Prevent duplicate pointer-handler registration and remove listeners when Notes are destroyed or the Canvas is torn down.
 - Add automated coverage for Note identification, permissions, native control activation, listener cleanup, unlocked creation, persistent coordinates, and player read-only interaction.
 
@@ -130,7 +130,7 @@
 - Clamp negative, oversized, or off-screen layouts to the current browser viewport.
 - Preserve the importer minimum usable size whenever the viewport can support it.
 - Keep the complete title bar and bottom action buttons inside the available viewport.
-- Fall back to Scriptoria's default dimensions and centered placement when saved state is missing or invalid.
+- Fall back to Runyth Scriptoria's default dimensions and centered placement when saved state is missing or invalid.
 - Add a **Reset importer window position and size** module-settings action for the current browser.
 - Prevent an already-open importer from re-saving an old layout after the reset action is used.
 - Keep the importer resizable, full-width, initially empty, and compatible with pasted or uploaded Markdown and HTML.
@@ -146,7 +146,7 @@
 - Sanitize imported HTML by removing scripts, event handlers, embedded frames,
   forms, active embedded content, inline styles, and unsafe URL schemes.
 - Preserve the original uploaded source and its filename for later editing.
-- Keep all Scriptoria 1.0.x Markdown Items fully editable through a backwards-
+- Keep all Runyth Scriptoria 1.0.x Markdown Items fully editable through a backwards-
   compatible source-data migration path.
 - Add a 5 MiB import limit and reject unsupported, empty, or binary-looking files.
 - Rename Item-sheet editing actions from **Edit Markdown** to **Edit Source**.
@@ -169,6 +169,6 @@
 - Mirror rendered content into the D&D 5e Item description.
 - Add player-facing reading view and GM Markdown editor to Item sheets.
 - Add Item Directory creation button and context-menu actions.
-- Create readable Journal notes when Scriptoria Items are dropped onto a Scene.
+- Create readable Journal notes when Runyth Scriptoria Items are dropped onto a Scene.
 - Organise created Items and scene Journals into automatic folders.
 - Add safe local Markdown rendering with common GFM features.

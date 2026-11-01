@@ -1,10 +1,10 @@
-export const MODULE_ID = "scriptoria";
-export const MODULE_TITLE = "Scriptoria";
+export const MODULE_ID = "runyth-scriptoria";
+export const MODULE_TITLE = "Runyth Scriptoria";
 export const MODULE_VERSION = "1.7.3";
 export const PUBLIC_API_VERSION = "1.2.0";
-export const API_READY_HOOK = "scriptoria.apiReady";
-export const TYPE_REGISTERED_HOOK = "scriptoria.scriptureTypeRegistered";
-export const TYPE_UNREGISTERED_HOOK = "scriptoria.scriptureTypeUnregistered";
+export const API_READY_HOOK = "runyth-scriptoria.apiReady";
+export const TYPE_REGISTERED_HOOK = "runyth-scriptoria.scriptureTypeRegistered";
+export const TYPE_UNREGISTERED_HOOK = "runyth-scriptoria.scriptureTypeUnregistered";
 export const FLAG_SCOPE = MODULE_ID;
 export const FLAG_KEY = "document";
 export const SCHEMA_VERSION = 4;

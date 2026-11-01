@@ -28,16 +28,16 @@ export function registerSceneDropHook() {
     const item = foundry.utils.fromUuidSync(data.uuid);
     if (!isScriptoriaItem(item)) return;
 
-    const scriptoriaData = getScriptoriaData(item);
-    const type = getScriptureTypeOrFallback(getDocumentTypeId(scriptoriaData));
+    const runythScriptoriaData = getScriptoriaData(item);
+    const type = getScriptureTypeOrFallback(getDocumentTypeId(runythScriptoriaData));
     if (type.capabilities.scenePlacement !== true) {
-      ui.notifications.warn(format("SCRIPTORIA.Errors.TypeNotPlaceable", { typeId: type.id }, `Scripture type "${type.id}" cannot be placed on a Scene.`));
+      ui.notifications.warn(format("RUNYTH-SCRIPTORIA.Errors.TypeNotPlaceable", { typeId: type.id }, `Scripture type "${type.id}" cannot be placed on a Scene.`));
       return false;
     }
 
     void createSceneDocument(item, data).catch((error) => {
       console.error(`${MODULE_ID} | Unable to create Scene document.`, error);
-      ui.notifications.error(error.message ?? localize("SCRIPTORIA.Errors.PlaceOnScene", "Unable to place the Scriptoria document on the Scene."));
+      ui.notifications.error(error.message ?? localize("RUNYTH-SCRIPTORIA.Errors.PlaceOnScene", "Unable to place the Runyth Scriptoria document on the Scene."));
     });
     return false;
   });
@@ -45,13 +45,13 @@ export function registerSceneDropHook() {
 
 export async function createSceneDocument(item, dropData) {
   const scene = canvas?.scene;
-  if (!scene) throw new Error(localize("SCRIPTORIA.Errors.NoActiveScene", "No active Scene is available."));
+  if (!scene) throw new Error(localize("RUNYTH-SCRIPTORIA.Errors.NoActiveScene", "No active Scene is available."));
 
   const data = getScriptoriaData(item);
   const typeId = getDocumentTypeId(data);
   const type = getScriptureTypeOrFallback(typeId);
   if (type.capabilities.scenePlacement !== true) {
-    throw new Error(format("SCRIPTORIA.Errors.TypeNotPlaceable", { typeId }, `Scripture type "${typeId}" cannot be placed on a Scene.`));
+    throw new Error(format("RUNYTH-SCRIPTORIA.Errors.TypeNotPlaceable", { typeId }, `Scripture type "${typeId}" cannot be placed on a Scene.`));
   }
 
   const folder = await ensureJournalFolder();
@@ -66,7 +66,7 @@ export async function createSceneDocument(item, dropData) {
       [FLAG_SCOPE]: {
         sourceItemUuid,
         typeId,
-        // Retained for older Scriptoria consumers.
+        // Retained for older Runyth Scriptoria consumers.
         kind: typeId
       }
     },
@@ -104,7 +104,7 @@ export async function createSceneDocument(item, dropData) {
     await activateAndControlScriptoriaNote(noteDocument.object ?? noteDocument);
   }
 
-  ui.notifications.info(format("SCRIPTORIA.Notifications.SceneDocumentPlaced", { title: item.name }, `Placed manageable document: ${item.name}`));
+  ui.notifications.info(format("RUNYTH-SCRIPTORIA.Notifications.SceneDocumentPlaced", { title: item.name }, `Placed manageable document: ${item.name}`));
   return {
     journal,
     note: noteDocument
@@ -158,14 +158,14 @@ export function buildJournalContent(item, data, type = null) {
   const typeId = getDocumentTypeId(data);
   const resolvedType = type ?? getScriptureTypeOrFallback(typeId);
   const author = data.author
-    ? `<p class="scriptoria-journal-byline"><em>${escapeHtml(data.author)}</em></p>`
+    ? `<p class="runyth-scriptoria-journal-byline"><em>${escapeHtml(data.author)}</em></p>`
     : "";
   const unavailable = resolvedType.unavailable
-    ? `<p class="scriptoria-type-unavailable">${escapeHtml(resolveScriptureTypeLabel(resolvedType))}</p>`
+    ? `<p class="runyth-scriptoria-type-unavailable">${escapeHtml(resolveScriptureTypeLabel(resolvedType))}</p>`
     : "";
   return `
-    <article class="scriptoria-journal-snapshot scriptoria-rendered-surface" data-scriptoria-type="${escapeHtml(typeId)}">
-      <p class="scriptoria-journal-type"><i class="${escapeHtml(resolvedType.icon)}"></i> <strong>${escapeHtml(resolveScriptureTypeLabel(resolvedType))}</strong></p>
+    <article class="runyth-scriptoria-journal-snapshot runyth-scriptoria-rendered-surface" data-runyth-scriptoria-type="${escapeHtml(typeId)}">
+      <p class="runyth-scriptoria-journal-type"><i class="${escapeHtml(resolvedType.icon)}"></i> <strong>${escapeHtml(resolveScriptureTypeLabel(resolvedType))}</strong></p>
       <h1>${escapeHtml(item.name)}</h1>
       ${author}
       ${unavailable}

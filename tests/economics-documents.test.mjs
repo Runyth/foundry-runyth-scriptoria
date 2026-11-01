@@ -26,7 +26,7 @@ function configure() {
         if (key === "createKindFolders") return false;
         if (key === "itemEconomicsOverrides") return {};
         if (key === "metricWeightUnits") return false;
-        return "Scriptoria";
+        return "Runyth Scriptoria";
       }
     }
   };
@@ -51,7 +51,7 @@ test("new D&D 5e Items receive calculated native price and weight plus provenanc
 
   assert.deepEqual(created.system.price, { value: 5, denomination: "cp" });
   assert.deepEqual(created.system.weight, { value: 0.08, units: "lb" });
-  const metadata = created.flags.scriptoria.document.economics;
+  const metadata = created.flags["runyth-scriptoria"].document.economics;
   assert.equal(metadata.typeId, "pamphlet");
   assert.equal(metadata.priceOverridden, false);
   assert.equal(metadata.weightOverridden, false);
@@ -101,7 +101,7 @@ test("editing an existing Item does not recalculate economics unless explicitly 
 
   assert.equal(Object.hasOwn(update, "system.price"), false);
   assert.equal(Object.hasOwn(update, "system.weight"), false);
-  assert.deepEqual(update["flags.scriptoria.document"].economics, existingEconomics);
+  assert.deepEqual(update["flags.runyth-scriptoria.document"].economics, existingEconomics);
 });
 
 test("unsupported systems preserve document creation without invalid system economics", () => {
@@ -137,8 +137,8 @@ test("direct importer values are written exactly without recalculation", async (
 
   assert.deepEqual(created.system.price, { value: 12, denomination: "gp" });
   assert.deepEqual(created.system.weight, { value: 0.4, units: "lb" });
-  assert.equal(created.flags.scriptoria.document.economics.priceOverridden, true);
-  assert.equal(created.flags.scriptoria.document.economics.weightOverridden, true);
+  assert.equal(created.flags["runyth-scriptoria"].document.economics.priceOverridden, true);
+  assert.equal(created.flags["runyth-scriptoria"].document.economics.weightOverridden, true);
 });
 
 test("unchanged visible importer defaults remain exact and are not marked dirty", () => {

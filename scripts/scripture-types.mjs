@@ -43,13 +43,13 @@ const BUILT_IN_TYPES = Object.freeze([
   {
     id: "book",
     label: "Book",
-    labelKey: "SCRIPTORIA.Types.Book.Label",
+    labelKey: "RUNYTH-SCRIPTORIA.Types.Book.Label",
     plural: "Books",
-    pluralKey: "SCRIPTORIA.Types.Book.Plural",
+    pluralKey: "RUNYTH-SCRIPTORIA.Types.Book.Plural",
     description: "A bound book or substantial written volume.",
-    descriptionKey: "SCRIPTORIA.Types.Book.Description",
+    descriptionKey: "RUNYTH-SCRIPTORIA.Types.Book.Description",
     icon: "fa-solid fa-book",
-    image: "modules/scriptoria/assets/book.svg",
+    image: "modules/runyth-scriptoria/assets/book.svg",
     sort: 100,
     variant: "book",
     economics: {
@@ -66,13 +66,13 @@ const BUILT_IN_TYPES = Object.freeze([
   {
     id: "journal",
     label: "Journal",
-    labelKey: "SCRIPTORIA.Types.Journal.Label",
+    labelKey: "RUNYTH-SCRIPTORIA.Types.Journal.Label",
     plural: "Journals",
-    pluralKey: "SCRIPTORIA.Types.Journal.Plural",
+    pluralKey: "RUNYTH-SCRIPTORIA.Types.Journal.Plural",
     description: "A personal journal, diary, log, or notebook.",
-    descriptionKey: "SCRIPTORIA.Types.Journal.Description",
+    descriptionKey: "RUNYTH-SCRIPTORIA.Types.Journal.Description",
     icon: "fa-solid fa-book-journal-whills",
-    image: "modules/scriptoria/assets/journal.svg",
+    image: "modules/runyth-scriptoria/assets/journal.svg",
     sort: 200,
     variant: "journal",
     economics: {
@@ -89,13 +89,13 @@ const BUILT_IN_TYPES = Object.freeze([
   {
     id: "scripture",
     label: "Scripture",
-    labelKey: "SCRIPTORIA.Types.Scripture.Label",
+    labelKey: "RUNYTH-SCRIPTORIA.Types.Scripture.Label",
     plural: "Scriptures",
-    pluralKey: "SCRIPTORIA.Types.Scripture.Plural",
+    pluralKey: "RUNYTH-SCRIPTORIA.Types.Scripture.Plural",
     description: "A religious, doctrinal, prophetic, or sacred text.",
-    descriptionKey: "SCRIPTORIA.Types.Scripture.Description",
+    descriptionKey: "RUNYTH-SCRIPTORIA.Types.Scripture.Description",
     icon: "fa-solid fa-scroll-torah",
-    image: "modules/scriptoria/assets/scripture.svg",
+    image: "modules/runyth-scriptoria/assets/scripture.svg",
     sort: 300,
     variant: "scripture",
     economics: {
@@ -112,13 +112,13 @@ const BUILT_IN_TYPES = Object.freeze([
   {
     id: "documentation",
     label: "Documentation",
-    labelKey: "SCRIPTORIA.Types.Documentation.Label",
+    labelKey: "RUNYTH-SCRIPTORIA.Types.Documentation.Label",
     plural: "Documentation",
-    pluralKey: "SCRIPTORIA.Types.Documentation.Plural",
+    pluralKey: "RUNYTH-SCRIPTORIA.Types.Documentation.Plural",
     description: "Technical, procedural, instructional, or reference material.",
-    descriptionKey: "SCRIPTORIA.Types.Documentation.Description",
+    descriptionKey: "RUNYTH-SCRIPTORIA.Types.Documentation.Description",
     icon: "fa-solid fa-file-lines",
-    image: "modules/scriptoria/assets/documentation.svg",
+    image: "modules/runyth-scriptoria/assets/documentation.svg",
     sort: 400,
     variant: "documentation",
     economics: {
@@ -135,13 +135,13 @@ const BUILT_IN_TYPES = Object.freeze([
   {
     id: "pamphlet",
     label: "Pamphlet",
-    labelKey: "SCRIPTORIA.Types.Pamphlet.Label",
+    labelKey: "RUNYTH-SCRIPTORIA.Types.Pamphlet.Label",
     plural: "Pamphlets",
-    pluralKey: "SCRIPTORIA.Types.Pamphlet.Plural",
+    pluralKey: "RUNYTH-SCRIPTORIA.Types.Pamphlet.Plural",
     description: "A short handout, leaflet, notice, tract, or folded document.",
-    descriptionKey: "SCRIPTORIA.Types.Pamphlet.Description",
+    descriptionKey: "RUNYTH-SCRIPTORIA.Types.Pamphlet.Description",
     icon: "fa-solid fa-newspaper",
-    image: "modules/scriptoria/assets/pamphlet.svg",
+    image: "modules/runyth-scriptoria/assets/pamphlet.svg",
     sort: 500,
     variant: "pamphlet",
     economics: {
@@ -331,7 +331,7 @@ export function resolveScriptureTypeLabel(descriptorOrId) {
     ? getScriptureTypeOrFallback(descriptorOrId)
     : descriptorOrId;
   return resolveLocalizedField(descriptor, "label", "labelKey")
-    || format("SCRIPTORIA.Types.Unavailable.Label", { id: descriptor?.id ?? "unknown" }, `Unavailable scripture type: ${descriptor?.id ?? "unknown"}`);
+    || format("RUNYTH-SCRIPTORIA.Types.Unavailable.Label", { id: descriptor?.id ?? "unknown" }, `Unavailable scripture type: ${descriptor?.id ?? "unknown"}`);
 }
 
 export function resolveScriptureTypePlural(descriptorOrId) {
@@ -341,8 +341,8 @@ export function resolveScriptureTypePlural(descriptorOrId) {
   const localized = resolveLocalizedField(descriptor, "plural", "pluralKey");
   if (localized) return localized;
   return descriptor?.unavailable
-    ? localize("SCRIPTORIA.Types.Unavailable.Plural", "Unavailable Scripture Types")
-    : format("SCRIPTORIA.Types.GenericPlural", { label: resolveScriptureTypeLabel(descriptor) }, `${resolveScriptureTypeLabel(descriptor)}s`);
+    ? localize("RUNYTH-SCRIPTORIA.Types.Unavailable.Plural", "Unavailable Scripture Types")
+    : format("RUNYTH-SCRIPTORIA.Types.GenericPlural", { label: resolveScriptureTypeLabel(descriptor) }, `${resolveScriptureTypeLabel(descriptor)}s`);
 }
 
 export function resolveScriptureTypeDescription(descriptorOrId) {
@@ -562,14 +562,14 @@ function createUnavailableType(id) {
     id,
     provider: deriveProviderId(id),
     providerVersion: "",
-    label: format("SCRIPTORIA.Types.Unavailable.Label", { id }, `Unavailable scripture type: ${id}`),
+    label: format("RUNYTH-SCRIPTORIA.Types.Unavailable.Label", { id }, `Unavailable scripture type: ${id}`),
     labelKey: "",
-    plural: localize("SCRIPTORIA.Types.Unavailable.Plural", "Unavailable Scripture Types"),
+    plural: localize("RUNYTH-SCRIPTORIA.Types.Unavailable.Plural", "Unavailable Scripture Types"),
     pluralKey: "",
-    description: format("SCRIPTORIA.Types.Unavailable.Description", { id }, `The provider for scripture type "${id}" is not currently available. The stored document remains readable.`),
+    description: format("RUNYTH-SCRIPTORIA.Types.Unavailable.Description", { id }, `The provider for scripture type "${id}" is not currently available. The stored document remains readable.`),
     descriptionKey: "",
     icon: "fa-solid fa-triangle-exclamation",
-    image: "modules/scriptoria/assets/scripture.svg",
+    image: "modules/runyth-scriptoria/assets/scripture.svg",
     sort: MAX_SORT,
     variant: "unavailable",
     capabilities: deepFreeze({
@@ -797,7 +797,7 @@ function normalizeIcon(value, typeId, providerId) {
 
 function normalizeImage(value, providerId, typeId) {
   if (value === undefined || value === null || value === "") {
-    return "modules/scriptoria/assets/scripture.svg";
+    return "modules/runyth-scriptoria/assets/scripture.svg";
   }
   if (typeof value !== "string") {
     throw new ScriptureTypeValidationError(

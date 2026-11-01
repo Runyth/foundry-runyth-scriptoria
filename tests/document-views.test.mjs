@@ -38,10 +38,10 @@ function configure({ mode = "simple-reader", enhanced = false } = {}) {
     id: "item-1",
     uuid: "Item.item-1",
     name: "Book",
-    img: "modules/scriptoria/assets/book.svg",
+    img: "modules/runyth-scriptoria/assets/book.svg",
     documentName: "Item",
     isOwner: true,
-    getFlag: (scope, key) => scope === "scriptoria" && key === "document"
+    getFlag: (scope, key) => scope === "runyth-scriptoria" && key === "document"
       ? itemData
       : undefined,
     testUserPermission: () => true,
@@ -60,7 +60,7 @@ function configure({ mode = "simple-reader", enhanced = false } = {}) {
     documentName: "JournalEntryPage",
     text: { content: "<p>Journal</p>" },
     getFlag: (scope, key) => {
-      if (scope !== "scriptoria") return undefined;
+      if (scope !== "runyth-scriptoria") return undefined;
       if (key === "sourceItemUuid") return item.uuid;
       if (key === "typeId") return "book";
       return undefined;
@@ -78,7 +78,7 @@ function configure({ mode = "simple-reader", enhanced = false } = {}) {
     },
     ownership: {},
     getFlag: (scope, key) => {
-      if (scope !== "scriptoria") return undefined;
+      if (scope !== "runyth-scriptoria") return undefined;
       if (key === "sourceItemUuid") return item.uuid;
       if (key === "typeId") return "book";
       return undefined;
@@ -94,7 +94,7 @@ function configure({ mode = "simple-reader", enhanced = false } = {}) {
   page.parent = journal;
 
   const modules = new Map([
-    ["scriptoria", { id: "scriptoria", active: true }]
+    ["runyth-scriptoria", { id: "runyth-scriptoria", active: true }]
   ]);
   if (enhanced) {
     modules.set("monks-enhanced-journal", {
@@ -185,10 +185,10 @@ test("foundry mode opens the generated Journal sheet at the selected page", asyn
 test("simple-reader mode opens the shared dark DialogV2 reader", async () => {
   const { item } = configure();
   const dialog = await openDocumentView(item, { mode: "simple-reader" });
-  assert.equal(dialog.scriptoriaViewMode, "simple-reader");
+  assert.equal(dialog.runythScriptoriaViewMode, "simple-reader");
   assert.deepEqual(dialog.options.classes, [
-    "scriptoria-document-window",
-    "scriptoria-reader-window"
+    "runyth-scriptoria-document-window",
+    "runyth-scriptoria-reader-window"
   ]);
 });
 
@@ -212,7 +212,7 @@ test("changing the world setting changes subsequent scene openings", async () =>
   const { item, renders, settingsState } = configure({ mode: "simple-reader" });
 
   const simple = await openDocumentView(item);
-  assert.equal(simple.scriptoriaViewMode, "simple-reader");
+  assert.equal(simple.runythScriptoriaViewMode, "simple-reader");
 
   settingsState.mode = "foundry";
   await openDocumentView(item);

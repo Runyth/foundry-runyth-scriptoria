@@ -1,0 +1,772 @@
+.runyth-scriptoria-directory-button {
+  flex: 1 1 100%;
+  margin-top: 0.25rem;
+}
+
+.runyth-scriptoria-sheet-actions {
+  align-items: center;
+  background: color-mix(in srgb, var(--color-bg-option, #25282e) 92%, transparent);
+  border: 1px solid var(--color-border-light-primary, #5f6773);
+  border-radius: 4px;
+  display: flex;
+  gap: 0.5rem;
+  margin: 0 0 0.75rem;
+  padding: 0.5rem;
+}
+
+.runyth-scriptoria-sheet-actions button {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+/* Importer layout */
+.runyth-scriptoria-importer-window {
+  max-height: calc(100vh - 2rem);
+  max-width: calc(100vw - 2rem);
+  min-height: min(30rem, calc(100vh - 2rem));
+  min-width: min(32.5rem, calc(100vw - 2rem));
+}
+
+.runyth-scriptoria-importer-window .window-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.runyth-scriptoria-importer-window .form-footer {
+  flex: 0 0 auto;
+  margin-top: 0.75rem;
+}
+
+.runyth-scriptoria-importer {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: 0;
+  overflow: auto;
+  padding-right: 0.25rem;
+}
+
+.runyth-scriptoria-importer__upload {
+  border: 1px solid var(--color-border-light-primary, #8b7b65);
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 0.65rem 0.75rem;
+  width: 100%;
+}
+
+.runyth-scriptoria-importer__upload > label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.runyth-scriptoria-importer__file-row {
+  align-items: center;
+  display: grid;
+  gap: 0.5rem 0.75rem;
+  grid-template-columns: minmax(14rem, 1fr) minmax(12rem, 1fr);
+}
+
+.runyth-scriptoria-importer__file-row input[type="file"] {
+  box-sizing: border-box;
+  max-width: 100%;
+  width: 100%;
+}
+
+.runyth-scriptoria-importer__file-status {
+  font-size: var(--font-size-12, 0.75rem);
+  opacity: 0.8;
+  overflow-wrap: anywhere;
+}
+
+.runyth-scriptoria-importer__grid {
+  display: grid;
+  gap: 0.4rem 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.runyth-scriptoria-importer__checkbox .form-fields {
+  justify-content: flex-start;
+}
+
+.runyth-scriptoria-importer__source {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-height: 18rem;
+  width: 100%;
+}
+
+.runyth-scriptoria-importer__source > label {
+  flex: 0 0 auto;
+  font-weight: 600;
+}
+
+.runyth-scriptoria-importer__source textarea {
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  font-family: var(--font-monospace, monospace);
+  line-height: 1.45;
+  min-height: 18rem;
+  resize: vertical;
+  tab-size: 2;
+  white-space: pre;
+  width: 100%;
+}
+
+/*
+ * Runyth Scriptoria application chrome. These selectors are deliberately scoped to
+ * module-owned application classes and do not alter unrelated Foundry windows.
+ */
+.runyth-scriptoria-document-window {
+  --runyth-scriptoria-window-header-background: #111318;
+  --runyth-scriptoria-window-header-foreground: #f8fafc;
+  --runyth-scriptoria-window-header-hover: #303641;
+  --runyth-scriptoria-window-focus: #93c5fd;
+  --runyth-scriptoria-surface-background: #1a1d23;
+  --runyth-scriptoria-surface-raised: #22262e;
+  --runyth-scriptoria-surface-border: #4b5563;
+  --runyth-scriptoria-surface-foreground: #e5e7eb;
+  --runyth-scriptoria-muted-foreground: #b7c0cc;
+  color-scheme: dark;
+}
+
+.runyth-scriptoria-document-window .window-header {
+  background: var(--runyth-scriptoria-window-header-background);
+  background-color: var(--runyth-scriptoria-window-header-background);
+  border-color: #3f4652;
+  color: var(--runyth-scriptoria-window-header-foreground);
+  opacity: 1;
+}
+
+.runyth-scriptoria-document-window .window-header .window-title,
+.runyth-scriptoria-document-window .window-header button,
+.runyth-scriptoria-document-window .window-header a,
+.runyth-scriptoria-document-window .window-header i,
+.runyth-scriptoria-document-window .window-header .window-control,
+.runyth-scriptoria-document-window .window-header .header-control {
+  color: var(--runyth-scriptoria-window-header-foreground);
+  opacity: 1;
+  text-shadow: none;
+}
+
+.runyth-scriptoria-document-window .window-header button,
+.runyth-scriptoria-document-window .window-header a,
+.runyth-scriptoria-document-window .window-header .window-control,
+.runyth-scriptoria-document-window .window-header .header-control {
+  background: transparent;
+  border-color: transparent;
+}
+
+.runyth-scriptoria-document-window .window-header button:hover,
+.runyth-scriptoria-document-window .window-header button:active,
+.runyth-scriptoria-document-window .window-header a:hover,
+.runyth-scriptoria-document-window .window-header a:active,
+.runyth-scriptoria-document-window .window-header .window-control:hover,
+.runyth-scriptoria-document-window .window-header .window-control:active,
+.runyth-scriptoria-document-window .window-header .header-control:hover,
+.runyth-scriptoria-document-window .window-header .header-control:active {
+  background: var(--runyth-scriptoria-window-header-hover);
+  color: #ffffff;
+}
+
+.runyth-scriptoria-document-window .window-header button:focus-visible,
+.runyth-scriptoria-document-window .window-header a:focus-visible,
+.runyth-scriptoria-document-window .window-header .window-control:focus-visible,
+.runyth-scriptoria-document-window .window-header .header-control:focus-visible {
+  background: var(--runyth-scriptoria-window-header-hover);
+  color: #ffffff;
+  outline: 2px solid var(--runyth-scriptoria-window-focus);
+  outline-offset: -2px;
+}
+
+.runyth-scriptoria-document-window .controls-dropdown,
+.runyth-scriptoria-document-window .window-controls-dropdown,
+.runyth-scriptoria-document-window .header-control-menu {
+  background: #171a20;
+  border: 1px solid #515a68;
+  color: #f8fafc;
+}
+
+.runyth-scriptoria-document-window .controls-dropdown button,
+.runyth-scriptoria-document-window .controls-dropdown a,
+.runyth-scriptoria-document-window .window-controls-dropdown button,
+.runyth-scriptoria-document-window .window-controls-dropdown a,
+.runyth-scriptoria-document-window .header-control-menu button,
+.runyth-scriptoria-document-window .header-control-menu a {
+  color: #f8fafc;
+}
+
+.runyth-scriptoria-document-window .controls-dropdown button:hover,
+.runyth-scriptoria-document-window .controls-dropdown button:focus-visible,
+.runyth-scriptoria-document-window .controls-dropdown a:hover,
+.runyth-scriptoria-document-window .controls-dropdown a:focus-visible,
+.runyth-scriptoria-document-window .window-controls-dropdown button:hover,
+.runyth-scriptoria-document-window .window-controls-dropdown button:focus-visible,
+.runyth-scriptoria-document-window .window-controls-dropdown a:hover,
+.runyth-scriptoria-document-window .window-controls-dropdown a:focus-visible,
+.runyth-scriptoria-document-window .header-control-menu button:hover,
+.runyth-scriptoria-document-window .header-control-menu button:focus-visible,
+.runyth-scriptoria-document-window .header-control-menu a:hover,
+.runyth-scriptoria-document-window .header-control-menu a:focus-visible {
+  background: #303641;
+  color: #ffffff;
+}
+
+.runyth-scriptoria-document-window .window-content {
+  background: var(--runyth-scriptoria-surface-background);
+  color: var(--runyth-scriptoria-surface-foreground);
+}
+
+/* Shared dark reading presentation */
+.runyth-scriptoria-reader-window .window-content {
+  overflow: auto;
+  padding: 0;
+}
+
+.runyth-scriptoria-reader {
+  background: var(--runyth-scriptoria-surface-background, #1a1d23);
+  color: var(--runyth-scriptoria-surface-foreground, #e5e7eb);
+  margin: 0 auto;
+  max-width: 60rem;
+  min-height: 100%;
+  padding: 2rem clamp(1.25rem, 4vw, 3.5rem) 3rem;
+}
+
+.runyth-scriptoria-reader__header {
+  align-items: center;
+  border-bottom: 1px solid var(--runyth-scriptoria-surface-border, #4b5563);
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.runyth-scriptoria-reader__header img {
+  border: 0;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.35));
+  height: 4.5rem;
+  object-fit: contain;
+  width: 4.5rem;
+}
+
+.runyth-scriptoria-reader__header h1 {
+  border: 0;
+  color: #f8fafc;
+  font-size: clamp(1.65rem, 3vw, 2.4rem);
+  line-height: 1.1;
+  margin: 0.15rem 0 0;
+}
+
+.runyth-scriptoria-reader__kind {
+  color: #cbd5e1;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.runyth-scriptoria-reader__kind i {
+  margin-right: 0.25rem;
+}
+
+.runyth-scriptoria-byline {
+  color: var(--runyth-scriptoria-muted-foreground, #b7c0cc);
+  font-style: italic;
+  margin: 0.3rem 0 0;
+}
+
+.runyth-scriptoria-type-unavailable {
+  background: #3b2f13;
+  border: 1px solid #a97b1b;
+  border-radius: 0.25rem;
+  color: #fef3c7;
+  margin: 0.75rem 0 0;
+  padding: 0.45rem 0.65rem;
+}
+
+.runyth-scriptoria-reader__content,
+.runyth-scriptoria-journal-snapshot,
+.runyth-scriptoria-item-sheet .runyth-scriptoria-rendered-content {
+  color: var(--runyth-scriptoria-surface-foreground, #e5e7eb);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
+.runyth-scriptoria-rendered-content h1,
+.runyth-scriptoria-rendered-content h2,
+.runyth-scriptoria-rendered-content h3,
+.runyth-scriptoria-rendered-content h4,
+.runyth-scriptoria-rendered-content h5,
+.runyth-scriptoria-rendered-content h6 {
+  color: #f3f4f6;
+  line-height: 1.25;
+  margin-block: 1.4em 0.55em;
+}
+
+.runyth-scriptoria-rendered-content a {
+  color: #93c5fd;
+}
+
+.runyth-scriptoria-rendered-content a:hover,
+.runyth-scriptoria-rendered-content a:focus-visible {
+  color: #bfdbfe;
+}
+
+.runyth-scriptoria-rendered-content blockquote {
+  background: #20242b;
+  border-left: 4px solid #798392;
+  color: #d1d5db;
+  font-style: italic;
+  margin-inline: 0;
+  padding: 0.5rem 1rem;
+}
+
+.runyth-scriptoria-rendered-content pre {
+  background: #0f1115;
+  border: 1px solid #4b5563;
+  border-radius: 4px;
+  color: #e5e7eb;
+  overflow: auto;
+  padding: 0.85rem;
+}
+
+.runyth-scriptoria-rendered-content code {
+  font-family: var(--font-monospace, monospace);
+}
+
+/*
+ * Inline code owns its foreground and opaque background. Fenced code blocks
+ * are excluded by the direct-parent selector, preserving syntax highlighting.
+ */
+.runyth-scriptoria-rendered-content {
+  --runyth-scriptoria-inline-code-color: #f8fafc;
+  --runyth-scriptoria-inline-code-background: #252a31;
+  --runyth-scriptoria-inline-code-border: #65707d;
+  --runyth-scriptoria-inline-code-hover-background: #171a1f;
+  --runyth-scriptoria-inline-code-focus: #93c5fd;
+  --runyth-scriptoria-inline-code-selection-color: #111827;
+  --runyth-scriptoria-inline-code-selection-background: #bfdbfe;
+}
+
+.runyth-scriptoria-rendered-content :not(pre) > code {
+  -webkit-box-decoration-break: clone;
+  -webkit-text-fill-color: var(--runyth-scriptoria-inline-code-color);
+  background: var(--runyth-scriptoria-inline-code-background);
+  background-color: var(--runyth-scriptoria-inline-code-background);
+  border: 1px solid var(--runyth-scriptoria-inline-code-border);
+  border-radius: 0.25rem;
+  box-decoration-break: clone;
+  color: var(--runyth-scriptoria-inline-code-color);
+  opacity: 1;
+  overflow-wrap: anywhere;
+  padding: 0.08em 0.3em;
+  text-shadow: none;
+}
+
+.runyth-scriptoria-rendered-content :not(pre) > code:hover,
+.runyth-scriptoria-rendered-content :not(pre) > code:active {
+  -webkit-text-fill-color: var(--runyth-scriptoria-inline-code-color);
+  background: var(--runyth-scriptoria-inline-code-hover-background);
+  color: var(--runyth-scriptoria-inline-code-color);
+}
+
+.runyth-scriptoria-rendered-content :not(pre) > code:focus-visible {
+  -webkit-text-fill-color: var(--runyth-scriptoria-inline-code-color);
+  background: var(--runyth-scriptoria-inline-code-hover-background);
+  border-color: var(--runyth-scriptoria-inline-code-focus);
+  color: var(--runyth-scriptoria-inline-code-color);
+  outline: 2px solid var(--runyth-scriptoria-inline-code-focus);
+  outline-offset: 1px;
+}
+
+.runyth-scriptoria-rendered-content :not(pre) > code::selection {
+  -webkit-text-fill-color: var(--runyth-scriptoria-inline-code-selection-color);
+  background: var(--runyth-scriptoria-inline-code-selection-background);
+  color: var(--runyth-scriptoria-inline-code-selection-color);
+}
+
+.runyth-scriptoria-rendered-content table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.runyth-scriptoria-rendered-content th,
+.runyth-scriptoria-rendered-content td {
+  border: 1px solid #596271;
+  padding: 0.4rem 0.55rem;
+}
+
+.runyth-scriptoria-rendered-content th {
+  background: #292e37;
+  color: #f8fafc;
+}
+
+.runyth-scriptoria-rendered-content img {
+  height: auto;
+  max-width: 100%;
+}
+
+.runyth-scriptoria-rendered-content .contains-task-list {
+  list-style: none;
+  padding-left: 0.25rem;
+}
+
+.runyth-scriptoria-rendered-content .task-list-item input {
+  margin-right: 0.35rem;
+}
+
+@media (max-width: 700px) {
+  .runyth-scriptoria-importer__file-row,
+  .runyth-scriptoria-importer__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .runyth-scriptoria-reader {
+    padding-inline: 1rem;
+  }
+}
+
+/* Scene-reader sharing controls */
+.runyth-scriptoria-document-window .window-header .runyth-scriptoria-show-all-header {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 3px;
+  color: var(--runyth-scriptoria-window-header-foreground, #f8fafc);
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: 1.75rem;
+  justify-content: center;
+  min-width: 1.75rem;
+  opacity: 1;
+  padding: 0.25rem;
+}
+
+.runyth-scriptoria-document-window .window-header .runyth-scriptoria-show-all-header:hover,
+.runyth-scriptoria-document-window .window-header .runyth-scriptoria-show-all-header:active {
+  background: var(--runyth-scriptoria-window-header-hover, #303641);
+  color: #ffffff;
+}
+
+.runyth-scriptoria-document-window .window-header .runyth-scriptoria-show-all-header:focus-visible {
+  background: var(--runyth-scriptoria-window-header-hover, #303641);
+  color: #ffffff;
+  outline: 2px solid var(--runyth-scriptoria-window-focus, #93c5fd);
+  outline-offset: -2px;
+}
+
+.runyth-scriptoria-document-window .controls-dropdown .runyth-scriptoria-window-control,
+.runyth-scriptoria-document-window .window-controls-dropdown .runyth-scriptoria-window-control {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.runyth-scriptoria-document-window .controls-dropdown .runyth-scriptoria-window-control:disabled,
+.runyth-scriptoria-document-window .window-controls-dropdown .runyth-scriptoria-window-control:disabled {
+  cursor: default;
+  opacity: 0.72;
+}
+
+.runyth-scriptoria-player-selection-window .window-content {
+  overflow: visible;
+}
+
+.runyth-scriptoria-player-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.runyth-scriptoria-player-selection__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.runyth-scriptoria-player-selection__toolbar button {
+  flex: 1 1 10rem;
+  width: auto;
+}
+
+.runyth-scriptoria-player-selection__list {
+  background: var(--runyth-scriptoria-surface-raised, #22262e);
+  border: 1px solid var(--runyth-scriptoria-surface-border, #4b5563);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  max-height: min(22rem, 50vh);
+  overflow: auto;
+  padding: 0.25rem;
+}
+
+.runyth-scriptoria-player-selection__row {
+  align-items: center;
+  border-radius: 3px;
+  cursor: pointer;
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  min-height: 2.25rem;
+  padding: 0.4rem 0.55rem;
+}
+
+.runyth-scriptoria-player-selection__row:hover,
+.runyth-scriptoria-player-selection__row:focus-within {
+  background: #303641;
+  color: #ffffff;
+}
+
+.runyth-scriptoria-player-selection__row input:focus-visible {
+  outline: 2px solid var(--runyth-scriptoria-window-focus, #93c5fd);
+  outline-offset: 2px;
+}
+
+.runyth-scriptoria-player-selection__status {
+  background: #22c55e;
+  border: 1px solid #bbf7d0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.45);
+  height: 0.65rem;
+  width: 0.65rem;
+}
+
+/* Item economics importer and world-defaults interfaces */
+.runyth-scriptoria-importer__economics {
+  border: 1px solid var(--color-border-light-primary, #6b7280);
+  border-radius: 4px;
+  margin: 0;
+  min-width: 0;
+  padding: 0.75rem;
+}
+
+.runyth-scriptoria-importer__economics legend {
+  font-weight: 700;
+  padding-inline: 0.4rem;
+}
+
+.runyth-scriptoria-importer__economics-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+}
+
+.runyth-scriptoria-importer__economics-summary p {
+  margin: 0;
+}
+
+.runyth-scriptoria-importer__economics-summary .hint {
+  flex-basis: 100%;
+}
+
+.runyth-scriptoria-importer__economics-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 0.65rem;
+}
+
+.runyth-scriptoria-importer__economics-card {
+  background: color-mix(in srgb, var(--color-bg-option, #25282e) 92%, transparent);
+  border: 1px solid var(--color-border-light-primary, #5f6773);
+  border-radius: 4px;
+  min-width: 0;
+  padding: 0.65rem;
+}
+
+.runyth-scriptoria-importer__economics-card h3 {
+  border: 0;
+  margin: 0 0 0.4rem;
+}
+
+.runyth-scriptoria-importer__economics-card p {
+  margin: 0.25rem 0;
+}
+
+.runyth-scriptoria-importer__economics-card button {
+  margin-top: 0.45rem;
+  width: auto;
+}
+
+.runyth-scriptoria-importer__calculated-value {
+  color: var(--color-text-primary, inherit);
+}
+
+
+.runyth-scriptoria-importer__economics-fields {
+  align-items: end;
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: minmax(7rem, 1fr) minmax(5.5rem, 0.7fr);
+  min-width: 0;
+}
+
+.runyth-scriptoria-importer__economics-fields--weight {
+  grid-template-columns: minmax(7rem, 1fr) minmax(4rem, 0.45fr);
+}
+
+.runyth-scriptoria-importer__economics-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.runyth-scriptoria-importer__economics-field > label,
+.runyth-scriptoria-importer__economics-field-label {
+  display: block;
+  font-size: var(--font-size-12, 0.75rem);
+  font-weight: 600;
+}
+
+.runyth-scriptoria-importer__economics-field input[type="number"],
+.runyth-scriptoria-importer__economics-field select {
+  box-sizing: border-box;
+  display: block;
+  min-height: 2rem;
+  min-width: 0;
+  opacity: 1;
+  visibility: visible;
+  width: 100%;
+}
+
+.runyth-scriptoria-importer__economics-field input[type="number"] {
+  padding-inline: 0.45rem;
+  pointer-events: auto;
+}
+
+.runyth-scriptoria-importer__economics-field input[type="number"]:focus-visible,
+.runyth-scriptoria-importer__economics-field select:focus-visible {
+  outline: 2px solid var(--runyth-scriptoria-window-focus, #93c5fd);
+  outline-offset: 1px;
+}
+
+
+.runyth-scriptoria-importer__economics-unit-field output {
+  align-items: center;
+  background: color-mix(in srgb, var(--color-bg-option, #25282e) 88%, #000000);
+  border: 1px solid var(--color-border-light-primary, #5f6773);
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: var(--color-text-primary, #f3f4f6);
+  display: flex;
+  font-weight: 600;
+  min-height: 2rem;
+  padding: 0.25rem 0.55rem;
+  width: 100%;
+}
+
+.runyth-scriptoria-importer__economics-final {
+  align-items: center;
+  background: color-mix(in srgb, var(--color-bg-option, #25282e) 96%, transparent);
+  border-top: 1px solid var(--color-border-light-primary, #5f6773);
+  display: grid;
+  gap: 0.25rem 0.5rem;
+  grid-template-columns: max-content 1fr max-content 1fr;
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+}
+
+.runyth-scriptoria-economics-settings-window {
+  max-height: calc(100vh - 2rem);
+  max-width: calc(100vw - 2rem);
+  min-height: min(30rem, calc(100vh - 2rem));
+  min-width: min(48rem, calc(100vw - 2rem));
+}
+
+.runyth-scriptoria-economics-settings-window .window-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.runyth-scriptoria-economics-settings {
+  min-height: 0;
+  overflow: auto;
+}
+
+.runyth-scriptoria-economics-settings__table {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 72rem;
+}
+
+.runyth-scriptoria-economics-settings__header,
+.runyth-scriptoria-economics-settings__row {
+  align-items: center;
+  display: grid;
+  gap: 0.4rem;
+  grid-template-columns:
+    minmax(12rem, 1.5fr)
+    minmax(9rem, 1fr)
+    5.5rem
+    6.5rem
+    repeat(3, 6rem)
+    8rem
+    7rem
+    2.25rem;
+}
+
+.runyth-scriptoria-economics-settings__header {
+  background: color-mix(in srgb, var(--color-bg-option, #25282e) 94%, transparent);
+  border-bottom: 1px solid var(--color-border-light-primary, #5f6773);
+  font-weight: 700;
+  padding: 0.45rem;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.runyth-scriptoria-economics-settings__row {
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border-light-primary, #5f6773) 55%, transparent);
+  padding: 0.35rem 0.45rem;
+}
+
+.runyth-scriptoria-economics-settings__row input,
+.runyth-scriptoria-economics-settings__row select {
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
+}
+
+.runyth-scriptoria-economics-settings__type {
+  align-items: center;
+  display: flex;
+  gap: 0.35rem;
+}
+
+.runyth-scriptoria-economics-settings__unavailable {
+  background: #6b4f0f;
+  border-radius: 0.2rem;
+  color: #fff7d6;
+  font-size: 0.7rem;
+  padding: 0.08rem 0.25rem;
+}
+
+.runyth-scriptoria-economics-settings__checkbox {
+  justify-content: center;
+}
+
+@media (max-width: 760px) {
+  .runyth-scriptoria-importer__economics-grid,
+  .runyth-scriptoria-importer__economics-final {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .runyth-scriptoria-importer__economics-fields,
+  .runyth-scriptoria-importer__economics-fields--weight {
+    grid-template-columns: 1fr;
+  }
+}

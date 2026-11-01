@@ -17,7 +17,7 @@ function createNote({ isGM = true, permissions = true } = {}) {
   const document = {
     documentName: "Note",
     id: "note-1",
-    getFlag: (scope, key) => scope === "scriptoria" && key === "sourceItemUuid"
+    getFlag: (scope, key) => scope === "runyth-scriptoria" && key === "sourceItemUuid"
       ? "Item.source"
       : undefined
   };
@@ -56,7 +56,7 @@ test.afterEach(() => {
   delete globalThis.canvas;
 });
 
-test("identifies only Scriptoria Note placeables", () => {
+test("identifies only Runyth Scriptoria Note placeables", () => {
   const { note } = createNote();
   assert.equal(isScriptoriaSceneNote(note), true);
   assert.equal(isScriptoriaSceneNote({
