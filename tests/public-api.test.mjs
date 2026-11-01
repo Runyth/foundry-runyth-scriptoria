@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Daniel Braniewski. See the LICENSE file for rights and obligations.
 import assert from "node:assert/strict";
 import test from "node:test";
 
@@ -35,7 +37,7 @@ test("publishes the versioned API on the Runyth Scriptoria module and announces 
   const moduleRecord = {
     id: "runyth-scriptoria",
     active: true,
-    version: "1.7.3"
+    version: "1.8.0"
   };
   const calls = [];
   globalThis.game = {
@@ -73,7 +75,7 @@ test("public registry methods expose immutable safe data rather than the interna
   };
   globalThis.game = {
     modules: new Map([
-      ["runyth-scriptoria", { id: "runyth-scriptoria", active: true, version: "1.7.3" }],
+      ["runyth-scriptoria", { id: "runyth-scriptoria", active: true, version: "1.8.0" }],
       [provider.id, provider]
     ]),
     i18n: {

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Daniel Braniewski. See the LICENSE file for rights and obligations.
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
@@ -8,7 +10,7 @@ const manifest = JSON.parse(
 
 test("manifest identifies a Foundry v13 module", () => {
   assert.equal(manifest.id, "runyth-scriptoria");
-  assert.equal(manifest.version, "1.7.3");
+  assert.equal(manifest.version, "1.8.0");
   assert.equal(manifest.compatibility.minimum, "13");
   assert.equal(manifest.compatibility.maximum, "13");
   assert.deepEqual(manifest.esmodules, ["scripts/main.mjs"]);

@@ -1,6 +1,8 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Daniel Braniewski. See the LICENSE file for rights and obligations.
 export const MODULE_ID = "runyth-scriptoria";
 export const MODULE_TITLE = "Runyth Scriptoria";
-export const MODULE_VERSION = "1.7.3";
+export const MODULE_VERSION = "1.8.0";
 export const PUBLIC_API_VERSION = "1.2.0";
 export const API_READY_HOOK = "runyth-scriptoria.apiReady";
 export const TYPE_REGISTERED_HOOK = "runyth-scriptoria.scriptureTypeRegistered";
