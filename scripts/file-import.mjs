@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Daniel Braniewski. See the LICENSE file for rights and obligations.
 import { localize } from "./i18n.mjs";
 
 export const MAX_IMPORT_FILE_SIZE = 5 * 1024 * 1024;
