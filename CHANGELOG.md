@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.8.0 — 2026-11-01
+
+- Rebranded the module into Runyth Scriptoria: the Foundry module id is `runyth-scriptoria`, the display title is `Runyth Scriptoria — Markdown & HTML Books and Documents`, and the npm package is `runyth-scriptoria`.
+- The rebrand reaches every real surface: hook and API-ready event namespaces, flag scope, CSS file name plus isolation and application class prefixes, scene control actions, asset paths, localization namespace, importer helpers and internal identifiers, and the TypeScript definition file.
+- Adopted `AGPL-3.0-or-later` for the program with the standard two-line source notice on every module source, and replaced the MIT licence text with the GNU Affero General Public License served by the `LICENSE` file.
+- Added the workspace publication standard tooling: deterministic release packaging, per-version checksums, a byte-identical rebuild gate, quality and release workflows, and repository contribution and security guidance.
+- The public extension API keeps version 1.2.0; extension points move to the `runyth-scriptoria.*` hook namespace and modules relying on the old `scriptoria.*` hook names must update their listeners.
+- Existing documents created with earlier versions keep their flags and data; the migration namespace now reads the `runyth-scriptoria` flag scope.
+
 ## 1.7.3 — 2026-08-03
 
 - Complete Runyth Scriptoria's Foundry-native localization adoption. The module already shipped language files, but many settings, importer labels, directory actions, scene controls, notifications, file-import errors, built-in scripture-type names, and fallback text were still literal English and could not be translated.
