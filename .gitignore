@@ -1,0 +1,9 @@
+node_modules/
+dist/
+build/
+release/
+.staging/
+.coverage/
+test-results/
+*.log
+.DS_Store

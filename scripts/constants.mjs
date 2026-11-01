@@ -1,0 +1,42 @@
+export const MODULE_ID = "scriptoria";
+export const MODULE_TITLE = "Scriptoria";
+export const MODULE_VERSION = "1.7.3";
+export const PUBLIC_API_VERSION = "1.2.0";
+export const API_READY_HOOK = "scriptoria.apiReady";
+export const TYPE_REGISTERED_HOOK = "scriptoria.scriptureTypeRegistered";
+export const TYPE_UNREGISTERED_HOOK = "scriptoria.scriptureTypeUnregistered";
+export const FLAG_SCOPE = MODULE_ID;
+export const FLAG_KEY = "document";
+export const SCHEMA_VERSION = 4;
+export const DEFAULT_SCRIPTURE_TYPE_ID = "book";
+export const SOCKET_CHANNEL = `module.${MODULE_ID}`;
+export const SOCKET_PROTOCOL_VERSION = 1;
+
+export const READER_MODES = Object.freeze({
+  foundry: "foundry",
+  enhancedJournal: "enhanced-journal",
+  simpleReader: "simple-reader"
+});
+
+export const SCRIPTURE_TYPE_CAPABILITIES = Object.freeze([
+  "creation",
+  "import",
+  "scenePlacement",
+  "reader"
+]);
+
+export const SETTINGS = Object.freeze({
+  rootFolder: "rootFolder",
+  createKindFolders: "createKindFolders",
+  defaultAccess: "defaultAccess",
+  enableSceneDrop: "enableSceneDrop",
+  scenePlayerAccess: "scenePlayerAccess",
+  defaultSceneDocumentView: "defaultSceneDocumentView",
+  openAfterCreate: "openAfterCreate",
+  rememberImporterWindow: "rememberImporterWindow",
+  importerWindowLayout: "importerWindowLayout",
+  resetImporterWindow: "resetImporterWindow",
+  itemEconomicsOverrides: "itemEconomicsOverrides",
+  itemEconomicsDefaultsMenu: "itemEconomicsDefaultsMenu",
+  debugLogging: "debugLogging"
+});

@@ -1,0 +1,282 @@
+{
+  "SCRIPTORIA": {
+    "Settings": {
+      "DefaultSceneDocumentView": {
+        "Name": "Standardansicht für Szenendokumente",
+        "Hint": "Wähle, welche Ansicht standardmäßig geöffnet wird, wenn ein Scriptoria-Dokument aus einer Szene geöffnet wird."
+      },
+      "DebugLogging": {
+        "Name": "Scriptoria-Debugprotokollierung aktivieren",
+        "Hint": "Schreibt gezielte Scriptoria-Diagnosen in die Browserkonsole, ohne importierte Dokumentinhalte zu protokollieren."
+      },
+      "RootFolder": {
+        "Name": "Stammordner für Items",
+        "Hint": "Der Stammordner im Item-Verzeichnis für von Scriptoria erstellte Dokumente."
+      },
+      "CreateKindFolders": {
+        "Name": "Unterordner nach Dokumenttyp erstellen",
+        "Hint": "Erzeugte Items in typspezifische Ordner einsortieren."
+      },
+      "DefaultAccess": {
+        "Name": "Standardzugriff auf Welt-Items",
+        "Hint": "Legt fest, ob ein neues Welt-Item bis zum Tragen oder Platzieren verborgen bleibt oder sofort für alle Spieler sichtbar ist."
+      },
+      "EnableSceneDrop": {
+        "Name": "Lesbare Journal-Notizen beim Ablegen auf Szenen erstellen",
+        "Hint": "Das Ablegen eines Scriptoria-Items auf einer Szene erstellt eine Journal-Momentaufnahme und eine Notiz an der Ablageposition."
+      },
+      "ScenePlayerAccess": {
+        "Name": "Spielerzugriff auf Szenen-Journale",
+        "Hint": "Steuert, ob alle Spieler von Scriptoria auf Szenen erzeugte Journale öffnen können."
+      },
+      "OpenAfterCreate": {
+        "Name": "Leser nach Erstellung öffnen",
+        "Hint": "Zeigt unmittelbar nach der Erstellung eines neuen Scriptoria-Items die Leseansicht an."
+      },
+      "RememberImporterWindow": {
+        "Name": "Position und Größe des Importfensters merken",
+        "Hint": "Stellt die letzte Größe und Position des Markdown-/HTML-Importfensters separat in diesem Browser wieder her."
+      },
+      "ImporterWindowLayout": {
+        "Name": "Layout des Importfensters",
+        "Hint": "Interner clientspezifischer Speicher für geprüfte Abmessungen und Koordinaten des Importfensters."
+      },
+      "ResetImporterWindow": {
+        "Name": "Position und Größe des Importfensters zurücksetzen",
+        "Label": "Importfenster zurücksetzen",
+        "Hint": "Löscht das in diesem Browser gespeicherte Layout. Das nächste Importfenster öffnet sich zentriert mit Standardabmessungen.",
+        "DialogTitle": "Scriptoria-Importfenster zurücksetzen",
+        "Confirm": "Die in diesem Browser gespeicherte Position und Größe des Importfensters löschen?",
+        "Note": "Das nächste Importfenster verwendet Scriptorias Standardabmessungen und eine zentrierte Position.",
+        "Action": "Fensterlayout zurücksetzen",
+        "Success": "Position und Größe des Scriptoria-Importfensters wurden zurückgesetzt."
+      }
+    },
+    "ReaderModes": {
+      "Foundry": "Standard-Dokumentansicht von Foundry",
+      "EnhancedJournal": "Erweiterte Journalmodul-Ansicht",
+      "EnhancedJournalUnavailable": "Erweiterte Journalmodul-Ansicht (nicht verfügbar)",
+      "SimpleReader": "Einfacher Scriptoria-Leser"
+    },
+    "Actions": {
+      "OpenWith": "Öffnen mit",
+      "ShowToAllPlayers": "Allen Spielern anzeigen",
+      "ShowToSelectedPlayers": "Ausgewählten Spielern anzeigen…",
+      "SelectAll": "Alle auswählen",
+      "ClearSelection": "Auswahl aufheben",
+      "Show": "Anzeigen",
+      "Cancel": "Abbrechen",
+      "Close": "Schließen",
+      "Current": "Aktuell",
+      "Save": "Speichern",
+      "Read": "Lesen",
+      "EditSource": "Quelle bearbeiten",
+      "CreateScriptoriaDocument": "Scriptoria-Dokument erstellen",
+      "Scriptoria": "Scriptoria",
+      "ReadScriptoriaDocument": "Scriptoria-Dokument lesen",
+      "EditScriptoriaSource": "Scriptoria-Quelle bearbeiten",
+      "SaveChanges": "Änderungen speichern",
+      "CreateDocument": "Dokument erstellen"
+    },
+    "PlayerSelection": {
+      "Title": "„{name}“ ausgewählten Spielern anzeigen",
+      "Active": "Aktiv",
+      "Inactive": "Inaktiv",
+      "Hint": "Es werden nur verbundene Spieler ohne SL-Rolle aufgeführt. Dokumentberechtigungen werden nicht geändert."
+    },
+    "Notifications": {
+      "EnhancedJournalUnavailable": "Die erweiterte Journalintegration ist nicht verfügbar. Scriptoria hat stattdessen die Standardansicht von Foundry geöffnet.",
+      "NoPlayersSelected": "Wähle mindestens einen verbundenen Spieler aus.",
+      "FailedDisplay": "Das Scriptoria-Dokument konnte nicht angezeigt werden.",
+      "DisconnectedPlayers": "Die ausgewählten Spieler sind nicht mehr verbunden.",
+      "NoConnectedPlayers": "Es sind keine verbundenen Spieler verfügbar.",
+      "FileLoaded": "{fileName} wurde geladen.",
+      "DocumentCreated": "{type} erstellt: {title}",
+      "DocumentUpdated": "{title} wurde aktualisiert.",
+      "SceneDocumentPlaced": "Verwaltbares Dokument platziert: {title}"
+    },
+    "Errors": {
+      "DocumentNotFound": "Das Scriptoria-Dokument konnte nicht aufgelöst werden.",
+      "NotScriptoriaDocument": "Dieses Item ist kein Scriptoria-Dokument.",
+      "NoReadPermission": "Du hast keine Berechtigung, dieses Dokument zu lesen.",
+      "NoDocumentSheet": "Für dieses Dokument ist keine Foundry-Dokumentansicht verfügbar.",
+      "GmOnlyBroadcast": "Nur ein Spielleiter kann Dokumente anderen Spielern anzeigen.",
+      "EditPermission": "Nur ein Spielleiter oder der Item-Eigentümer kann Scriptoria-Dokumente bearbeiten.",
+      "SaveDocument": "Das Scriptoria-Dokument konnte nicht gespeichert werden.",
+      "ImportFile": "Die ausgewählte Dokumentdatei konnte nicht importiert werden.",
+      "CreateGmOnly": "Nur ein Spielleiter kann Scriptoria-Dokumente erstellen.",
+      "EditDocumentPermission": "Du hast keine Berechtigung, dieses Scriptoria-Dokument zu bearbeiten.",
+      "ContentRequired": "Dokumentinhalt ist erforderlich.",
+      "UnknownType": "Unbekannter oder nicht verfügbarer Schriftentyp: {typeId}",
+      "TypeNotCreatable": "Der Schriftentyp „{typeId}“ ist nicht für die Dokumenterstellung zugelassen.",
+      "TypeNotReadable": "Der Schriftentyp „{typeId}“ ist nicht für den Scriptoria-Leser zugelassen.",
+      "TypeNotPlaceable": "Der Schriftentyp „{typeId}“ kann nicht auf einer Szene platziert werden.",
+      "PlaceOnScene": "Das Scriptoria-Dokument konnte nicht auf der Szene platziert werden.",
+      "NoActiveScene": "Es ist keine aktive Szene verfügbar.",
+      "ActivateSceneControls": "Die Steuerelemente für Scriptoria-Szenendokumente konnten nicht aktiviert werden."
+    },
+    "Reader": {
+      "Document": "Scriptoria-Dokument"
+    },
+    "Economics": {
+      "SettingsMenu": {
+        "Name": "Standardpreise und -gewichte für Items",
+        "Label": "Standardpreise und -gewichte für Items",
+        "Description": "Konfiguriert Weltstandards für jeden derzeit bekannten Scriptoria-Typ. Bestehende Items werden niemals automatisch überschrieben."
+      },
+      "SettingsStorage": {
+        "Name": "Item-Wirtschaftsüberschreibungen",
+        "Hint": "Weltweite Überschreibungen, nach stabiler Scriptoria-Typ-ID gespeichert."
+      },
+      "PriceAndWeight": "Preis und Gewicht",
+      "EffectiveType": "Effektiver Typ",
+      "Type": "Typ",
+      "Price": "Preis",
+      "Denomination": "Währungseinheit",
+      "Weight": "Gewicht",
+      "BaseWeight": "Grundgewicht",
+      "MinimumWeight": "Mindestgewicht",
+      "MaximumWeight": "Höchstgewicht",
+      "ReferenceWordCount": "Referenzwortzahl",
+      "ContentLengthAdjustment": "An Inhaltslänge anpassen",
+      "CalculatedDefault": "Berechneter Standard",
+      "ResetProviderDefault": "Auf Anbieterstandard zurücksetzen",
+      "NormalizedWordCount": "Normalisierte Wortzahl",
+      "FinalPrice": "Endpreis",
+      "FinalWeight": "Endgewicht",
+      "ProviderModule": "Anbietermodul",
+      "UnavailableType": "Nicht verfügbarer Typ",
+      "InvalidSettings": "Ungültige Wirtschaftseinstellungen",
+      "RecalculationConfirmation": "Dieses Item anhand der aktuellen Scriptoria-Standards neu berechnen? Der derzeitige Preis und das Gewicht werden ersetzt.",
+      "WeightExplanation": "Das berechnete Gewicht variiert geringfügig mit der normalisierten lesbaren Textlänge und bleibt innerhalb der konfigurierten Typgrenzen.",
+      "BuiltInProvider": "Scriptoria (integriert)",
+      "NoTypes": "Derzeit sind keine Scriptoria-Typen verfügbar.",
+      "Notifications": {
+        "DefaultsSaved": "Scriptoria-Standardpreise und -gewichte wurden gespeichert.",
+        "TypeReset": "{type} wurde auf den Anbieterstandard zurückgesetzt."
+      },
+      "Errors": {
+        "InvalidSettings": "Ungültige Wirtschaftseinstellungen: {message}",
+        "GmOnly": "Nur ein Spielleiter kann Scriptoria-Standardpreise und -gewichte ändern.",
+        "InvalidHelper": "Der Schriftentyp {typeId} des Anbieters {providerId} enthält ungültige Wirtschaftsdaten: {message}",
+        "UnsupportedSystem": "Scriptoria konnte Preis oder Gewicht nicht schreiben, da das aktive Spielsystem nicht unterstützt wird.",
+        "PriceOverride": "Die Preisüberschreibung muss eine endliche, nicht negative Zahl sein.",
+        "WeightOverride": "Die Gewichtsüberschreibung muss eine endliche, nicht negative Zahl sein.",
+        "FormUnavailable": "Das Formular für Wirtschaftseinstellungen ist nicht verfügbar.",
+        "FieldNumber": "{field} muss eine endliche, nicht negative Zahl sein.",
+        "FieldInteger": "{field} muss eine positive Ganzzahl sein.",
+        "PriceDenomination": "Die ausgewählte Währungseinheit wird nicht unterstützt.",
+        "WeightUnitMissing": "Scriptoria konnte das Dokument nicht erstellen, weil die Gewichtseinheit fehlt.",
+        "TypeIdRequired": "Eine Schriftentyp-ID ist erforderlich.",
+        "InvalidResolvedDenomination": "Scriptoria konnte das Dokument nicht erstellen, weil die aufgelöste Währungseinheit ungültig ist. Empfangen: {received}.",
+        "InvalidResolvedWeightUnit": "Scriptoria konnte das Dokument nicht erstellen, weil die aufgelöste Gewichtseinheit ungültig ist. Empfangen: {received}.",
+        "InvalidPriceDenomination": "Scriptoria konnte das Dokument nicht erstellen, weil die Währungseinheit ungültig ist. Empfangen: {received}.",
+        "InvalidWeightUnit": "Scriptoria konnte das Dokument nicht erstellen, weil die Gewichtseinheit ungültig ist. Empfangen: {received}.",
+        "InvalidNumber": "Scriptoria konnte das Dokument nicht erstellen, weil der Wert „{field}“ {reason}. Empfangen: {received}."
+      },
+      "WeightUnit": "Einheit",
+      "ResetPriceDefault": "Preis auf Standard zurücksetzen",
+      "RecalculateWeight": "Gewicht neu berechnen",
+      "Fields": {
+        "Value": "Wert",
+        "PriceValue": "Preiswert",
+        "WeightValue": "Gewichtswert",
+        "ResolvedPriceValue": "aufgelöste Preiswert",
+        "ResolvedWeightValue": "aufgelöste Gewichtswert",
+        "PriceOverrideValue": "überschriebene Preiswert",
+        "WeightOverrideValue": "überschriebene Gewichtswert"
+      },
+      "Reasons": {
+        "Missing": "fehlt",
+        "Empty": "ist leer",
+        "NotFinite": "ist keine endliche Zahl",
+        "Minimum": "muss mindestens {minimum} betragen"
+      }
+    },
+    "Access": {
+      "WhenHeldOrPlaced": "Wenn getragen oder platziert",
+      "AllPlayersImmediately": "Sofort für alle Spieler",
+      "AllPlayersCanRead": "Alle Spieler können lesen",
+      "GameMasterOnly": "Nur Spielleiter"
+    },
+    "Types": {
+      "Book": {
+        "Label": "Buch",
+        "Plural": "Bücher",
+        "Description": "Ein gebundenes Buch oder umfangreiches Schriftwerk."
+      },
+      "Journal": {
+        "Label": "Journal",
+        "Plural": "Journale",
+        "Description": "Ein persönliches Journal, Tagebuch, Protokoll oder Notizbuch."
+      },
+      "Scripture": {
+        "Label": "Schrift",
+        "Plural": "Schriften",
+        "Description": "Ein religiöser, dogmatischer, prophetischer oder heiliger Text."
+      },
+      "Documentation": {
+        "Label": "Dokumentation",
+        "Plural": "Dokumentationen",
+        "Description": "Technisches, verfahrensbezogenes, lehrendes oder nachschlagendes Material."
+      },
+      "Pamphlet": {
+        "Label": "Flugschrift",
+        "Plural": "Flugschriften",
+        "Description": "Ein kurzes Handblatt, Faltblatt, Aushang, Traktat oder gefaltetes Dokument."
+      },
+      "Unavailable": {
+        "Label": "Nicht verfügbarer Schriftentyp: {id}",
+        "Plural": "Nicht verfügbare Schriftentypen",
+        "Description": "Der Anbieter des Schriftentyps „{id}“ ist derzeit nicht verfügbar. Das gespeicherte Dokument bleibt lesbar."
+      },
+      "GenericPlural": "{label}"
+    },
+    "Importer": {
+      "CreateTitle": "Scriptoria-Dokument erstellen",
+      "EditTitle": "{name} bearbeiten",
+      "Introduction": "Inhalt direkt einfügen oder eine lokale Markdown- oder HTML-Datei importieren. Die erste Überschrift wird zum Item-Namen, sofern kein Titel angegeben wird. HTML-Importe werden vor der Anzeige bereinigt.",
+      "ImportFile": "Dokumentdatei importieren",
+      "AcceptedFiles": "Akzeptiert: <code>.md</code>, <code>.markdown</code>, <code>.html</code> und <code>.htm</code> bis 5 MiB. Die Auswahl einer Datei ersetzt das darunterliegende Quellfeld.",
+      "ScriptureType": "Schriftentyp",
+      "ScriptureTypeHint": "Integrierte und von Hilfsmodulen bereitgestellte Typen werden über das öffentliche Scriptoria-Register aufgelöst. Nach einer späten Registrierung muss dieses Fenster neu geöffnet werden.",
+      "SourceFormat": "Quellformat",
+      "SourceFormatHint": "Wird beim Auswählen einer unterstützten Datei automatisch aktualisiert.",
+      "ItemType": "Foundry-Item-Typ",
+      "ItemTypeHint": "D&D 5e verwendet normalerweise ein gewöhnliches Beute-Item.",
+      "Title": "Titel",
+      "TitlePlaceholder": "Leer lassen, um die Dokumentüberschrift zu verwenden",
+      "Author": "Autor oder Zuschreibung",
+      "Optional": "Optional",
+      "WorldAccess": "Zugriff auf das Welt-Item",
+      "WorldAccessHint": "Akteurberechtigungen und erzeugte Szenen-Journale steuern weiterhin eingebettete oder platzierte Kopien.",
+      "ReadingLayout": "Leselayout",
+      "RemoveFirstHeading": "Erste H1-Überschrift aus dem Inhalt entfernen",
+      "HtmlSource": "HTML-Quelle",
+      "MarkdownSource": "Markdown-Quelle",
+      "HtmlPlaceholder": "HTML hier einfügen oder hochladen.",
+      "MarkdownPlaceholder": "Markdown hier einfügen, schreiben oder hochladen.",
+      "LoadedSourceFile": "Geladene Quelldatei: {fileName}",
+      "NoFileSelected": "Keine Datei ausgewählt. Einfügen oder Tippen bleibt möglich.",
+      "LoadedFile": "{fileName} geladen",
+      "HtmlHint": "Die erste <h1>-Überschrift wird als Titel verwendet, ersatzweise <title>. Skripte, Ereignishandler, eingebettete Frames, Formulare und unsichere URLs werden entfernt.",
+      "MarkdownHint": "Die erste # H1- oder Setext-H1-Überschrift wird als Titel verwendet. Rohes HTML in Markdown bleibt maskiert."
+    },
+    "Documents": {
+      "Untitled": "Unbenanntes Dokument: {type}",
+      "SceneFolder": "Scriptoria-Szenendokumente"
+    },
+    "Scene": {
+      "ManageDocuments": "Scriptoria-Szenendokumente verwalten"
+    },
+    "FileImport": {
+      "UnsupportedType": "Wähle eine Markdown-Datei (.md, .markdown) oder HTML-Datei (.html, .htm).",
+      "NoFile": "Es wurde keine Dokumentdatei ausgewählt.",
+      "TooLarge": "Das ausgewählte Dokument ist größer als 5 MiB.",
+      "NotText": "Die ausgewählte Datei scheint kein Klartextdokument zu sein.",
+      "Empty": "Die ausgewählte Dokumentdatei ist leer.",
+      "UnsupportedBrowser": "Dieser Browser kann die ausgewählte Dokumentdatei nicht lesen.",
+      "ReadFailed": "Die ausgewählte Datei konnte nicht gelesen werden."
+    }
+  }
+}

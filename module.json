@@ -1,0 +1,36 @@
+{
+  "id": "scriptoria",
+  "title": "Scriptoria — Markdown & HTML Books and Documents",
+  "description": "Create readable Markdown and HTML documents as Foundry Items, with complete Foundry-native localization, directly editable creation price and weight fields, configurable scene readers, targeted player display controls, content-aware economics, manageable Scene pamphlets, remembered importer layout, and a versioned extension API.",
+  "version": "1.7.3",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13.351",
+    "maximum": "13"
+  },
+  "authors": [
+    {
+      "name": "Akito"
+    }
+  ],
+  "esmodules": [
+    "scripts/main.mjs"
+  ],
+  "styles": [
+    "styles/scriptoria.css"
+  ],
+  "license": "LICENSE",
+  "readme": "README.md",
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "de",
+      "name": "Deutsch",
+      "path": "lang/de.json"
+    }
+  ]
+}
