@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.8.1 — 2026-11-04
+
+- The installable archive now ships every relative import the manifest entry needs, so the module's buttons and settings register on world load instead of silently failing.
+
 ## 1.8.0 — 2026-11-01
 
 - Rebranded the module into Runyth Scriptoria: the Foundry module id is `runyth-scriptoria`, the display title is `Runyth Scriptoria — Markdown & HTML Books and Documents`, and the npm package is `runyth-scriptoria`.

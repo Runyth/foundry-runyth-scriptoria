@@ -1,6 +1,6 @@
 {
   "name": "runyth-scriptoria",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "private": true,
   "type": "module",
   "description": "Development checks for Runyth Scriptoria with complete Foundry-native localization, directly editable importer price and weight fields, configurable scene readers, targeted player display controls, content-aware item economics, Markdown and HTML import, and a public extension API.",
