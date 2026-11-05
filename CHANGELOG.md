@@ -1,5 +1,26 @@
 # Changelog
 
+
+## 1.9.0 — 2026-11-05
+
+- Adopted the fleet-wide Garb & Grime UI design for the module's windows: the
+  reader, Markdown/HTML importer, player selection dialog, and the Item price
+  and weight defaults dialog now ride the petrol gradient shell with gold
+  headings, gradient buttons, dark field controls, thin scrollbars, and the
+  fleet focus ring. The tokens build on the module's existing dark-surface
+  variables, so the look stays consistent on legacy and new windows alike.
+- The earlier stock Foundry look remains available through a new client
+  setting; it is disabled by default, so the fleet look applies out of the
+  box and the stock look is restored verbatim when the toggle is enabled.
+- The fleet class attaches at the shared window brand points — every
+  DialogV2 factory, the sheet window mount, and the rendered-application
+  enhancer — and closing the settings configuration re-syncs every mounted
+  window immediately.
+- Synced the runtime `MODULE_VERSION` constant with the published manifest
+  version (it had been frozen at 1.8.0 while 1.8.1 shipped), and added a
+  `ui-look` regression suite covering the disabled-by-default contract, the
+  window-class synthesis for both looks, and the settings-closure resync.
+
 ## 1.8.1 — 2026-11-04
 
 - The installable archive now ships every relative import the manifest entry needs, so the module's buttons and settings register on world load instead of silently failing.

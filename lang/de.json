@@ -5,6 +5,10 @@
         "Name": "Standardansicht für Szenendokumente",
         "Hint": "Wähle, welche Ansicht standardmäßig geöffnet wird, wenn ein Runyth Scriptoria-Dokument aus einer Szene geöffnet wird."
       },
+      "StockFoundryLook": {
+        "Name": "Foundry-Standardlook",
+        "Hint": "Beibehaltung des Foundry-Standards-UI-Designs für die Fenster von Runyth Scriptoria. Standardmäßig nutzen sie fleetweit den Garb & Grime-Look."
+      },
       "DebugLogging": {
         "Name": "Runyth Scriptoria-Debugprotokollierung aktivieren",
         "Hint": "Schreibt gezielte Runyth Scriptoria-Diagnosen in die Browserkonsole, ohne importierte Dokumentinhalte zu protokollieren."

@@ -32,6 +32,7 @@ import {
   getImporterInitialPosition
 } from "./importer-layout.mjs";
 import { openReader } from "./reader.mjs";
+import { windowClasses } from "./ui-look.mjs";
 import {
   getScriptureTypeOrFallback,
   listScriptureTypes,
@@ -67,7 +68,7 @@ export function openImporter({ item = null } = {}) {
       icon: editing ? "fa-solid fa-pen-to-square" : "fa-solid fa-book-medical",
       resizable: true
     },
-    classes: ["runyth-scriptoria-importer-window"],
+    classes: windowClasses(["runyth-scriptoria-importer-window"]),
     position: getImporterInitialPosition(),
     content: buildImporterContent(values, editing),
     buttons: [

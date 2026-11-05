@@ -9,8 +9,25 @@ import { getReaderModeDescriptors } from "./document-views.mjs";
 import { clearImporterLayout } from "./importer-layout.mjs";
 import { localize } from "./i18n.mjs";
 import { createEconomicsDefaultsApplicationClass } from "./economics-settings.mjs";
+import { syncOpenWindows } from "./ui-look.mjs";
 
 export function registerSettings() {
+  globalThis.Hooks?.on?.("closeSettingsConfig", () => syncOpenWindows());
+
+  game.settings.register(MODULE_ID, SETTINGS.stockFoundryLook, {
+    name: localize(
+      "RUNYTH-SCRIPTORIA.Settings.StockFoundryLook.Name",
+      "Stock Foundry look"
+    ),
+    hint: localize(
+      "RUNYTH-SCRIPTORIA.Settings.StockFoundryLook.Hint",
+      "Keep the stock Foundry UI design for the windows of Runyth Scriptoria. By default they use the fleet-wide Garb & Grime look."
+    ),
+    scope: "client",
+    config: true,
+    type: Boolean,
+    default: false
+  });
   game.settings.register(MODULE_ID, SETTINGS.rootFolder, {
     name: localize("RUNYTH-SCRIPTORIA.Settings.RootFolder.Name", "Root Item folder"),
     hint: localize("RUNYTH-SCRIPTORIA.Settings.RootFolder.Hint", "The root Item Directory folder used for documents created by Runyth Scriptoria."),

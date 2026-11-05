@@ -9,6 +9,7 @@ import {
 import { openImporter } from "./importer.mjs";
 import { localize } from "./i18n.mjs";
 import { openReader, notifyReaderError } from "./reader.mjs";
+import { applyUiLook } from "./ui-look.mjs";
 import {
   getScriptureTypeOrFallback,
   resolveScriptureTypeLabel
@@ -196,6 +197,7 @@ export function markScriptoriaApplication(application, html, surfaceClass = "") 
 
   if (!windowRoot) return false;
   windowRoot.classList.add("runyth-scriptoria-document-window");
+  applyUiLook(windowRoot);
   if (surfaceClass) windowRoot.classList.add(surfaceClass);
   return true;
 }
