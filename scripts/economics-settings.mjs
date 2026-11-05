@@ -8,6 +8,7 @@ import {
 } from "./economics.mjs";
 import { escapeHtml } from "./markdown.mjs";
 import { format, localize } from "./i18n.mjs";
+import { windowClasses } from "./ui-look.mjs";
 import {
   resolveScriptureTypeLabel
 } from "./scripture-types.mjs";
@@ -24,7 +25,7 @@ export function createEconomicsDefaultsApplicationClass() {
           icon: "fa-solid fa-coins",
           resizable: true
         },
-        classes: ["runyth-scriptoria-economics-settings-window"],
+        classes: windowClasses(["runyth-scriptoria-economics-settings-window"]),
         position: {
           width: 980,
           height: 720

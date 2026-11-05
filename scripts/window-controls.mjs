@@ -12,6 +12,7 @@ import {
   showToAllPlayers
 } from "./display-service.mjs";
 import { localize } from "./i18n.mjs";
+import { applyUiLook } from "./ui-look.mjs";
 import { isScriptoriaItem } from "./documents.mjs";
 
 let hooksRegistered = false;
@@ -81,7 +82,10 @@ export function enhanceRenderedApplication(application, html) {
   const root = normalizeRoot(application?.element)
     ?? normalizeRoot(html)
     ?? normalizeRoot(html)?.closest?.(".window-app, .application");
-  if (root) root.classList.add("runyth-scriptoria-document-window");
+  if (root) {
+    root.classList.add("runyth-scriptoria-document-window");
+    applyUiLook(root);
+  }
 
   if (!globalThis.game?.user?.isGM) return true;
   injectShowAllHeaderButton(application, root, target);

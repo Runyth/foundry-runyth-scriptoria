@@ -2,7 +2,7 @@
 // Copyright (C) 2026 Daniel Braniewski. See the LICENSE file for rights and obligations.
 export const MODULE_ID = "runyth-scriptoria";
 export const MODULE_TITLE = "Runyth Scriptoria";
-export const MODULE_VERSION = "1.8.0";
+export const MODULE_VERSION = "1.9.0";
 export const PUBLIC_API_VERSION = "1.2.0";
 export const API_READY_HOOK = "runyth-scriptoria.apiReady";
 export const TYPE_REGISTERED_HOOK = "runyth-scriptoria.scriptureTypeRegistered";
@@ -40,5 +40,6 @@ export const SETTINGS = Object.freeze({
   resetImporterWindow: "resetImporterWindow",
   itemEconomicsOverrides: "itemEconomicsOverrides",
   itemEconomicsDefaultsMenu: "itemEconomicsDefaultsMenu",
+  stockFoundryLook: "stockFoundryLook",
   debugLogging: "debugLogging"
 });

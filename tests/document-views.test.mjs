@@ -2,6 +2,7 @@
 // Copyright (C) 2026 Daniel Braniewski. See the LICENSE file for rights and obligations.
 import assert from "node:assert/strict";
 import test from "node:test";
+import { FLEET_UI_CLASS } from "../scripts/ui-look.mjs";
 
 import {
   getDefaultSceneDocumentView,
@@ -190,7 +191,8 @@ test("simple-reader mode opens the shared dark DialogV2 reader", async () => {
   assert.equal(dialog.runythScriptoriaViewMode, "simple-reader");
   assert.deepEqual(dialog.options.classes, [
     "runyth-scriptoria-document-window",
-    "runyth-scriptoria-reader-window"
+    "runyth-scriptoria-reader-window",
+    FLEET_UI_CLASS
   ]);
 });
 

@@ -16,6 +16,7 @@ import {
 } from "./document-views.mjs";
 import { escapeHtml } from "./markdown.mjs";
 import { format, localize } from "./i18n.mjs";
+import { windowClasses } from "./ui-look.mjs";
 
 const DISPLAY_ACTION = "display-document";
 const handledRequests = new Set();
@@ -92,10 +93,10 @@ export async function showPlayerSelectionDialog(target, options = {}) {
       ),
       icon: "fa-solid fa-user-group"
     },
-    classes: [
+    classes: windowClasses([
       "runyth-scriptoria-document-window",
       "runyth-scriptoria-player-selection-window"
-    ],
+    ]),
     position: {
       width: 460,
       height: "auto"

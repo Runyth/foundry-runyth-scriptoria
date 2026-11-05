@@ -2,6 +2,7 @@
 // Copyright (C) 2026 Daniel Braniewski. See the LICENSE file for rights and obligations.
 import assert from "node:assert/strict";
 import test from "node:test";
+import { FLEET_UI_CLASS } from "../scripts/ui-look.mjs";
 
 import { buildReaderContent, openReader } from "../scripts/reader.mjs";
 import { resetScriptureTypeRegistryForTests } from "../scripts/scripture-types.mjs";
@@ -91,7 +92,8 @@ test("openReader uses the one shared Runyth Scriptoria document window", async (
 
   assert.deepEqual(dialog.options.classes, [
     "runyth-scriptoria-document-window",
-    "runyth-scriptoria-reader-window"
+    "runyth-scriptoria-reader-window",
+    FLEET_UI_CLASS
   ]);
   assert.match(dialog.options.content, /runyth-scriptoria-rendered-content/);
   assert.doesNotMatch(dialog.options.content, /parchment|efe5cf/i);

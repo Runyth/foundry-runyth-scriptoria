@@ -10,6 +10,7 @@ import {
 } from "./documents.mjs";
 import { format, localize } from "./i18n.mjs";
 import { escapeHtml } from "./markdown.mjs";
+import { windowClasses } from "./ui-look.mjs";
 import {
   getScriptureTypeOrFallback,
   resolveScriptureTypeDescription,
@@ -89,10 +90,10 @@ export async function openReader(itemOrContext, {
       icon: "fa-solid fa-book-open",
       resizable: true
     },
-    classes: [
+    classes: windowClasses([
       "runyth-scriptoria-document-window",
       "runyth-scriptoria-reader-window"
-    ],
+    ]),
     position: {
       width: 780,
       height: 720

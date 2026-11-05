@@ -5,6 +5,10 @@
         "Name": "Default view for scene documents",
         "Hint": "Choose which reader opens by default when a Runyth Scriptoria document is opened from a scene."
       },
+      "StockFoundryLook": {
+        "Name": "Stock Foundry look",
+        "Hint": "Keep the stock Foundry UI design for the windows of Runyth Scriptoria. By default they use the fleet-wide Garb & Grime look."
+      },
       "DebugLogging": {
         "Name": "Enable Runyth Scriptoria debug logging",
         "Hint": "Write focused Runyth Scriptoria diagnostics to the browser console without logging imported document content."

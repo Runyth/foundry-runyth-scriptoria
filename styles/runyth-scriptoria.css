@@ -770,3 +770,84 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Fleet UI (default): the Garb & Grime design language, scoped so the stock
+   Foundry styling above stays verbatim when the module drops the
+   runyth-scriptoria-fleet-ui class. */
+.runyth-scriptoria-fleet-ui.runyth-scriptoria-document-window {
+  --runyth-scriptoria-window-header-background: rgba(11, 12, 15, 0.86);
+  --runyth-scriptoria-window-header-foreground: #f2f3f5;
+  --runyth-scriptoria-window-header-hover: #2b2f36;
+  --runyth-scriptoria-window-focus: #8ec5ff;
+  --runyth-scriptoria-surface-background: #17191d;
+  --runyth-scriptoria-surface-raised: #2b2f36;
+  --runyth-scriptoria-surface-border: #555d69;
+  --runyth-scriptoria-surface-foreground: #f2f3f5;
+  --runyth-scriptoria-muted-foreground: #c4c9d0;
+}
+
+.runyth-scriptoria-fleet-ui.runyth-scriptoria-document-window .window-header button:hover:not(:disabled),
+.runyth-scriptoria-fleet-ui.runyth-scriptoria-document-window .window-header a:hover,
+.runyth-scriptoria-fleet-ui.runyth-scriptoria-document-window .window-header .window-control:hover,
+.runyth-scriptoria-fleet-ui.runyth-scriptoria-document-window .window-header .header-control:hover {
+  color: var(--runyth-scriptoria-window-header-foreground);
+  border-color: #d7ad61;
+}
+
+.runyth-scriptoria-fleet-ui.runyth-scriptoria-document-window .window-content,
+.runyth-scriptoria-fleet-ui .runyth-scriptoria-reader {
+  background: linear-gradient(160deg, #16181c, #20242a 65%, #17191d);
+  color: var(--runyth-scriptoria-surface-foreground);
+  scrollbar-width: thin;
+}
+
+.runyth-scriptoria-fleet-ui.runyth-scriptoria-document-window :is(h1, h2, h3) {
+  color: #f0ca82;
+}
+
+.runyth-scriptoria-fleet-ui.runyth-scriptoria-document-window input,
+.runyth-scriptoria-fleet-ui.runyth-scriptoria-document-window select,
+.runyth-scriptoria-fleet-ui.runyth-scriptoria-document-window textarea {
+  border: 1px solid #68717f;
+  border-radius: 0.3rem;
+  background: #101216;
+  color: var(--runyth-scriptoria-surface-foreground);
+  min-height: 2rem;
+}
+
+.runyth-scriptoria-fleet-ui.runyth-scriptoria-document-window button {
+  border: 1px solid #68717f;
+  border-radius: 0.35rem;
+  background: linear-gradient(#343943, #282c33);
+  color: #f6f7f8;
+}
+
+.runyth-scriptoria-fleet-ui.runyth-scriptoria-document-window button:hover:not(:disabled) {
+  border-color: #d7ad61;
+  background: linear-gradient(#444b57, #31363f);
+  color: var(--runyth-scriptoria-surface-foreground);
+}
+
+.runyth-scriptoria-fleet-ui.runyth-scriptoria-document-window button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.runyth-scriptoria-fleet-ui.runyth-scriptoria-document-window :is(button, input, select, textarea):focus-visible,
+.runyth-scriptoria-fleet-ui.runyth-scriptoria-document-window .window-header .header-control:focus-visible {
+  outline: 2px solid var(--runyth-scriptoria-window-focus);
+  outline-offset: 1px;
+}
+
+.runyth-scriptoria-fleet-ui .runyth-scriptoria-reader__kind {
+  color: #d7ad61;
+}
+
+.runyth-scriptoria-fleet-ui .runyth-scriptoria-importer__source textarea {
+  color: var(--runyth-scriptoria-surface-foreground);
+}
+
+.runyth-scriptoria-fleet-ui .runyth-scriptoria-economics-settings table th {
+  background: #17191d;
+  color: #f0ca82;
+}
