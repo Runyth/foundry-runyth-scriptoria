@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.9.3 — 2026-11-06
+
+- Every fleet layer rule is keyed on the module-owned fleet class alone. The
+  importer, the Item price and weight defaults, and the player selection
+  windows never carried the document-window identity that the earlier
+  compound selectors demanded, so the look stayed off for them in spite of the
+  render-time look application introduced across 1.9.1 and 1.9.2.
+- Confirmed live: the render-time marker and fleet classes are present on
+  mounted windows, so the style key was the last missing structural link.
 
 ## 1.9.2 — 2026-11-06
 
