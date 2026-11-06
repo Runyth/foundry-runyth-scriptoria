@@ -17,6 +17,7 @@ import {
 import { escapeHtml } from "./markdown.mjs";
 import { format, localize } from "./i18n.mjs";
 import { windowClasses } from "./ui-look.mjs";
+import { getScriptoriaDialogClass } from "./scriptoria-dialog.mjs";
 
 const DISPLAY_ACTION = "display-document";
 const handledRequests = new Set();
@@ -84,7 +85,7 @@ export async function showPlayerSelectionDialog(target, options = {}) {
 
   const context = await resolveDocumentViewContext(target);
   const content = buildPlayerSelectionContent(users);
-  const dialog = new foundry.applications.api.DialogV2({
+  const dialog = new (getScriptoriaDialogClass())({
     window: {
       title: format(
         "RUNYTH-SCRIPTORIA.PlayerSelection.Title",

@@ -11,6 +11,7 @@ import {
 import { format, localize } from "./i18n.mjs";
 import { escapeHtml } from "./markdown.mjs";
 import { windowClasses } from "./ui-look.mjs";
+import { getScriptoriaDialogClass } from "./scriptoria-dialog.mjs";
 import {
   getScriptureTypeOrFallback,
   resolveScriptureTypeDescription,
@@ -84,7 +85,7 @@ export async function openReader(itemOrContext, {
     : await buildJournalReaderContent(context, type, {
       secrets: false
     });
-  const dialog = new foundry.applications.api.DialogV2({
+  const dialog = new (getScriptoriaDialogClass())({
     window: {
       title: context.title ?? item?.name,
       icon: "fa-solid fa-book-open",

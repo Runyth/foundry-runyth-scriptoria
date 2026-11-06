@@ -8,8 +8,10 @@ let stockLook;
 
 function windowElement(baseClasses = ["runyth-scriptoria-document-window"]) {
   const classes = new Set(baseClasses);
+  const attributes = new Map();
   return {
     classes,
+    attributes,
     classList: {
       toggle: (name, force) => {
         const active = force === undefined ? !classes.has(name) : Boolean(force);
@@ -19,7 +21,9 @@ function windowElement(baseClasses = ["runyth-scriptoria-document-window"]) {
       },
       add: (name) => classes.add(name),
       contains: (name) => classes.has(name)
-    }
+    },
+    setAttribute: (name, value) => attributes.set(name, value),
+    getAttribute: (name) => attributes.get(name) ?? null
   };
 }
 
@@ -99,13 +103,16 @@ test("syncs every mounted module window on settings closure", async () => {
   const reader = windowElement(["runyth-scriptoria-document-window", "runyth-scriptoria-reader-window"]);
   const importer = windowElement(["runyth-scriptoria-importer-window"]);
   const economics = windowElement(["runyth-scriptoria-economics-settings-window"]);
-  const { FLEET_UI_CLASS, syncOpenWindows } = await loadModule();
+  const sheet = windowElement(["runyth-scriptoria-document-window"]);
+  const markerOnly = windowElement([]); // rides only the render-time window marker
+  const { FLEET_UI_CLASS, syncOpenWindows, WINDOW_MARKER } = await loadModule();
+  markerOnly.setAttribute(WINDOW_MARKER, "");
 
   const tracked = [];
   globalThis.document = {
     querySelectorAll: (selector) => {
       tracked.push(selector);
-      return [reader, importer, economics];
+      return [reader, importer, economics, sheet, markerOnly];
     }
   };
 
@@ -114,14 +121,19 @@ test("syncs every mounted module window on settings closure", async () => {
   assert.equal(reader.classList.contains(FLEET_UI_CLASS), true);
   assert.equal(importer.classList.contains(FLEET_UI_CLASS), true);
   assert.equal(economics.classList.contains(FLEET_UI_CLASS), true);
+  assert.equal(sheet.classList.contains(FLEET_UI_CLASS), true);
+  assert.equal(markerOnly.classList.contains(FLEET_UI_CLASS), true);
 
   stockLook = true;
   assert.equal(syncOpenWindows(), true);
   assert.equal(reader.classList.contains(FLEET_UI_CLASS), false);
   assert.equal(importer.classList.contains(FLEET_UI_CLASS), false);
   assert.equal(economics.classList.contains(FLEET_UI_CLASS), false);
+  assert.equal(sheet.classList.contains(FLEET_UI_CLASS), false);
+  assert.equal(markerOnly.classList.contains(FLEET_UI_CLASS), false);
 
   for (const selector of tracked) {
+    assert.ok(selector.includes(`[${WINDOW_MARKER}]`));
     for (const fragment of [
       ".runyth-scriptoria-document-window",
       ".runyth-scriptoria-reader-window",

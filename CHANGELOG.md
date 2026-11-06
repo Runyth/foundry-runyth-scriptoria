@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.9.1 — 2026-11-06
+
+- The Garb & Grime UI on this module's windows now renders reliably; the text
+  at 1.9.0 relied on the host Foundry build forwarding the window `classes`
+  option onto the rendered element, which does not happen in every live
+  Foundry build, so the fleet look never appeared there.
+- Every Runyth Scriptoria DialogV2 window (reader, importer, player
+  selection, Item price and weight defaults, importer window reset prompt)
+  now derives from a module-owned dialog class that applies the look directly
+  on the rendered window element at render time, mirroring the approach of
+  Runyth Scene Folder Tools.
+- Rendered windows carry a `data-runyth-scriptoria-window` marker attribute,
+  and the settings-closure re-sync scans for it, so switching between the
+  fleet look and the stock Foundry look reaches windows regardless of how
+  their classes were mounted.
+- Added regression coverage for render-time look application, stock look
+  fidelity at both look states, toggling in both directions, and re-syncing
+  windows whose classes never landed on the DOM.
 
 ## 1.9.0 — 2026-11-05
 

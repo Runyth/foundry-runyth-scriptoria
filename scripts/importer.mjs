@@ -27,6 +27,7 @@ import {
   normalizeEconomicsNumber
 } from "./economics.mjs";
 import { format, localize } from "./i18n.mjs";
+import { getScriptoriaDialogClass } from "./scriptoria-dialog.mjs";
 import {
   attachImporterLayoutPersistence,
   getImporterInitialPosition
@@ -60,7 +61,7 @@ export function openImporter({ item = null } = {}) {
     sourceFileName: existing?.sourceFileName ?? ""
   };
 
-  const dialog = new foundry.applications.api.DialogV2({
+  const dialog = new (getScriptoriaDialogClass())({
     window: {
       title: editing
         ? format("RUNYTH-SCRIPTORIA.Importer.EditTitle", { name: item.name }, `Edit ${item.name}`)
