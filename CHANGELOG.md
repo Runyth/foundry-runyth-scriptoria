@@ -1,5 +1,24 @@
 # Changelog
 
+
+## 1.9.2 — 2026-11-06
+
+- The fleet look stayed invisible in live builds even after 1.9.1: the direct
+  render-time application carried only the fleet class, while the module's
+  window rules (stock and fleet alike) require the base
+  `runyth-scriptoria-document-window` and per-window identity classes on the
+  rendered element, and those still rode the host's handling of the window
+  `classes` option alone.
+- The module-owned dialog base now mounts the full window identity — the
+  base and per-window classes, the `data-runyth-scriptoria-window` marker,
+  and the current look — directly on the rendered element at render time, so
+  the appearance no longer depends on the host forwarding window options.
+- Added a second, independent application point: the module-level
+  `renderDialogV2` hook syncs any rendered Scriptoria DialogV2 window the
+  class-level render step may bypass, and remains inert for foreign dialogs.
+- Expanded the regression suite for identity mounting under option-black-hole
+  hosts, the hook-path sync for both look states, and the hook registration.
+
 ## 1.9.1 — 2026-11-06
 
 - The Garb & Grime UI on this module's windows now renders reliably; the text

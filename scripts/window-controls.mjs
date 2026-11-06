@@ -13,6 +13,7 @@ import {
 } from "./display-service.mjs";
 import { localize } from "./i18n.mjs";
 import { applyUiLook } from "./ui-look.mjs";
+import { syncRenderedDialog } from "./scriptoria-dialog.mjs";
 import { isScriptoriaItem } from "./documents.mjs";
 
 let hooksRegistered = false;
@@ -23,6 +24,7 @@ export function registerWindowControlHooks() {
 
   Hooks.on("getHeaderControlsApplicationV2", addApplicationV2Controls);
   Hooks.on("renderApplicationV2", enhanceRenderedApplication);
+  Hooks.on("renderDialogV2", syncRenderedDialog);
 
   Hooks.on("renderItemSheet", enhanceRenderedApplication);
   Hooks.on("renderJournalSheet", enhanceRenderedApplication);
