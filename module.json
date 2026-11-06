@@ -2,7 +2,7 @@
   "id": "runyth-scriptoria",
   "title": "Runyth Scriptoria \u2014 Markdown & HTML Books and Documents",
   "description": "Create readable Markdown and HTML documents as Foundry Items, with complete Foundry-native localization, directly editable creation price and weight fields, configurable scene readers, targeted player display controls, content-aware economics, manageable Scene pamphlets, remembered importer layout, and a versioned extension API.",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "compatibility": {
     "minimum": "13",
     "verified": "13.351",
@@ -36,6 +36,6 @@
   ],
   "url": "https://github.com/Runyth/foundry-runyth-scriptoria",
   "manifest": "https://github.com/Runyth/foundry-runyth-scriptoria/releases/latest/download/module.json",
-  "download": "https://github.com/Runyth/foundry-runyth-scriptoria/releases/download/v1.9.1/runyth-scriptoria-v1.9.1-mod.zip",
+  "download": "https://github.com/Runyth/foundry-runyth-scriptoria/releases/download/v1.9.2/runyth-scriptoria-v1.9.2-mod.zip",
   "changelog": "CHANGELOG.md"
 }

@@ -117,7 +117,7 @@ test("syncOpenWindows reaches marker windows even when no option classes landed"
   });
   await dialog.render();
   assert.equal(dialog.element.classList.contains(FLEET_UI_CLASS), false);
-  assert.equal(dialog.element.classes.size, 0);
+  assert.equal(dialog.element.classes.size, 1); // render-time identity mounting carried the base class; the look stays stock
 
   const { syncOpenWindows } = await import("../scripts/ui-look.mjs");
   const tracked = [];
@@ -138,6 +138,54 @@ test("syncOpenWindows reaches marker windows even when no option classes landed"
   assert.equal(dialog.element.classList.contains(FLEET_UI_CLASS), false);
 
   globalThis.document = undefined;
+});
+
+test("mounts the module window identity directly on the element even when the host drops every option class", async () => {
+  const ScriptoriaDialog = createScriptoriaDialogClass(HostDialogBase);
+  const dialog = new ScriptoriaDialog({
+    classes: [
+      "runyth-scriptoria-document-window",
+      "runyth-scriptoria-reader-window"
+    ]
+  });
+  // The host never forwards window `classes` options onto the element; the
+  // element starts empty.
+  assert.equal(dialog.element.classes.size, 0);
+
+  await dialog.render();
+
+  assert.equal(dialog.element.classList.contains("runyth-scriptoria-document-window"), true);
+  assert.equal(dialog.element.classList.contains("runyth-scriptoria-reader-window"), true);
+  assert.equal(dialog.element.getAttribute(WINDOW_MARKER), "");
+  assert.equal(dialog.element.classList.contains(FLEET_UI_CLASS), true);
+
+  stockLook = true;
+  await dialog.render();
+  assert.equal(dialog.element.classList.contains(FLEET_UI_CLASS), false);
+  assert.equal(dialog.element.classList.contains("runyth-scriptoria-document-window"), true);
+});
+
+test("syncRenderedDialog applies identity and look through the renderDialogV2 hook path", async () => {
+  const { syncRenderedDialog } = await import("../scripts/scriptoria-dialog.mjs");
+  const ScriptoriaDialog = createScriptoriaDialogClass(HostDialogBase);
+  const dialog = new ScriptoriaDialog({
+    classes: ["runyth-scriptoria-importer-window"]
+  });
+
+  assert.equal(syncRenderedDialog(dialog), true);
+  assert.equal(dialog.element.classList.contains("runyth-scriptoria-importer-window"), true);
+  assert.equal(dialog.element.getAttribute(WINDOW_MARKER), "");
+  assert.equal(dialog.element.classList.contains(FLEET_UI_CLASS), true);
+
+  stockLook = true;
+  assert.equal(syncRenderedDialog(dialog), true);
+  assert.equal(dialog.element.classList.contains(FLEET_UI_CLASS), false);
+  assert.equal(dialog.element.classList.contains("runyth-scriptoria-importer-window"), true);
+
+  const foreign = new ScriptoriaDialog({ classes: ["some-foreign-window"] });
+  assert.equal(syncRenderedDialog(foreign), false);
+  assert.equal(foreign.element.classes.size, 0);
+  assert.equal(foreign.element.getAttribute(WINDOW_MARKER) === "", false);
 });
 
 test("resolves the shared dialog class through the host Foundry API", () => {

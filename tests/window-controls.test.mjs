@@ -79,3 +79,17 @@ test("players do not receive broadcast or alternative-view controls", () => {
   addApplicationV2Controls({ document: item }, controls);
   assert.deepEqual(controls, []);
 });
+
+test("sources the window look sync from the module-level DialogV2 render hook", async () => {
+  configure();
+  const registrations = new Map();
+  globalThis.Hooks = {
+    on: (name, handler) => registrations.set(name, handler)
+  };
+
+  const { registerWindowControlHooks } = await import("../scripts/window-controls.mjs");
+  registerWindowControlHooks();
+  const { syncRenderedDialog } = await import("../scripts/scriptoria-dialog.mjs");
+
+  assert.equal(registrations.get("renderDialogV2"), syncRenderedDialog);
+});
