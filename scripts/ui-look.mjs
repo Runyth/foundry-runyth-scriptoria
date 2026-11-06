@@ -21,7 +21,13 @@ export function windowClasses(classes) {
   return [...classes, FLEET_UI_CLASS];
 }
 
+// Rendered DialogV2 windows are marked with this attribute at render time so
+// the fleet/class toggling reaches every mounted window even when the host
+// Foundry build does not forward window `classes` options onto the element.
+export const WINDOW_MARKER = "data-runyth-scriptoria-window";
+
 const WINDOW_SELECTOR = [
+  `[${WINDOW_MARKER}]`,
   ".runyth-scriptoria-document-window",
   ".runyth-scriptoria-reader-window",
   ".runyth-scriptoria-importer-window",
@@ -30,7 +36,8 @@ const WINDOW_SELECTOR = [
 
 export function syncOpenWindows() {
   const stock = isStockFoundryLook();
-  for (const element of globalThis.document?.querySelectorAll?.(WINDOW_SELECTOR) ?? []) {
+  const matches = globalThis.document?.querySelectorAll?.(WINDOW_SELECTOR) ?? [];
+  for (const element of new Set(matches)) {
     applyUiLook(element, stock);
   }
   return stock;

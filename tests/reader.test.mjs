@@ -11,6 +11,25 @@ class DialogV2Stub {
   constructor(options) {
     this.options = options;
     this.listeners = new Map();
+    const classes = new Set();
+    this.element = {
+      classList: {
+        add: (name) => classes.add(name),
+        remove: (name) => classes.delete(name),
+        contains: (name) => classes.has(name),
+        toggle: (name, force) => {
+          const active = force === undefined ? !classes.has(name) : Boolean(force);
+          if (active) classes.add(name);
+          else classes.delete(name);
+          return active;
+        }
+      },
+      setAttribute: (name, value) => {
+        this.element.attributes.set(name, value);
+      },
+      getAttribute: (name) => this.element.attributes.get(name) ?? null,
+      attributes: new Map()
+    };
   }
 
   addEventListener(name, callback) {
@@ -18,6 +37,7 @@ class DialogV2Stub {
   }
 
   async render() {
+    await this._onRender?.({}, {});
     return this;
   }
 }

@@ -10,6 +10,7 @@ import { clearImporterLayout } from "./importer-layout.mjs";
 import { localize } from "./i18n.mjs";
 import { createEconomicsDefaultsApplicationClass } from "./economics-settings.mjs";
 import { syncOpenWindows } from "./ui-look.mjs";
+import { getScriptoriaDialogClass } from "./scriptoria-dialog.mjs";
 
 export function registerSettings() {
   globalThis.Hooks?.on?.("closeSettingsConfig", () => syncOpenWindows());
@@ -188,7 +189,7 @@ export function registerSettings() {
 }
 
 function createResetImporterWindowDialogClass() {
-  return class ResetImporterWindowDialog extends foundry.applications.api.DialogV2 {
+  return class ResetImporterWindowDialog extends getScriptoriaDialogClass() {
     constructor() {
       super({
         window: {

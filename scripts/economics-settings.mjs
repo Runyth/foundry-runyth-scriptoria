@@ -9,12 +9,13 @@ import {
 import { escapeHtml } from "./markdown.mjs";
 import { format, localize } from "./i18n.mjs";
 import { windowClasses } from "./ui-look.mjs";
+import { getScriptoriaDialogClass } from "./scriptoria-dialog.mjs";
 import {
   resolveScriptureTypeLabel
 } from "./scripture-types.mjs";
 
 export function createEconomicsDefaultsApplicationClass() {
-  return class ScriptoriaEconomicsDefaultsDialog extends foundry.applications.api.DialogV2 {
+  return class ScriptoriaEconomicsDefaultsDialog extends getScriptoriaDialogClass() {
     constructor() {
       super({
         window: {
