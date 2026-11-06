@@ -10,7 +10,7 @@ const manifest = JSON.parse(
 
 test("manifest identifies a Foundry v13 module", () => {
   assert.equal(manifest.id, "runyth-scriptoria");
-  assert.equal(manifest.version, "1.9.2");
+  assert.equal(manifest.version, "1.9.3");
   assert.equal(manifest.compatibility.minimum, "13");
   assert.equal(manifest.compatibility.maximum, "13");
   assert.deepEqual(manifest.esmodules, ["scripts/main.mjs"]);
