@@ -1,286 +1,286 @@
 {
   "RUNYTH-SCRIPTORIA": {
-    "Settings": {
-      "DefaultSceneDocumentView": {
-        "Name": "Standardansicht für Szenendokumente",
-        "Hint": "Wähle, welche Ansicht standardmäßig geöffnet wird, wenn ein Runyth Scriptoria-Dokument aus einer Szene geöffnet wird."
-      },
-      "StockFoundryLook": {
-        "Name": "Foundry-Standardlook",
-        "Hint": "Beibehaltung des Foundry-Standards-UI-Designs für die Fenster von Runyth Scriptoria. Standardmäßig nutzen sie fleetweit den Garb & Grime-Look."
-      },
-      "DebugLogging": {
-        "Name": "Runyth Scriptoria-Debugprotokollierung aktivieren",
-        "Hint": "Schreibt gezielte Runyth Scriptoria-Diagnosen in die Browserkonsole, ohne importierte Dokumentinhalte zu protokollieren."
-      },
-      "RootFolder": {
-        "Name": "Stammordner für Items",
-        "Hint": "Der Stammordner im Item-Verzeichnis für von Runyth Scriptoria erstellte Dokumente."
-      },
-      "CreateKindFolders": {
-        "Name": "Unterordner nach Dokumenttyp erstellen",
-        "Hint": "Erzeugte Items in typspezifische Ordner einsortieren."
-      },
-      "DefaultAccess": {
-        "Name": "Standardzugriff auf Welt-Items",
-        "Hint": "Legt fest, ob ein neues Welt-Item bis zum Tragen oder Platzieren verborgen bleibt oder sofort für alle Spieler sichtbar ist."
-      },
-      "EnableSceneDrop": {
-        "Name": "Lesbare Journal-Notizen beim Ablegen auf Szenen erstellen",
-        "Hint": "Das Ablegen eines Runyth Scriptoria-Items auf einer Szene erstellt eine Journal-Momentaufnahme und eine Notiz an der Ablageposition."
-      },
-      "ScenePlayerAccess": {
-        "Name": "Spielerzugriff auf Szenen-Journale",
-        "Hint": "Steuert, ob alle Spieler von Runyth Scriptoria auf Szenen erzeugte Journale öffnen können."
-      },
-      "OpenAfterCreate": {
-        "Name": "Leser nach Erstellung öffnen",
-        "Hint": "Zeigt unmittelbar nach der Erstellung eines neuen Runyth Scriptoria-Items die Leseansicht an."
-      },
-      "RememberImporterWindow": {
-        "Name": "Position und Größe des Importfensters merken",
-        "Hint": "Stellt die letzte Größe und Position des Markdown-/HTML-Importfensters separat in diesem Browser wieder her."
-      },
-      "ImporterWindowLayout": {
-        "Name": "Layout des Importfensters",
-        "Hint": "Interner clientspezifischer Speicher für geprüfte Abmessungen und Koordinaten des Importfensters."
-      },
-      "ResetImporterWindow": {
-        "Name": "Position und Größe des Importfensters zurücksetzen",
-        "Label": "Importfenster zurücksetzen",
-        "Hint": "Löscht das in diesem Browser gespeicherte Layout. Das nächste Importfenster öffnet sich zentriert mit Standardabmessungen.",
-        "DialogTitle": "Runyth Scriptoria-Importfenster zurücksetzen",
-        "Confirm": "Die in diesem Browser gespeicherte Position und Größe des Importfensters löschen?",
-        "Note": "Das nächste Importfenster verwendet Scriptorias Standardabmessungen und eine zentrierte Position.",
-        "Action": "Fensterlayout zurücksetzen",
-        "Success": "Position und Größe des Runyth Scriptoria-Importfensters wurden zurückgesetzt."
-      }
-    },
-    "ReaderModes": {
-      "Foundry": "Standard-Dokumentansicht von Foundry",
-      "EnhancedJournal": "Erweiterte Journalmodul-Ansicht",
-      "EnhancedJournalUnavailable": "Erweiterte Journalmodul-Ansicht (nicht verfügbar)",
-      "SimpleReader": "Einfacher Runyth Scriptoria-Leser"
+    "Access": {
+      "AllPlayersCanRead": "Alle Spieler können lesen",
+      "AllPlayersImmediately": "Sofort für alle Spieler",
+      "GameMasterOnly": "Nur Spielleiter",
+      "WhenHeldOrPlaced": "Wenn getragen oder platziert"
     },
     "Actions": {
-      "OpenWith": "Öffnen mit",
-      "ShowToAllPlayers": "Allen Spielern anzeigen",
-      "ShowToSelectedPlayers": "Ausgewählten Spielern anzeigen…",
-      "SelectAll": "Alle auswählen",
-      "ClearSelection": "Auswahl aufheben",
-      "Show": "Anzeigen",
       "Cancel": "Abbrechen",
+      "ClearSelection": "Auswahl aufheben",
       "Close": "Schließen",
-      "Current": "Aktuell",
-      "Save": "Speichern",
-      "Read": "Lesen",
-      "EditSource": "Quelle bearbeiten",
+      "CreateDocument": "Dokument erstellen",
       "CreateScriptoriaDocument": "Runyth Scriptoria-Dokument erstellen",
-      "Runyth Scriptoria": "Runyth Scriptoria",
-      "ReadScriptoriaDocument": "Runyth Scriptoria-Dokument lesen",
+      "Current": "Aktuell",
       "EditScriptoriaSource": "Runyth Scriptoria-Quelle bearbeiten",
+      "EditSource": "Quelle bearbeiten",
+      "OpenWith": "Öffnen mit",
+      "Read": "Lesen",
+      "ReadScriptoriaDocument": "Runyth Scriptoria-Dokument lesen",
+      "Runyth Scriptoria": "Runyth Scriptoria",
+      "Save": "Speichern",
       "SaveChanges": "Änderungen speichern",
-      "CreateDocument": "Dokument erstellen"
+      "SelectAll": "Alle auswählen",
+      "Show": "Anzeigen",
+      "ShowToAllPlayers": "Allen Spielern anzeigen",
+      "ShowToSelectedPlayers": "Ausgewählten Spielern anzeigen…"
     },
-    "PlayerSelection": {
-      "Title": "„{name}“ ausgewählten Spielern anzeigen",
-      "Active": "Aktiv",
-      "Inactive": "Inaktiv",
-      "Hint": "Es werden nur verbundene Spieler ohne SL-Rolle aufgeführt. Dokumentberechtigungen werden nicht geändert."
-    },
-    "Notifications": {
-      "EnhancedJournalUnavailable": "Die erweiterte Journalintegration ist nicht verfügbar. Runyth Scriptoria hat stattdessen die Standardansicht von Foundry geöffnet.",
-      "NoPlayersSelected": "Wähle mindestens einen verbundenen Spieler aus.",
-      "FailedDisplay": "Das Runyth Scriptoria-Dokument konnte nicht angezeigt werden.",
-      "DisconnectedPlayers": "Die ausgewählten Spieler sind nicht mehr verbunden.",
-      "NoConnectedPlayers": "Es sind keine verbundenen Spieler verfügbar.",
-      "FileLoaded": "{fileName} wurde geladen.",
-      "DocumentCreated": "{type} erstellt: {title}",
-      "DocumentUpdated": "{title} wurde aktualisiert.",
-      "SceneDocumentPlaced": "Verwaltbares Dokument platziert: {title}"
-    },
-    "Errors": {
-      "DocumentNotFound": "Das Runyth Scriptoria-Dokument konnte nicht aufgelöst werden.",
-      "NotScriptoriaDocument": "Dieses Item ist kein Runyth Scriptoria-Dokument.",
-      "NoReadPermission": "Du hast keine Berechtigung, dieses Dokument zu lesen.",
-      "NoDocumentSheet": "Für dieses Dokument ist keine Foundry-Dokumentansicht verfügbar.",
-      "GmOnlyBroadcast": "Nur ein Spielleiter kann Dokumente anderen Spielern anzeigen.",
-      "EditPermission": "Nur ein Spielleiter oder der Item-Eigentümer kann Runyth Scriptoria-Dokumente bearbeiten.",
-      "SaveDocument": "Das Runyth Scriptoria-Dokument konnte nicht gespeichert werden.",
-      "ImportFile": "Die ausgewählte Dokumentdatei konnte nicht importiert werden.",
-      "CreateGmOnly": "Nur ein Spielleiter kann Runyth Scriptoria-Dokumente erstellen.",
-      "EditDocumentPermission": "Du hast keine Berechtigung, dieses Runyth Scriptoria-Dokument zu bearbeiten.",
-      "ContentRequired": "Dokumentinhalt ist erforderlich.",
-      "UnknownType": "Unbekannter oder nicht verfügbarer Schriftentyp: {typeId}",
-      "TypeNotCreatable": "Der Schriftentyp „{typeId}“ ist nicht für die Dokumenterstellung zugelassen.",
-      "TypeNotReadable": "Der Schriftentyp „{typeId}“ ist nicht für den Runyth Scriptoria-Leser zugelassen.",
-      "TypeNotPlaceable": "Der Schriftentyp „{typeId}“ kann nicht auf einer Szene platziert werden.",
-      "PlaceOnScene": "Das Runyth Scriptoria-Dokument konnte nicht auf der Szene platziert werden.",
-      "NoActiveScene": "Es ist keine aktive Szene verfügbar.",
-      "ActivateSceneControls": "Die Steuerelemente für Runyth Scriptoria-Szenendokumente konnten nicht aktiviert werden."
-    },
-    "Reader": {
-      "Document": "Runyth Scriptoria-Dokument"
+    "Documents": {
+      "SceneFolder": "Runyth Scriptoria-Szenendokumente",
+      "Untitled": "Unbenanntes Dokument: {type}"
     },
     "Economics": {
-      "SettingsMenu": {
-        "Name": "Standardpreise und -gewichte für Items",
-        "Label": "Standardpreise und -gewichte für Items",
-        "Description": "Konfiguriert Weltstandards für jeden derzeit bekannten Runyth Scriptoria-Typ. Bestehende Items werden niemals automatisch überschrieben."
-      },
-      "SettingsStorage": {
-        "Name": "Item-Wirtschaftsüberschreibungen",
-        "Hint": "Weltweite Überschreibungen, nach stabiler Runyth Scriptoria-Typ-ID gespeichert."
-      },
-      "PriceAndWeight": "Preis und Gewicht",
-      "EffectiveType": "Effektiver Typ",
-      "Type": "Typ",
-      "Price": "Preis",
-      "Denomination": "Währungseinheit",
-      "Weight": "Gewicht",
       "BaseWeight": "Grundgewicht",
-      "MinimumWeight": "Mindestgewicht",
-      "MaximumWeight": "Höchstgewicht",
-      "ReferenceWordCount": "Referenzwortzahl",
-      "ContentLengthAdjustment": "An Inhaltslänge anpassen",
+      "BuiltInProvider": "Runyth Scriptoria (integriert)",
       "CalculatedDefault": "Berechneter Standard",
-      "ResetProviderDefault": "Auf Anbieterstandard zurücksetzen",
-      "NormalizedWordCount": "Normalisierte Wortzahl",
+      "ContentLengthAdjustment": "An Inhaltslänge anpassen",
+      "Denomination": "Währungseinheit",
+      "EffectiveType": "Effektiver Typ",
+      "Errors": {
+        "FieldInteger": "{field} muss eine positive Ganzzahl sein.",
+        "FieldNumber": "{field} muss eine endliche, nicht negative Zahl sein.",
+        "FormUnavailable": "Das Formular für Wirtschaftseinstellungen ist nicht verfügbar.",
+        "GmOnly": "Nur ein Spielleiter kann Runyth Scriptoria-Standardpreise und -gewichte ändern.",
+        "InvalidHelper": "Der Schriftentyp {typeId} des Anbieters {providerId} enthält ungültige Wirtschaftsdaten: {message}",
+        "InvalidNumber": "Runyth Scriptoria konnte das Dokument nicht erstellen, weil der Wert „{field}“ {reason}. Empfangen: {received}.",
+        "InvalidPriceDenomination": "Runyth Scriptoria konnte das Dokument nicht erstellen, weil die Währungseinheit ungültig ist. Empfangen: {received}.",
+        "InvalidResolvedDenomination": "Runyth Scriptoria konnte das Dokument nicht erstellen, weil die aufgelöste Währungseinheit ungültig ist. Empfangen: {received}.",
+        "InvalidResolvedWeightUnit": "Runyth Scriptoria konnte das Dokument nicht erstellen, weil die aufgelöste Gewichtseinheit ungültig ist. Empfangen: {received}.",
+        "InvalidSettings": "Ungültige Wirtschaftseinstellungen: {message}",
+        "InvalidWeightUnit": "Runyth Scriptoria konnte das Dokument nicht erstellen, weil die Gewichtseinheit ungültig ist. Empfangen: {received}.",
+        "PriceDenomination": "Die ausgewählte Währungseinheit wird nicht unterstützt.",
+        "PriceOverride": "Die Preisüberschreibung muss eine endliche, nicht negative Zahl sein.",
+        "TypeIdRequired": "Eine Schriftentyp-ID ist erforderlich.",
+        "UnsupportedSystem": "Runyth Scriptoria konnte Preis oder Gewicht nicht schreiben, da das aktive Spielsystem nicht unterstützt wird.",
+        "WeightOverride": "Die Gewichtsüberschreibung muss eine endliche, nicht negative Zahl sein.",
+        "WeightUnitMissing": "Runyth Scriptoria konnte das Dokument nicht erstellen, weil die Gewichtseinheit fehlt."
+      },
+      "Fields": {
+        "PriceOverrideValue": "überschriebene Preiswert",
+        "PriceValue": "Preiswert",
+        "ResolvedPriceValue": "aufgelöste Preiswert",
+        "ResolvedWeightValue": "aufgelöste Gewichtswert",
+        "Value": "Wert",
+        "WeightOverrideValue": "überschriebene Gewichtswert",
+        "WeightValue": "Gewichtswert"
+      },
       "FinalPrice": "Endpreis",
       "FinalWeight": "Endgewicht",
-      "ProviderModule": "Anbietermodul",
-      "UnavailableType": "Nicht verfügbarer Typ",
       "InvalidSettings": "Ungültige Wirtschaftseinstellungen",
-      "RecalculationConfirmation": "Dieses Item anhand der aktuellen Runyth Scriptoria-Standards neu berechnen? Der derzeitige Preis und das Gewicht werden ersetzt.",
-      "WeightExplanation": "Das berechnete Gewicht variiert geringfügig mit der normalisierten lesbaren Textlänge und bleibt innerhalb der konfigurierten Typgrenzen.",
-      "BuiltInProvider": "Runyth Scriptoria (integriert)",
+      "MaximumWeight": "Höchstgewicht",
+      "MinimumWeight": "Mindestgewicht",
       "NoTypes": "Derzeit sind keine Runyth Scriptoria-Typen verfügbar.",
+      "NormalizedWordCount": "Normalisierte Wortzahl",
       "Notifications": {
         "DefaultsSaved": "Runyth Scriptoria-Standardpreise und -gewichte wurden gespeichert.",
         "TypeReset": "{type} wurde auf den Anbieterstandard zurückgesetzt."
       },
-      "Errors": {
-        "InvalidSettings": "Ungültige Wirtschaftseinstellungen: {message}",
-        "GmOnly": "Nur ein Spielleiter kann Runyth Scriptoria-Standardpreise und -gewichte ändern.",
-        "InvalidHelper": "Der Schriftentyp {typeId} des Anbieters {providerId} enthält ungültige Wirtschaftsdaten: {message}",
-        "UnsupportedSystem": "Runyth Scriptoria konnte Preis oder Gewicht nicht schreiben, da das aktive Spielsystem nicht unterstützt wird.",
-        "PriceOverride": "Die Preisüberschreibung muss eine endliche, nicht negative Zahl sein.",
-        "WeightOverride": "Die Gewichtsüberschreibung muss eine endliche, nicht negative Zahl sein.",
-        "FormUnavailable": "Das Formular für Wirtschaftseinstellungen ist nicht verfügbar.",
-        "FieldNumber": "{field} muss eine endliche, nicht negative Zahl sein.",
-        "FieldInteger": "{field} muss eine positive Ganzzahl sein.",
-        "PriceDenomination": "Die ausgewählte Währungseinheit wird nicht unterstützt.",
-        "WeightUnitMissing": "Runyth Scriptoria konnte das Dokument nicht erstellen, weil die Gewichtseinheit fehlt.",
-        "TypeIdRequired": "Eine Schriftentyp-ID ist erforderlich.",
-        "InvalidResolvedDenomination": "Runyth Scriptoria konnte das Dokument nicht erstellen, weil die aufgelöste Währungseinheit ungültig ist. Empfangen: {received}.",
-        "InvalidResolvedWeightUnit": "Runyth Scriptoria konnte das Dokument nicht erstellen, weil die aufgelöste Gewichtseinheit ungültig ist. Empfangen: {received}.",
-        "InvalidPriceDenomination": "Runyth Scriptoria konnte das Dokument nicht erstellen, weil die Währungseinheit ungültig ist. Empfangen: {received}.",
-        "InvalidWeightUnit": "Runyth Scriptoria konnte das Dokument nicht erstellen, weil die Gewichtseinheit ungültig ist. Empfangen: {received}.",
-        "InvalidNumber": "Runyth Scriptoria konnte das Dokument nicht erstellen, weil der Wert „{field}“ {reason}. Empfangen: {received}."
-      },
-      "WeightUnit": "Einheit",
-      "ResetPriceDefault": "Preis auf Standard zurücksetzen",
-      "RecalculateWeight": "Gewicht neu berechnen",
-      "Fields": {
-        "Value": "Wert",
-        "PriceValue": "Preiswert",
-        "WeightValue": "Gewichtswert",
-        "ResolvedPriceValue": "aufgelöste Preiswert",
-        "ResolvedWeightValue": "aufgelöste Gewichtswert",
-        "PriceOverrideValue": "überschriebene Preiswert",
-        "WeightOverrideValue": "überschriebene Gewichtswert"
-      },
+      "Price": "Preis",
+      "PriceAndWeight": "Preis und Gewicht",
+      "ProviderModule": "Anbietermodul",
       "Reasons": {
-        "Missing": "fehlt",
         "Empty": "ist leer",
-        "NotFinite": "ist keine endliche Zahl",
-        "Minimum": "muss mindestens {minimum} betragen"
-      }
+        "Minimum": "muss mindestens {minimum} betragen",
+        "Missing": "fehlt",
+        "NotFinite": "ist keine endliche Zahl"
+      },
+      "RecalculateWeight": "Gewicht neu berechnen",
+      "RecalculationConfirmation": "Dieses Item anhand der aktuellen Runyth Scriptoria-Standards neu berechnen? Der derzeitige Preis und das Gewicht werden ersetzt.",
+      "ReferenceWordCount": "Referenzwortzahl",
+      "ResetPriceDefault": "Preis auf Standard zurücksetzen",
+      "ResetProviderDefault": "Auf Anbieterstandard zurücksetzen",
+      "SettingsMenu": {
+        "Description": "Konfiguriert Weltstandards für jeden derzeit bekannten Runyth Scriptoria-Typ. Bestehende Items werden niemals automatisch überschrieben.",
+        "Label": "Standardpreise und -gewichte für Items",
+        "Name": "Standardpreise und -gewichte für Items"
+      },
+      "SettingsStorage": {
+        "Hint": "Weltweite Überschreibungen, nach stabiler Runyth Scriptoria-Typ-ID gespeichert.",
+        "Name": "Item-Wirtschaftsüberschreibungen"
+      },
+      "Type": "Typ",
+      "UnavailableType": "Nicht verfügbarer Typ",
+      "Weight": "Gewicht",
+      "WeightExplanation": "Das berechnete Gewicht variiert geringfügig mit der normalisierten lesbaren Textlänge und bleibt innerhalb der konfigurierten Typgrenzen.",
+      "WeightUnit": "Einheit"
     },
-    "Access": {
-      "WhenHeldOrPlaced": "Wenn getragen oder platziert",
-      "AllPlayersImmediately": "Sofort für alle Spieler",
-      "AllPlayersCanRead": "Alle Spieler können lesen",
-      "GameMasterOnly": "Nur Spielleiter"
+    "Errors": {
+      "ActivateSceneControls": "Die Steuerelemente für Runyth Scriptoria-Szenendokumente konnten nicht aktiviert werden.",
+      "ContentRequired": "Dokumentinhalt ist erforderlich.",
+      "CreateGmOnly": "Nur ein Spielleiter kann Runyth Scriptoria-Dokumente erstellen.",
+      "DocumentNotFound": "Das Runyth Scriptoria-Dokument konnte nicht aufgelöst werden.",
+      "EditDocumentPermission": "Du hast keine Berechtigung, dieses Runyth Scriptoria-Dokument zu bearbeiten.",
+      "EditPermission": "Nur ein Spielleiter oder der Item-Eigentümer kann Runyth Scriptoria-Dokumente bearbeiten.",
+      "GmOnlyBroadcast": "Nur ein Spielleiter kann Dokumente anderen Spielern anzeigen.",
+      "ImportFile": "Die ausgewählte Dokumentdatei konnte nicht importiert werden.",
+      "NoActiveScene": "Es ist keine aktive Szene verfügbar.",
+      "NoDocumentSheet": "Für dieses Dokument ist keine Foundry-Dokumentansicht verfügbar.",
+      "NoReadPermission": "Du hast keine Berechtigung, dieses Dokument zu lesen.",
+      "NotScriptoriaDocument": "Dieses Item ist kein Runyth Scriptoria-Dokument.",
+      "PlaceOnScene": "Das Runyth Scriptoria-Dokument konnte nicht auf der Szene platziert werden.",
+      "SaveDocument": "Das Runyth Scriptoria-Dokument konnte nicht gespeichert werden.",
+      "TypeNotCreatable": "Der Schriftentyp „{typeId}“ ist nicht für die Dokumenterstellung zugelassen.",
+      "TypeNotPlaceable": "Der Schriftentyp „{typeId}“ kann nicht auf einer Szene platziert werden.",
+      "TypeNotReadable": "Der Schriftentyp „{typeId}“ ist nicht für den Runyth Scriptoria-Leser zugelassen.",
+      "UnknownType": "Unbekannter oder nicht verfügbarer Schriftentyp: {typeId}"
     },
-    "Types": {
-      "Book": {
-        "Label": "Buch",
-        "Plural": "Bücher",
-        "Description": "Ein gebundenes Buch oder umfangreiches Schriftwerk."
-      },
-      "Journal": {
-        "Label": "Journal",
-        "Plural": "Journale",
-        "Description": "Ein persönliches Journal, Tagebuch, Protokoll oder Notizbuch."
-      },
-      "Scripture": {
-        "Label": "Schrift",
-        "Plural": "Schriften",
-        "Description": "Ein religiöser, dogmatischer, prophetischer oder heiliger Text."
-      },
-      "Documentation": {
-        "Label": "Dokumentation",
-        "Plural": "Dokumentationen",
-        "Description": "Technisches, verfahrensbezogenes, lehrendes oder nachschlagendes Material."
-      },
-      "Pamphlet": {
-        "Label": "Flugschrift",
-        "Plural": "Flugschriften",
-        "Description": "Ein kurzes Handblatt, Faltblatt, Aushang, Traktat oder gefaltetes Dokument."
-      },
-      "Unavailable": {
-        "Label": "Nicht verfügbarer Schriftentyp: {id}",
-        "Plural": "Nicht verfügbare Schriftentypen",
-        "Description": "Der Anbieter des Schriftentyps „{id}“ ist derzeit nicht verfügbar. Das gespeicherte Dokument bleibt lesbar."
-      },
-      "GenericPlural": "{label}"
+    "FileImport": {
+      "Empty": "Die ausgewählte Dokumentdatei ist leer.",
+      "NoFile": "Es wurde keine Dokumentdatei ausgewählt.",
+      "NotText": "Die ausgewählte Datei scheint kein Klartextdokument zu sein.",
+      "ReadFailed": "Die ausgewählte Datei konnte nicht gelesen werden.",
+      "TooLarge": "Das ausgewählte Dokument ist größer als 5 MiB.",
+      "UnsupportedBrowser": "Dieser Browser kann die ausgewählte Dokumentdatei nicht lesen.",
+      "UnsupportedType": "Wähle eine Markdown-Datei (.md, .markdown) oder HTML-Datei (.html, .htm)."
     },
     "Importer": {
+      "AcceptedFiles": "Akzeptiert: <code>.md</code>, <code>.markdown</code>, <code>.html</code> und <code>.htm</code> bis 5 MiB. Die Auswahl einer Datei ersetzt das darunterliegende Quellfeld.",
+      "Author": "Autor oder Zuschreibung",
       "CreateTitle": "Runyth Scriptoria-Dokument erstellen",
       "EditTitle": "{name} bearbeiten",
-      "Introduction": "Inhalt direkt einfügen oder eine lokale Markdown- oder HTML-Datei importieren. Die erste Überschrift wird zum Item-Namen, sofern kein Titel angegeben wird. HTML-Importe werden vor der Anzeige bereinigt.",
+      "HtmlHint": "Die erste <h1>-Überschrift wird als Titel verwendet, ersatzweise <title>. Skripte, Ereignishandler, eingebettete Frames, Formulare und unsichere URLs werden entfernt.",
+      "HtmlPlaceholder": "HTML hier einfügen oder hochladen.",
+      "HtmlSource": "HTML-Quelle",
       "ImportFile": "Dokumentdatei importieren",
-      "AcceptedFiles": "Akzeptiert: <code>.md</code>, <code>.markdown</code>, <code>.html</code> und <code>.htm</code> bis 5 MiB. Die Auswahl einer Datei ersetzt das darunterliegende Quellfeld.",
+      "Introduction": "Inhalt direkt einfügen oder eine lokale Markdown- oder HTML-Datei importieren. Die erste Überschrift wird zum Item-Namen, sofern kein Titel angegeben wird. HTML-Importe werden vor der Anzeige bereinigt.",
+      "ItemType": "Foundry-Item-Typ",
+      "ItemTypeHint": "D&D 5e verwendet normalerweise ein gewöhnliches Beute-Item.",
+      "LoadedFile": "{fileName} geladen",
+      "LoadedSourceFile": "Geladene Quelldatei: {fileName}",
+      "MarkdownHint": "Die erste # H1- oder Setext-H1-Überschrift wird als Titel verwendet. Rohes HTML in Markdown bleibt maskiert.",
+      "MarkdownPlaceholder": "Markdown hier einfügen, schreiben oder hochladen.",
+      "MarkdownSource": "Markdown-Quelle",
+      "NoFileSelected": "Keine Datei ausgewählt. Einfügen oder Tippen bleibt möglich.",
+      "Optional": "Optional",
+      "ReadingLayout": "Leselayout",
+      "RemoveFirstHeading": "Erste H1-Überschrift aus dem Inhalt entfernen",
       "ScriptureType": "Schriftentyp",
       "ScriptureTypeHint": "Integrierte und von Hilfsmodulen bereitgestellte Typen werden über das öffentliche Runyth Scriptoria-Register aufgelöst. Nach einer späten Registrierung muss dieses Fenster neu geöffnet werden.",
       "SourceFormat": "Quellformat",
       "SourceFormatHint": "Wird beim Auswählen einer unterstützten Datei automatisch aktualisiert.",
-      "ItemType": "Foundry-Item-Typ",
-      "ItemTypeHint": "D&D 5e verwendet normalerweise ein gewöhnliches Beute-Item.",
       "Title": "Titel",
       "TitlePlaceholder": "Leer lassen, um die Dokumentüberschrift zu verwenden",
-      "Author": "Autor oder Zuschreibung",
-      "Optional": "Optional",
       "WorldAccess": "Zugriff auf das Welt-Item",
-      "WorldAccessHint": "Akteurberechtigungen und erzeugte Szenen-Journale steuern weiterhin eingebettete oder platzierte Kopien.",
-      "ReadingLayout": "Leselayout",
-      "RemoveFirstHeading": "Erste H1-Überschrift aus dem Inhalt entfernen",
-      "HtmlSource": "HTML-Quelle",
-      "MarkdownSource": "Markdown-Quelle",
-      "HtmlPlaceholder": "HTML hier einfügen oder hochladen.",
-      "MarkdownPlaceholder": "Markdown hier einfügen, schreiben oder hochladen.",
-      "LoadedSourceFile": "Geladene Quelldatei: {fileName}",
-      "NoFileSelected": "Keine Datei ausgewählt. Einfügen oder Tippen bleibt möglich.",
-      "LoadedFile": "{fileName} geladen",
-      "HtmlHint": "Die erste <h1>-Überschrift wird als Titel verwendet, ersatzweise <title>. Skripte, Ereignishandler, eingebettete Frames, Formulare und unsichere URLs werden entfernt.",
-      "MarkdownHint": "Die erste # H1- oder Setext-H1-Überschrift wird als Titel verwendet. Rohes HTML in Markdown bleibt maskiert."
+      "WorldAccessHint": "Akteurberechtigungen und erzeugte Szenen-Journale steuern weiterhin eingebettete oder platzierte Kopien."
     },
-    "Documents": {
-      "Untitled": "Unbenanntes Dokument: {type}",
-      "SceneFolder": "Runyth Scriptoria-Szenendokumente"
+    "Notifications": {
+      "DisconnectedPlayers": "Die ausgewählten Spieler sind nicht mehr verbunden.",
+      "DocumentCreated": "{type} erstellt: {title}",
+      "DocumentUpdated": "{title} wurde aktualisiert.",
+      "EnhancedJournalUnavailable": "Die erweiterte Journalintegration ist nicht verfügbar. Runyth Scriptoria hat stattdessen die Standardansicht von Foundry geöffnet.",
+      "FailedDisplay": "Das Runyth Scriptoria-Dokument konnte nicht angezeigt werden.",
+      "FileLoaded": "{fileName} wurde geladen.",
+      "NoConnectedPlayers": "Es sind keine verbundenen Spieler verfügbar.",
+      "NoPlayersSelected": "Wähle mindestens einen verbundenen Spieler aus.",
+      "SceneDocumentPlaced": "Verwaltbares Dokument platziert: {title}"
+    },
+    "PlayerSelection": {
+      "Active": "Aktiv",
+      "Hint": "Es werden nur verbundene Spieler ohne SL-Rolle aufgeführt. Dokumentberechtigungen werden nicht geändert.",
+      "Inactive": "Inaktiv",
+      "Title": "„{name}“ ausgewählten Spielern anzeigen"
+    },
+    "Reader": {
+      "Document": "Runyth Scriptoria-Dokument"
+    },
+    "ReaderModes": {
+      "EnhancedJournal": "Erweiterte Journalmodul-Ansicht",
+      "EnhancedJournalUnavailable": "Erweiterte Journalmodul-Ansicht (nicht verfügbar)",
+      "Foundry": "Standard-Dokumentansicht von Foundry",
+      "SimpleReader": "Einfacher Runyth Scriptoria-Leser"
     },
     "Scene": {
       "ManageDocuments": "Runyth Scriptoria-Szenendokumente verwalten"
     },
-    "FileImport": {
-      "UnsupportedType": "Wähle eine Markdown-Datei (.md, .markdown) oder HTML-Datei (.html, .htm).",
-      "NoFile": "Es wurde keine Dokumentdatei ausgewählt.",
-      "TooLarge": "Das ausgewählte Dokument ist größer als 5 MiB.",
-      "NotText": "Die ausgewählte Datei scheint kein Klartextdokument zu sein.",
-      "Empty": "Die ausgewählte Dokumentdatei ist leer.",
-      "UnsupportedBrowser": "Dieser Browser kann die ausgewählte Dokumentdatei nicht lesen.",
-      "ReadFailed": "Die ausgewählte Datei konnte nicht gelesen werden."
+    "Settings": {
+      "CreateKindFolders": {
+        "Hint": "Erzeugte Items in typspezifische Ordner einsortieren.",
+        "Name": "Unterordner nach Dokumenttyp erstellen"
+      },
+      "DebugLogging": {
+        "Hint": "Schreibt gezielte Runyth Scriptoria-Diagnosen in die Browserkonsole, ohne importierte Dokumentinhalte zu protokollieren.",
+        "Name": "Runyth Scriptoria-Debugprotokollierung aktivieren"
+      },
+      "DefaultAccess": {
+        "Hint": "Legt fest, ob ein neues Welt-Item bis zum Tragen oder Platzieren verborgen bleibt oder sofort für alle Spieler sichtbar ist.",
+        "Name": "Standardzugriff auf Welt-Items"
+      },
+      "DefaultSceneDocumentView": {
+        "Hint": "Wähle, welche Ansicht standardmäßig geöffnet wird, wenn ein Runyth Scriptoria-Dokument aus einer Szene geöffnet wird.",
+        "Name": "Standardansicht für Szenendokumente"
+      },
+      "EnableSceneDrop": {
+        "Hint": "Das Ablegen eines Runyth Scriptoria-Items auf einer Szene erstellt eine Journal-Momentaufnahme und eine Notiz an der Ablageposition.",
+        "Name": "Lesbare Journal-Notizen beim Ablegen auf Szenen erstellen"
+      },
+      "ImporterWindowLayout": {
+        "Hint": "Interner clientspezifischer Speicher für geprüfte Abmessungen und Koordinaten des Importfensters.",
+        "Name": "Layout des Importfensters"
+      },
+      "OpenAfterCreate": {
+        "Hint": "Zeigt unmittelbar nach der Erstellung eines neuen Runyth Scriptoria-Items die Leseansicht an.",
+        "Name": "Leser nach Erstellung öffnen"
+      },
+      "RememberImporterWindow": {
+        "Hint": "Stellt die letzte Größe und Position des Markdown-/HTML-Importfensters separat in diesem Browser wieder her.",
+        "Name": "Position und Größe des Importfensters merken"
+      },
+      "ResetImporterWindow": {
+        "Action": "Fensterlayout zurücksetzen",
+        "Confirm": "Die in diesem Browser gespeicherte Position und Größe des Importfensters löschen?",
+        "DialogTitle": "Runyth Scriptoria-Importfenster zurücksetzen",
+        "Hint": "Löscht das in diesem Browser gespeicherte Layout. Das nächste Importfenster öffnet sich zentriert mit Standardabmessungen.",
+        "Label": "Importfenster zurücksetzen",
+        "Name": "Position und Größe des Importfensters zurücksetzen",
+        "Note": "Das nächste Importfenster verwendet Scriptorias Standardabmessungen und eine zentrierte Position.",
+        "Success": "Position und Größe des Runyth Scriptoria-Importfensters wurden zurückgesetzt."
+      },
+      "RootFolder": {
+        "Hint": "Der Stammordner im Item-Verzeichnis für von Runyth Scriptoria erstellte Dokumente.",
+        "Name": "Stammordner für Items"
+      },
+      "ScenePlayerAccess": {
+        "Hint": "Steuert, ob alle Spieler von Runyth Scriptoria auf Szenen erzeugte Journale öffnen können.",
+        "Name": "Spielerzugriff auf Szenen-Journale"
+      },
+      "StockFoundryLook": {
+        "Hint": "Beibehaltung des Foundry-Standards-UI-Designs für die Fenster von Runyth Scriptoria. Standardmäßig nutzen sie fleetweit den Garb & Grime-Look.",
+        "Name": "Foundry-Standardlook"
+      }
+    },
+    "Types": {
+      "Book": {
+        "Description": "Ein gebundenes Buch oder umfangreiches Schriftwerk.",
+        "Label": "Buch",
+        "Plural": "Bücher"
+      },
+      "Documentation": {
+        "Description": "Technisches, verfahrensbezogenes, lehrendes oder nachschlagendes Material.",
+        "Label": "Dokumentation",
+        "Plural": "Dokumentationen"
+      },
+      "GenericPlural": "{label}",
+      "Journal": {
+        "Description": "Ein persönliches Journal, Tagebuch, Protokoll oder Notizbuch.",
+        "Label": "Journal",
+        "Plural": "Journale"
+      },
+      "Pamphlet": {
+        "Description": "Ein kurzes Handblatt, Faltblatt, Aushang, Traktat oder gefaltetes Dokument.",
+        "Label": "Flugschrift",
+        "Plural": "Flugschriften"
+      },
+      "Scripture": {
+        "Description": "Ein religiöser, dogmatischer, prophetischer oder heiliger Text.",
+        "Label": "Schrift",
+        "Plural": "Schriften"
+      },
+      "Unavailable": {
+        "Description": "Der Anbieter des Schriftentyps „{id}“ ist derzeit nicht verfügbar. Das gespeicherte Dokument bleibt lesbar.",
+        "Label": "Nicht verfügbarer Schriftentyp: {id}",
+        "Plural": "Nicht verfügbare Schriftentypen"
+      }
     }
   }
 }
